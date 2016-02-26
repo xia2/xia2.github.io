@@ -204,13 +204,12 @@ dials {
     method = fft1d *fft3d real_space_grid_search
     phil_file = None
     max_cell = 0.0
-    use_all_reflections = False
     fft3d.n_points = None
+    reflections_per_degree = 100
   }
   refine {
     scan_varying = True
     interval_width_degrees = 36.0
-    use_all_reflections = True
     phil_file = None
     reflections_per_degree = 100
   }
