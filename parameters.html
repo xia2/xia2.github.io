@@ -286,6 +286,11 @@ xia2.settings {
   refiner = mosflm xds dials
   integrater = mosflmr xdsr mosflm xds dials
   scaler = ccp4a xdsa
+  merging_statistics {
+    source = *aimless cctbx
+    n_bins = 20
+    use_internal_variance = False
+  }
   verbose = False
   multiprocessing {
     mode = *serial parallel
