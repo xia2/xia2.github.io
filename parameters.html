@@ -245,6 +245,27 @@ xia2.settings {
     gain = None
     min_images = 10
     min_oscillation_range = None
+    tolerance {
+      beam {
+        wavelength = 1e-6
+        direction = 1e-6
+        polarization_normal = 1e-6
+        polarization_fraction = 1e-6
+      }
+      detector {
+        fast_axis = 1e-6
+        slow_axis = 1e-6
+        origin = 5e-2
+      }
+      goniometer {
+        rotation_axis = 1e-6
+        fixed_rotation = 1e-6
+        setting_rotation = 1e-6
+      }
+      scan {
+        oscillation = 0.01
+      }
+    }
   }
   sweep {
     id = None
