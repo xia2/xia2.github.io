@@ -143,7 +143,6 @@ keep &#8220;recipes&#8221; for running xia2 in tidy files.</p>
 <p>Here is a comprehensive list of PHIL parameters used by xia2:</p>
 <pre class="literal-block">
 general {
-  check_image_files_readable = True
 }
 xds {
   delphi = 5
@@ -187,140 +186,25 @@ xds {
   }
 }
 dials {
-  fix_geometry = False
-  outlier.algorithm = null *auto mcd tukey sauter_poon
-  fast_mode = False
-  close_to_spindle_cutoff = 0.02
+  outlier {
+  }
   find_spots {
-    min_spot_size = Auto
-    min_local = 0
-    phil_file = None
-    sigma_strong = None
     filter_ice_rings = False
-    kernel_size = 3
-    global_threshold = None
   }
   index {
     method = fft1d *fft3d real_space_grid_search
-    phil_file = None
-    max_cell = 0.0
-    fft3d.n_points = None
-    reflections_per_degree = 100
-  }
-  refine {
-    scan_varying = True
-    interval_width_degrees = 36.0
-    phil_file = None
-    reflections_per_degree = 100
-  }
-  integrate {
-    phil_file = None
-    profile_fitting = True
-    background_outlier_algorithm = *null nsigma truncated normal tukey mosflm
-    background_algorithm = simple null *glm
-    use_threading = False
-    include_partials = True
-  }
-}
-ccp4 {
-  truncate {
-    program = 'ctruncate'
-  }
-  reindex {
-    program = 'pointless'
-  }
-  aimless {
-    intensities = summation profile *combine
-    surface_tie = 0.001
-    surface_link = True
   }
 }
 xia2.settings {
-  input {
-    image = None
-    json = None
-    reference_geometry = None
-    reverse_phi = False
-    xinfo = None
-    gain = None
-    min_images = 10
-    min_oscillation_range = None
-    tolerance {
-      beam {
-        wavelength = 1e-6
-        direction = 1e-6
-        polarization_normal = 1e-6
-        polarization_fraction = 1e-6
-      }
-      detector {
-        fast_axis = 1e-6
-        slow_axis = 1e-6
-        origin = 5e-2
-      }
-      goniometer {
-        rotation_axis = 1e-6
-        fixed_rotation = 1e-6
-        setting_rotation = 1e-6
-      }
-      scan {
-        oscillation = 0.01
-      }
-    }
-  }
-  sweep {
-    id = None
-    range = None
-    exclude = False
-  }
   scale {
-    directory = Auto
   }
-  unit_cell = None
   space_group = None
+  unit_cell = None
   resolution {
     d_max = None
     d_min = None
-    rmerge = None
-    completeness = None
-    cc_half = 0.5
-    isigma = 0.25
-    misigma = 1.0
   }
-  optimize_scaling = False
-  unify_setting = False
   beam_centre = None
-  trust_beam_centre = False
-  wavelength_tolerance = 0.00001
-  read_all_image_headers = True
-  detector_distance = None
-  show_template = False
-  untrusted_rectangle_indexing = None
-  xds_cell_deviation = 0.05, 5.0
-  use_brehm_diederichs = False
-  integrate_p1 = False
-  reintegrate_correct_lattice = True
-  xds {
-    geometry_x = None
-    geometry_y = None
-  }
-  indexer = mosflm labelit labelitii xds xdsii xdssum dials
-  refiner = mosflm xds dials
-  integrater = mosflmr xdsr mosflm xds dials
-  scaler = ccp4a xdsa
-  merging_statistics {
-    source = aimless *cctbx
-    n_bins = 20
-    use_internal_variance = False
-    eliminate_sys_absent = False
-  }
-  verbose = False
-  multiprocessing {
-    mode = *serial parallel
-    nproc = Auto
-    njob = Auto
-    type = *simple qsub
-    qsub_command = ''
-  }
 }
 
 </pre>
