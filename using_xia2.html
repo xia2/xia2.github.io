@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -42,7 +42,7 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -54,14 +54,14 @@
         <li class="right" >
           <a href="quick_start.html" title="Quick start guide"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="using-xia2">
 <h1>Using xia2<a class="headerlink" href="#using-xia2" title="Permalink to this headline">¶</a></h1>
@@ -111,7 +111,7 @@ most important command-line options are as follows:</p>
 </div></blockquote>
 <p>These specify in the broadest possible terms to the program the manner
 in which you would like the processing performed. The program will then
-read all of the image headers found in <tt class="samp docutils literal"><span class="pre">/here/are/my/data</span></tt> to organise the
+read all of the image headers found in <code class="samp docutils literal"><span class="pre">/here/are/my/data</span></code> to organise the
 data, first into sweeps, then into wavelengths, before assigning all of these
 wavelengths to a crystal.</p>
 <p>The data from the experiment is understood as follows. The SWEEP,
@@ -153,7 +153,7 @@ program rerun, which will be covered in more detail later in the manual.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="index.html">

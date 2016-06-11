@@ -32,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="../index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
@@ -40,20 +40,20 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="../index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="xia2-multi-crystal-tutorial">
 <h1>xia2 multi-crystal tutorial<a class="headerlink" href="#xia2-multi-crystal-tutorial" title="Permalink to this headline">¶</a></h1>
@@ -87,17 +87,17 @@ of each parameter:</p>
 </pre></div>
 </div>
 <p>This command will run all the processing on a single computer. Assuming the
-computer has 4 processors available, we have set <tt class="docutils literal"><span class="pre">njob=4</span></tt>. If the computer we
-are using has more processors available, we may increase either <tt class="docutils literal"><span class="pre">njob</span></tt> or
-<tt class="docutils literal"><span class="pre">nproc</span></tt>, whilst ensuring that <tt class="docutils literal"><span class="pre">nproc</span> <span class="pre">x</span> <span class="pre">njob</span></tt> is less than or equal to the
+computer has 4 processors available, we have set <code class="docutils literal"><span class="pre">njob=4</span></code>. If the computer we
+are using has more processors available, we may increase either <code class="docutils literal"><span class="pre">njob</span></code> or
+<code class="docutils literal"><span class="pre">nproc</span></code>, whilst ensuring that <code class="docutils literal"><span class="pre">nproc</span> <span class="pre">x</span> <span class="pre">njob</span></code> is less than or equal to the
 total number of processors available. Alternatively,
 we can take advantage of the cluster to process our data more quickly, by
-using the xia2 parameter <tt class="docutils literal"><span class="pre">type=qsub</span></tt>, which tells xia2 to submit individual
-jobs to the cluster using the <tt class="docutils literal"><span class="pre">qsub</span></tt> command. Since we are using the cluster,
-and not a single computer, we can increase the <tt class="docutils literal"><span class="pre">nproc</span></tt> parameter, e.g. to
-<tt class="docutils literal"><span class="pre">nproc=12</span></tt> which will now use 12 processors per sweep. We can also increase
-<tt class="docutils literal"><span class="pre">njob=20</span></tt> to process all 20 sweeps simultaneously. We also need to add an
-extra <tt class="docutils literal"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">global/cluster</span></tt> command to make the cluster available:</p>
+using the xia2 parameter <code class="docutils literal"><span class="pre">type=qsub</span></code>, which tells xia2 to submit individual
+jobs to the cluster using the <code class="docutils literal"><span class="pre">qsub</span></code> command. Since we are using the cluster,
+and not a single computer, we can increase the <code class="docutils literal"><span class="pre">nproc</span></code> parameter, e.g. to
+<code class="docutils literal"><span class="pre">nproc=12</span></code> which will now use 12 processors per sweep. We can also increase
+<code class="docutils literal"><span class="pre">njob=20</span></code> to process all 20 sweeps simultaneously. We also need to add an
+extra <code class="docutils literal"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">global/cluster</span></code> command to make the cluster available:</p>
 <div class="highlight-python"><div class="highlight"><pre>module load global/cluster
 module load XDS
 module load ccp4
@@ -122,46 +122,46 @@ xia2 -3dii -failover \
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">-3dii</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-3dii</span></code></td>
 <td>Use the 3D (XDS) pipeline, using all
 images in indexing</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">-failover</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">-failover</span></code></td>
 <td>If processing fails for any sweeps,
 ignore and just use those sweeps that
 processed successfully</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">mode=parallel</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">mode=parallel</span></code></td>
 <td>Process multiple sweeps in parallel,
 rather than serially</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">njob=4</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">njob=4</span></code></td>
 <td>In conjunction with mode=parallel,
 process 4 sweeps simultaneously</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">nproc=1</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">nproc=1</span></code></td>
 <td>Use 1 processor per job (sweep)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">type=qsub</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">type=qsub</span></code></td>
 <td>Submit individual processing jobs to
 cluster using qsub</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">trust_beam_centre=True</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">trust_beam_centre=True</span></code></td>
 <td>Don&#8217;t run labelit beam centre search</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">read_all_image_headers=False</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">read_all_image_headers=False</span></code></td>
 <td>Skip reading all image headers - just
 read the first one for each sweep</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">unit_cell=</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">unit_cell=</span></code></td>
 <td>Provide a target unit cell to help
 indexing</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">space_group=</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">space_group=</span></code></td>
 <td>Provide a target space group to help
 indexing</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">-atom</span> <span class="pre">X</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-atom</span> <span class="pre">X</span></code></td>
 <td>Anomalous flag: don&#8217;t merge Friedel pairs</td>
 </tr>
 </tbody>
@@ -238,7 +238,7 @@ OuterShell 0.171 0.096         87.9          2.6   2.58    2.48
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="../index.html">

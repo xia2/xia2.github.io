@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -42,7 +42,7 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -54,23 +54,23 @@
         <li class="right" >
           <a href="multi_crystal.html" title="Processing multi-crystal datasets with xia2"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="program-output">
 <h1>Program output<a class="headerlink" href="#program-output" title="Permalink to this headline">¶</a></h1>
 <p>As the program runs the key results are written to the screen and recorded
-in the file <tt class="samp docutils literal"><span class="pre">xia2.txt</span></tt>. This includes everything you should read and includes
+in the file <code class="samp docutils literal"><span class="pre">xia2.txt</span></code>. This includes everything you should read and includes
 appropriate citations for the programs that xia2 has used on your behalf.
-There is also a file <tt class="samp docutils literal"><span class="pre">xia2-debug.txt</span></tt> which should be send to <a class="reference external" href="mailto:xia2&#46;support&#37;&#52;&#48;gmail&#46;com">xia2<span>&#46;</span>support<span>&#64;</span>gmail<span>&#46;</span>com</a>
+There is also a file <code class="samp docutils literal"><span class="pre">xia2-debug.txt</span></code> which should be send to <a class="reference external" href="mailto:xia2&#46;support&#37;&#52;&#48;gmail&#46;com">xia2<span>&#46;</span>support<span>&#64;</span>gmail<span>&#46;</span>com</a>
 in the event of program failure. There are also two sensibly named directories,
-<tt class="samp docutils literal"><span class="pre">LogFiles</span></tt> and <tt class="samp docutils literal"><span class="pre">DataFiles</span></tt>, which will be discussed shortly.</p>
+<code class="samp docutils literal"><span class="pre">LogFiles</span></code> and <code class="samp docutils literal"><span class="pre">DataFiles</span></code>, which will be discussed shortly.</p>
 <div class="section" id="xia2-txt">
 <h2>xia2.txt<a class="headerlink" href="#xia2-txt" title="Permalink to this headline">¶</a></h2>
 <p>By design, the program output from xia2 includes only the information that
@@ -119,7 +119,7 @@ Mosaic spread: 0.140 &lt; 0.189 &lt; 0.290
 <h2>HTML pages<a class="headerlink" href="#html-pages" title="Permalink to this headline">¶</a></h2>
 <p>If xia2html has been run there is a nicely formatted html version of this
 report, which includes graphical representation of some of the log file output
-from e.g. Aimless. Loading up <tt class="samp docutils literal"><span class="pre">xia2.html</span></tt> will give (hopefully self documenting)
+from e.g. Aimless. Loading up <code class="samp docutils literal"><span class="pre">xia2.html</span></code> will give (hopefully self documenting)
 results as shown below. If you have manually run xia2,
 immediately running xia2html in the same directory will generate this.</p>
 <img alt="_images/xia2html.png" src="_images/xia2html.png" />
@@ -130,7 +130,7 @@ immediately running xia2html in the same directory will generate this.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="index.html">

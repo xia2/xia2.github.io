@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -42,7 +42,7 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -54,14 +54,14 @@
         <li class="right" >
           <a href="introductory_example.html" title="Introductory example"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="insulin-tutorial">
 <h1>Insulin tutorial<a class="headerlink" href="#insulin-tutorial" title="Permalink to this headline">¶</a></h1>
@@ -113,7 +113,7 @@ number of atoms per monomer - though you will still have to uncomment this
 to include it, in case it has guessed wrong.</li>
 <li>If you want to combine data from a number of crystals in the same .xinfo
 file, then you will need to copy out all text from
-<tt class="samp docutils literal"><span class="pre">BEGIN</span> <span class="pre">CRYSTAL</span></tt> to <tt class="samp docutils literal"><span class="pre">END</span> <span class="pre">CRYSTAL</span></tt> from one .xinfo file to the
+<code class="samp docutils literal"><span class="pre">BEGIN</span> <span class="pre">CRYSTAL</span></code> to <code class="samp docutils literal"><span class="pre">END</span> <span class="pre">CRYSTAL</span></code> from one .xinfo file to the
 other.</li>
 </ul>
 <p>You should then load automatic.xinfo in your favourite editor, and check that
@@ -130,9 +130,9 @@ process a subset of the measurements, or want to process data for an RIP
 experiment. A simple example of xinfo file follows below, and more complex
 examples can be found here:</p>
 <ul class="simple">
-<li><a class="reference download internal" href="_downloads/NATIVE.xinfo"><tt class="xref download docutils literal"><span class="pre">Native</span> <span class="pre">data</span></tt></a></li>
-<li><a class="reference download internal" href="_downloads/SAD.xinfo"><tt class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></tt></a></li>
-<li><a class="reference download internal" href="_downloads/MAD.xinfo"><tt class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/NATIVE.xinfo"><code class="xref download docutils literal"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/SAD.xinfo"><code class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/MAD.xinfo"><code class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
@@ -207,7 +207,7 @@ END PROJECT DEMONSTRATION
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="index.html">

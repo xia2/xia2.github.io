@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -42,7 +42,7 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -54,14 +54,14 @@
         <li class="right" >
           <a href="insulin_tutorial.html" title="Insulin tutorial"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="processing-multi-crystal-datasets-with-xia2">
 <h1>Processing multi-crystal datasets with xia2<a class="headerlink" href="#processing-multi-crystal-datasets-with-xia2" title="Permalink to this headline">¶</a></h1>
@@ -79,7 +79,7 @@ Examples include (but not limited to):</p>
 xia2 job processing a single sweep. We have recently modified xia2 to allow
 passing multiple directories on the command line (previously all images
 were required to be in the same directories, or nested in subdirectories),
-and to allow passing multiple images via the <tt class="samp docutils literal"><span class="pre">image=</span></tt> parameter:</p>
+and to allow passing multiple images via the <code class="samp docutils literal"><span class="pre">image=</span></code> parameter:</p>
 <div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images/dataset_1 /path/to/images/dataset_2
 
 xia2 -dials image=/path/to/images/sweep_1_0001.cbf image=/path/to/images/sweep_2_0001.cbf
@@ -115,7 +115,7 @@ END PROJECT AUTOMATIC
 <p>When processing many datasets simultaneously, it may happen that some datasets
 will process successfully, but xia2 will fail to process others. By default,
 xia2 will stop with an error message if any error is encountered, however if
-the <tt class="samp docutils literal"><span class="pre">-failover</span></tt> flag is passed on the command line, then xia2 will
+the <code class="samp docutils literal"><span class="pre">-failover</span></code> flag is passed on the command line, then xia2 will
 ignore any failed sweeps and continue processing with only those sweeps that
 processed successfully.</p>
 <p>When xia2 is given a particularly large number of images to process, it may
@@ -124,7 +124,7 @@ a couple of reasons:</p>
 <ol class="arabic simple">
 <li>On start up, xia2 reads all the image headers to ensure that it understands
 them correctly. A speedup can be obtained with the parameter
-<tt class="samp docutils literal"><span class="pre">read_all_image_headers=False</span></tt>, which tells xia2 to only read the
+<code class="samp docutils literal"><span class="pre">read_all_image_headers=False</span></code>, which tells xia2 to only read the
 first image header for each set of files with a matching template, and</li>
 </ol>
 <blockquote>
@@ -132,12 +132,12 @@ first image header for each set of files with a matching template, and</li>
 <ol class="arabic simple">
 <li>If available, xia2 will run a beam centre search on each sweep using
 labelit.index. This step can be disabled using the parameter
-<tt class="samp docutils literal"><span class="pre">trust_beam_centre=True</span></tt></li>
+<code class="samp docutils literal"><span class="pre">trust_beam_centre=True</span></code></li>
 </ol>
 <p>Furthermore, xia2 may not make the same conclusion as to the symmetry for each
 sweep, leading it to process the final dataset in the lowest common symmetry.
 Sometimes indexing for a given sweep may fail altogether, and specifying the
-<tt class="samp docutils literal"><span class="pre">unit_cell=</span></tt> and <tt class="samp docutils literal"><span class="pre">space_group=</span></tt> parameters (if known) on the
+<code class="samp docutils literal"><span class="pre">unit_cell=</span></code> and <code class="samp docutils literal"><span class="pre">space_group=</span></code> parameters (if known) on the
 command line can help in both these situations.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -150,23 +150,23 @@ command line can help in both these situations.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">-failover</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">-failover</span></code></td>
 <td>If processing fails for any sweeps,
 ignore and just use those sweeps that
 processed successfully</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">trust_beam_centre=True</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">trust_beam_centre=True</span></code></td>
 <td>Don&#8217;t run labelit beam centre search</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">read_all_image_headers=False</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">read_all_image_headers=False</span></code></td>
 <td>Skip reading all image headers - just
 read the first one for each sweep</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">unit_cell=</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">unit_cell=</span></code></td>
 <td>Provide a target unit cell to help
 indexing</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">space_group=</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">space_group=</span></code></td>
 <td>Provide a target space group to help
 indexing</td>
 </tr>
@@ -174,12 +174,12 @@ indexing</td>
 </table>
 <div class="section" id="parallel-data-processing">
 <h2>Parallel data processing<a class="headerlink" href="#parallel-data-processing" title="Permalink to this headline">¶</a></h2>
-<p>By default, xia2 processes each sweep sequentially, using <tt class="samp docutils literal"><span class="pre">nproc</span></tt>
+<p>By default, xia2 processes each sweep sequentially, using <code class="samp docutils literal"><span class="pre">nproc</span></code>
 processors. When processing multiple datasets, it may be more efficient to
 process the sweeps in parallel, by specifying
-<tt class="samp docutils literal"><span class="pre">multiprocessing.mode=parallel</span></tt> and
-using <tt class="samp docutils literal"><span class="pre">multiprocessing.njob</span></tt> to indicate how many sweeps should be
-processed simultaneously, using <tt class="samp docutils literal"><span class="pre">multiprocessing.nproc</span></tt> processors
+<code class="samp docutils literal"><span class="pre">multiprocessing.mode=parallel</span></code> and
+using <code class="samp docutils literal"><span class="pre">multiprocessing.njob</span></code> to indicate how many sweeps should be
+processed simultaneously, using <code class="samp docutils literal"><span class="pre">multiprocessing.nproc</span></code> processors
 per sweep:</p>
 <div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images multiprocessing.mode=parallel \
   multiprocessing.njob=2 multiprocessing.nproc=4
@@ -187,14 +187,14 @@ per sweep:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This will use a total of <tt class="samp docutils literal"><span class="pre">njob</span></tt> <img class="math" src="_images/math/0b8f66a848c851c882bd816037c9c5859ca75570.png" alt="*"/> <tt class="samp docutils literal"><span class="pre">nproc</span></tt> processors,
+<p class="last">This will use a total of <code class="samp docutils literal"><span class="pre">njob</span></code> <img class="math" src="_images/math/0b8f66a848c851c882bd816037c9c5859ca75570.png" alt="*"/> <code class="samp docutils literal"><span class="pre">nproc</span></code> processors,
 i.e. <img class="math" src="_images/math/ccf223ff9d3dcceff90ff69a1fe5ee9721e0c803.png" alt="2 * 4 = 8"/> processors, which should be less than or equal to the total
 number of processors available on your machine.</p>
 </div>
 <p>Additionally, xia2 can utilise the processing power of a cluster where
 available (currently we only support qsub) by specifying the parameter
-<tt class="samp docutils literal"><span class="pre">multiprocessing.type=qsub</span></tt>. The parameter
-<tt class="samp docutils literal"><span class="pre">multiprocessing.qsub_command</span></tt> may be used (if needed) to e.g. specify
+<code class="samp docutils literal"><span class="pre">multiprocessing.type=qsub</span></code>. The parameter
+<code class="samp docutils literal"><span class="pre">multiprocessing.qsub_command</span></code> may be used (if needed) to e.g. specify
 which queue jobs should be submitted to:</p>
 <div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images multiprocessing.mode=parallel \
   multiprocessing.type=qsub multiprocessing.qsub_command=&quot;qsub -q low.q&quot; \
@@ -212,22 +212,22 @@ which queue jobs should be submitted to:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">multiprocessing.mode=parallel</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">multiprocessing.mode=parallel</span></code></td>
 <td>Process multiple sweeps in parallel,
 rather than serially</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">multiprocessing.njob=4</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">multiprocessing.njob=4</span></code></td>
 <td>In conjunction with mode=parallel,
 process 4 sweeps simultaneously</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">multiprocessing.nproc=1</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">multiprocessing.nproc=1</span></code></td>
 <td>Use 1 processor per job (sweep)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">multiprocessing.type=qsub</span></tt></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">multiprocessing.type=qsub</span></code></td>
 <td>Submit individual processing jobs to
 cluster using qsub</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">multiprocessing.type=qsub_command</span></tt></td>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">multiprocessing.type=qsub_command</span></code></td>
 <td>The command to use to submit qsub
 jobs</td>
 </tr>
@@ -240,7 +240,7 @@ jobs</td>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="index.html">

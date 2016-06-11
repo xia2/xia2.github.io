@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
 
   </head>
-  <body>
+  <body role="document">
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -42,7 +42,7 @@
 <!--   </div> -->
   
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -54,14 +54,14 @@
         <li class="right" >
           <a href="program_output.html" title="Program output"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">xia2  documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="parameters">
 <h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h1>
@@ -120,7 +120,7 @@ are:</p>
 <li>Unmerged <img class="math" src="_images/math/4fbc706dce6cce3b3d41ae617c0e89105c37d543.png" alt="\frac{I}{\sigma_I} &gt; 1"/></li>
 </ul>
 </div></blockquote>
-<p>However you can override these with <tt class="samp docutils literal"><span class="pre">-misigma</span></tt>, <tt class="samp docutils literal"><span class="pre">-isigma</span></tt></p>
+<p>However you can override these with <code class="samp docutils literal"><span class="pre">-misigma</span></code>, <code class="samp docutils literal"><span class="pre">-isigma</span></code></p>
 </div>
 <div class="section" id="phil-parameters">
 <h2>Phil parameters<a class="headerlink" href="#phil-parameters" title="Permalink to this headline">¶</a></h2>
@@ -129,11 +129,11 @@ are:</p>
 <p>We are currently moving towards moving <a class="reference external" href="http://cctbx.sourceforge.net/libtbx_phil.html">PHIL (Python-based Hierarchial Interchange Language)</a>
 for specifying xia2 program parameters,
 which will in the long run help the documentation, but in the mean time you may see some
-warnings as certain parameters are changed from <tt class="samp docutils literal"><span class="pre">-param</span></tt> style parameters to
-<tt class="samp docutils literal"><span class="pre">param=</span></tt> style PHIL parameters. If you see, e.g.:</p>
+warnings as certain parameters are changed from <code class="samp docutils literal"><span class="pre">-param</span></code> style parameters to
+<code class="samp docutils literal"><span class="pre">param=</span></code> style PHIL parameters. If you see, e.g.:</p>
 <blockquote>
-<div><p><tt class="samp docutils literal"><span class="pre">Warning:</span> <span class="pre">-spacegroup</span> <span class="pre">option</span> <span class="pre">deprecated:</span> <span class="pre">please</span> <span class="pre">use</span> <span class="pre">space_group='P422'</span> <span class="pre">instead</span></tt></p>
-<p><tt class="samp docutils literal"><span class="pre">Warning:</span> <span class="pre">-resolution</span> <span class="pre">option</span> <span class="pre">deprecated:</span> <span class="pre">please</span> <span class="pre">use</span> <span class="pre">d_min=1.5</span> <span class="pre">instead</span></tt></p>
+<div><p><code class="samp docutils literal"><span class="pre">Warning:</span> <span class="pre">-spacegroup</span> <span class="pre">option</span> <span class="pre">deprecated:</span> <span class="pre">please</span> <span class="pre">use</span> <span class="pre">space_group='P422'</span> <span class="pre">instead</span></code></p>
+<p><code class="samp docutils literal"><span class="pre">Warning:</span> <span class="pre">-resolution</span> <span class="pre">option</span> <span class="pre">deprecated:</span> <span class="pre">please</span> <span class="pre">use</span> <span class="pre">d_min=1.5</span> <span class="pre">instead</span></code></p>
 </div></blockquote>
 <p class="last">don&#8217;t panic - this is to be expected - but you may want to change the way you run xia2
 or your scripts. More of a warning for beamline / automation people! The outcome of this
@@ -215,7 +215,7 @@ xia2.settings {
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
   <a href="index.html">
