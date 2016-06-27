@@ -30,8 +30,9 @@
     <link rel="next" title="Parameters" href="parameters.html" />
     <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
   <body role="document">
@@ -42,21 +43,7 @@
 <!--   </div> -->
   
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="parameters.html" title="Parameters"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="multi_crystal.html" title="Processing multi-crystal datasets with xia2"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -77,16 +64,16 @@ in the event of program failure. There are also two sensibly named directories,
 is critical to read, as will be shown for a 450 image Pilatus 2M data set
 recorded from a thaumatin crystal. The results from indexing are displayed
 as lattice / unit cell:</p>
-<div class="highlight-python"><div class="highlight"><pre>------------------- Autoindexing SWEEP1 --------------------
-All possible indexing solutions:
-tP 57.60 57.60 149.51 90.00 90.00 90.00
-oC 81.45 81.46 149.51 90.00 90.00 90.00
-oP 57.59 57.60 149.50 90.00 90.00 90.00
-mC 81.46 81.45 149.50 90.00 89.95 90.00
-mP 57.60 57.59 149.53 90.00 89.93 90.00
-aP 57.59 57.61 149.52 89.93 89.99 89.99
-Indexing solution:
-tP 57.60 57.60 149.51 90.00 90.00 90.00
+<div class="highlight-default"><div class="highlight"><pre><span class="o">-------------------</span> <span class="n">Autoindexing</span> <span class="n">SWEEP1</span> <span class="o">--------------------</span>
+<span class="n">All</span> <span class="n">possible</span> <span class="n">indexing</span> <span class="n">solutions</span><span class="p">:</span>
+<span class="n">tP</span> <span class="mf">57.60</span> <span class="mf">57.60</span> <span class="mf">149.51</span> <span class="mf">90.00</span> <span class="mf">90.00</span> <span class="mf">90.00</span>
+<span class="n">oC</span> <span class="mf">81.45</span> <span class="mf">81.46</span> <span class="mf">149.51</span> <span class="mf">90.00</span> <span class="mf">90.00</span> <span class="mf">90.00</span>
+<span class="n">oP</span> <span class="mf">57.59</span> <span class="mf">57.60</span> <span class="mf">149.50</span> <span class="mf">90.00</span> <span class="mf">90.00</span> <span class="mf">90.00</span>
+<span class="n">mC</span> <span class="mf">81.46</span> <span class="mf">81.45</span> <span class="mf">149.50</span> <span class="mf">90.00</span> <span class="mf">89.95</span> <span class="mf">90.00</span>
+<span class="n">mP</span> <span class="mf">57.60</span> <span class="mf">57.59</span> <span class="mf">149.53</span> <span class="mf">90.00</span> <span class="mf">89.93</span> <span class="mf">90.00</span>
+<span class="n">aP</span> <span class="mf">57.59</span> <span class="mf">57.61</span> <span class="mf">149.52</span> <span class="mf">89.93</span> <span class="mf">89.99</span> <span class="mf">89.99</span>
+<span class="n">Indexing</span> <span class="n">solution</span><span class="p">:</span>
+<span class="n">tP</span> <span class="mf">57.60</span> <span class="mf">57.60</span> <span class="mf">149.51</span> <span class="mf">90.00</span> <span class="mf">90.00</span> <span class="mf">90.00</span>
 </pre></div>
 </div>
 <p>where in each case the solution with the lowest penalty is displayed. The
@@ -96,22 +83,22 @@ mostly ’o’ is usually a good indication of satisfactory processing, ’%’ 
 unusual, along with ’.’ for weaker data. If the output consists of mostly ’O’
 then it may be helpful to record a low dose data set. The output includes a
 convenient legend, and looks like the following:</p>
-<div class="highlight-python"><div class="highlight"><pre>-------------------- Integrating SWEEP1 --------------------
-Processed batches 1 to 450
-Weighted RMSD: 0.26 (0.09)
-Integration status per image (60/record):
-ooooooooooooooooooooooooooooooooooo.oooooooooooooooooooooooo
-ooooooooooooooooooooooo.ooooooooooooooooooo.ooooooo.oooooooo
-ooo.o.ooooooo.oooooooooooooooooooooooooooooooooooooooooooooo
-oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-oooooooooooooooooooo.ooooooooooooooooooooooooooooooooooooooo
-ooooooooooooooooooooooooooooooooooooooooooooooooooo.oooooooo
-ooooooooo.oooooooooo..ooo.oooooooooooooooooooo.ooooooooooooo
-oooooooooooooooooooo.oooooooo.
-&quot;o&quot; =&gt; good &quot;%&quot; =&gt; ok &quot;!&quot; =&gt; bad rmsd
-&quot;O&quot; =&gt; overloaded &quot;#&quot; =&gt; many bad &quot;.&quot; =&gt; blank
-&quot;@&quot; =&gt; abandoned
-Mosaic spread: 0.140 &lt; 0.189 &lt; 0.290
+<div class="highlight-default"><div class="highlight"><pre><span class="o">--------------------</span> <span class="n">Integrating</span> <span class="n">SWEEP1</span> <span class="o">--------------------</span>
+<span class="n">Processed</span> <span class="n">batches</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">450</span>
+<span class="n">Weighted</span> <span class="n">RMSD</span><span class="p">:</span> <span class="mf">0.26</span> <span class="p">(</span><span class="mf">0.09</span><span class="p">)</span>
+<span class="n">Integration</span> <span class="n">status</span> <span class="n">per</span> <span class="n">image</span> <span class="p">(</span><span class="mi">60</span><span class="o">/</span><span class="n">record</span><span class="p">):</span>
+<span class="n">ooooooooooooooooooooooooooooooooooo</span><span class="o">.</span><span class="n">oooooooooooooooooooooooo</span>
+<span class="n">ooooooooooooooooooooooo</span><span class="o">.</span><span class="n">ooooooooooooooooooo</span><span class="o">.</span><span class="n">ooooooo</span><span class="o">.</span><span class="n">oooooooo</span>
+<span class="n">ooo</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">ooooooo</span><span class="o">.</span><span class="n">oooooooooooooooooooooooooooooooooooooooooooooo</span>
+<span class="n">oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</span>
+<span class="n">oooooooooooooooooooo</span><span class="o">.</span><span class="n">ooooooooooooooooooooooooooooooooooooooo</span>
+<span class="n">ooooooooooooooooooooooooooooooooooooooooooooooooooo</span><span class="o">.</span><span class="n">oooooooo</span>
+<span class="n">ooooooooo</span><span class="o">.</span><span class="n">oooooooooo</span><span class="o">..</span><span class="n">ooo</span><span class="o">.</span><span class="n">oooooooooooooooooooo</span><span class="o">.</span><span class="n">ooooooooooooo</span>
+<span class="n">oooooooooooooooooooo</span><span class="o">.</span><span class="n">oooooooo</span><span class="o">.</span>
+<span class="s">&quot;o&quot;</span> <span class="o">=&gt;</span> <span class="n">good</span> <span class="s">&quot;%&quot;</span> <span class="o">=&gt;</span> <span class="n">ok</span> <span class="s">&quot;!&quot;</span> <span class="o">=&gt;</span> <span class="n">bad</span> <span class="n">rmsd</span>
+<span class="s">&quot;O&quot;</span> <span class="o">=&gt;</span> <span class="n">overloaded</span> <span class="s">&quot;#&quot;</span> <span class="o">=&gt;</span> <span class="n">many</span> <span class="n">bad</span> <span class="s">&quot;.&quot;</span> <span class="o">=&gt;</span> <span class="n">blank</span>
+<span class="s">&quot;@&quot;</span> <span class="o">=&gt;</span> <span class="n">abandoned</span>
+<span class="n">Mosaic</span> <span class="n">spread</span><span class="p">:</span> <span class="mf">0.140</span> <span class="o">&lt;</span> <span class="mf">0.189</span> <span class="o">&lt;</span> <span class="mf">0.290</span>
 </pre></div>
 </div>
 </div>
@@ -144,6 +131,8 @@ immediately running xia2html in the same directory will generate this.</p>
 
 
 
+
+
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
@@ -152,7 +141,7 @@ immediately running xia2html in the same directory will generate this.</p>
 <li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Program output</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Program output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">History</a></li>

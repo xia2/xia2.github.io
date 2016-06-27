@@ -30,8 +30,9 @@
     <link rel="next" title="Program output" href="program_output.html" />
     <link rel="prev" title="Insulin tutorial" href="insulin_tutorial.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
   <body role="document">
@@ -42,21 +43,7 @@
 <!--   </div> -->
   
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="program_output.html" title="Program output"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="insulin_tutorial.html" title="Insulin tutorial"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -80,36 +67,36 @@ xia2 job processing a single sweep. We have recently modified xia2 to allow
 passing multiple directories on the command line (previously all images
 were required to be in the same directories, or nested in subdirectories),
 and to allow passing multiple images via the <code class="samp docutils literal"><span class="pre">image=</span></code> parameter:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images/dataset_1 /path/to/images/dataset_2
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_1</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_2</span>
 
-xia2 -dials image=/path/to/images/sweep_1_0001.cbf image=/path/to/images/sweep_2_0001.cbf
+<span class="n">xia2</span> <span class="o">-</span><span class="n">dials</span> <span class="n">image</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">sweep_1_0001</span><span class="o">.</span><span class="n">cbf</span> <span class="n">image</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">sweep_2_0001</span><span class="o">.</span><span class="n">cbf</span>
 </pre></div>
 </div>
 <p>Alternatively, you can specify exactly which images you wish to process in an
 .xinfo file:</p>
-<div class="highlight-python"><div class="highlight"><pre>BEGIN PROJECT AUTOMATIC
-BEGIN CRYSTAL DEFAULT
+<div class="highlight-default"><div class="highlight"><pre><span class="n">BEGIN</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
+<span class="n">BEGIN</span> <span class="n">CRYSTAL</span> <span class="n">DEFAULT</span>
 
-BEGIN WAVELENGTH NATIVE
-WAVELENGTH 0.979500
-END WAVELENGTH NATIVE
+<span class="n">BEGIN</span> <span class="n">WAVELENGTH</span> <span class="n">NATIVE</span>
+<span class="n">WAVELENGTH</span> <span class="mf">0.979500</span>
+<span class="n">END</span> <span class="n">WAVELENGTH</span> <span class="n">NATIVE</span>
 
-BEGIN SWEEP SWEEP1
-WAVELENGTH NATIVE
-DIRECTORY /path/to/images/
-IMAGE sweep_1_0001.cbf
-START_END 1 450
-END SWEEP SWEEP1
+<span class="n">BEGIN</span> <span class="n">SWEEP</span> <span class="n">SWEEP1</span>
+<span class="n">WAVELENGTH</span> <span class="n">NATIVE</span>
+<span class="n">DIRECTORY</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>
+<span class="n">IMAGE</span> <span class="n">sweep_1_0001</span><span class="o">.</span><span class="n">cbf</span>
+<span class="n">START_END</span> <span class="mi">1</span> <span class="mi">450</span>
+<span class="n">END</span> <span class="n">SWEEP</span> <span class="n">SWEEP1</span>
 
-BEGIN SWEEP SWEEP2
-WAVELENGTH NATIVE
-DIRECTORY /path/to/images/
-IMAGE sweep_2_0001.cbf
-START_END 1 450
-END SWEEP SWEEP2
+<span class="n">BEGIN</span> <span class="n">SWEEP</span> <span class="n">SWEEP2</span>
+<span class="n">WAVELENGTH</span> <span class="n">NATIVE</span>
+<span class="n">DIRECTORY</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span>
+<span class="n">IMAGE</span> <span class="n">sweep_2_0001</span><span class="o">.</span><span class="n">cbf</span>
+<span class="n">START_END</span> <span class="mi">1</span> <span class="mi">450</span>
+<span class="n">END</span> <span class="n">SWEEP</span> <span class="n">SWEEP2</span>
 
-END CRYSTAL DEFAULT
-END PROJECT AUTOMATIC
+<span class="n">END</span> <span class="n">CRYSTAL</span> <span class="n">DEFAULT</span>
+<span class="n">END</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
 </pre></div>
 </div>
 <p>When processing many datasets simultaneously, it may happen that some datasets
@@ -181,8 +168,8 @@ process the sweeps in parallel, by specifying
 using <code class="samp docutils literal"><span class="pre">multiprocessing.njob</span></code> to indicate how many sweeps should be
 processed simultaneously, using <code class="samp docutils literal"><span class="pre">multiprocessing.nproc</span></code> processors
 per sweep:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images multiprocessing.mode=parallel \
-  multiprocessing.njob=2 multiprocessing.nproc=4
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
+  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">njob</span><span class="o">=</span><span class="mi">2</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">nproc</span><span class="o">=</span><span class="mi">4</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -196,9 +183,9 @@ available (currently we only support qsub) by specifying the parameter
 <code class="samp docutils literal"><span class="pre">multiprocessing.type=qsub</span></code>. The parameter
 <code class="samp docutils literal"><span class="pre">multiprocessing.qsub_command</span></code> may be used (if needed) to e.g. specify
 which queue jobs should be submitted to:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -dials /path/to/images multiprocessing.mode=parallel \
-  multiprocessing.type=qsub multiprocessing.qsub_command=&quot;qsub -q low.q&quot; \
-  multiprocessing.njob=10 multiprocessing.nproc=16
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
+  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">qsub</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">qsub_command</span><span class="o">=</span><span class="s">&quot;qsub -q low.q&quot;</span> \
+  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">njob</span><span class="o">=</span><span class="mi">10</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">nproc</span><span class="o">=</span><span class="mi">16</span>
 </pre></div>
 </div>
 <table border="1" class="docutils">
@@ -254,6 +241,8 @@ jobs</td>
 
 
 
+
+
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
@@ -261,7 +250,7 @@ jobs</td>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi-crystal data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>

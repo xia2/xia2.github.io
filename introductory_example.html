@@ -30,8 +30,9 @@
     <link rel="next" title="Insulin tutorial" href="insulin_tutorial.html" />
     <link rel="prev" title="Installation" href="installation.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
   <body role="document">
@@ -42,21 +43,7 @@
 <!--   </div> -->
   
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="insulin_tutorial.html" title="Insulin tutorial"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="installation.html" title="Installation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -72,7 +59,7 @@ ongoing research. The structure includes barium which may be used for
 phasing, and the data were recorded as a single sweep. As may be seen
 from Figure 2, the quality of diffraction was not ideal, and radiation damage
 was an issue. Initially the data were processed with:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -3d -atom Ba /here/are/my/data
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="mi">3</span><span class="n">d</span> <span class="o">-</span><span class="n">atom</span> <span class="n">Ba</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span>
 </pre></div>
 </div>
 <p>giving the merging statistics shown below:</p>
@@ -194,7 +181,7 @@ this as decisions made for the full data set (e.g. scaling model to use) may
 differ from those for the subset - we therefore need to rerun the whole xia2
 job after modifying the input. All that is necessary is to adjust the image
 range (START END) to get the modified input file shown below:</p>
-<div class="highlight-python"><div class="highlight"><pre>BEGIN PROJECT AUTOMATIC
+<div class="highlight-default"><div class="highlight"><pre>BEGIN PROJECT AUTOMATIC
 BEGIN CRYSTAL DEFAULT
 
 BEGIN HA_INFO
@@ -217,7 +204,7 @@ END PROJECT AUTOMATIC
 </pre></div>
 </div>
 <p>and rerun as:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -3d -xinfo modified.xinfo
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="mi">3</span><span class="n">d</span> <span class="o">-</span><span class="n">xinfo</span> <span class="n">modified</span><span class="o">.</span><span class="n">xinfo</span>
 </pre></div>
 </div>
 <p>giving the following merging statistics:</p>
@@ -345,12 +332,14 @@ SWEEP or WAVELENGTH block.</p>
 
 
 
+
+
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_xia2.html">Using xia2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Introductory example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introductory example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>

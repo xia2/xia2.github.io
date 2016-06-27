@@ -30,8 +30,9 @@
     <link rel="next" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
     <link rel="prev" title="Introductory example" href="introductory_example.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
   <body role="document">
@@ -42,21 +43,7 @@
 <!--   </div> -->
   
 
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="multi_crystal.html" title="Processing multi-crystal datasets with xia2"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="introductory_example.html" title="Introductory example"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">xia2  documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
 
     <div class="document">
       <div class="documentwrapper">
@@ -74,7 +61,7 @@ Thanks to John Cowan for providing this test data!</p>
 </ul>
 <p>There are two ways of running xia2 - with and without an input file, an
 example of which follows below. If you just run:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>xia2 will do something sensible - in this case process all of the data, scale
@@ -82,20 +69,20 @@ all measurements as if they are from a single crystal and merge the data from
 each wavelength separately. If only one wavelength is present xia2 will assume
 that the data are a native data set - to separate anomalous pairs provide a
 heavy atom (at this time it doesn&#8217;t matter what it is...) i.e.:</p>
-<div class="highlight-python"><div class="highlight"><pre>xia2 -atom se /my/data/are/here
+<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">-</span><span class="n">atom</span> <span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>Other options are (type just xia2 to get this list):</p>
-<div class="highlight-python"><div class="highlight"><pre>Command-line options to xia2:
-[-2d] or [-3d] or [-3dii]
-[nproc=4] (say, for XDS usage)
-[d_min=2.8] (say, applies to all sweeps)
-[reverse_phi=True]
-[beam_centre=x,y] (in mm, following the MOSFLM convention, applies to all sweeps)
-[-freer_file free.mtz]
-[-quick]
-[-atom se] (say)
-[-migrate_data]
+<div class="highlight-default"><div class="highlight"><pre><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
+<span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="n">d</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="n">d</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="n">dii</span><span class="p">]</span>
+<span class="p">[</span><span class="n">nproc</span><span class="o">=</span><span class="mi">4</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">,</span> <span class="k">for</span> <span class="n">XDS</span> <span class="n">usage</span><span class="p">)</span>
+<span class="p">[</span><span class="n">d_min</span><span class="o">=</span><span class="mf">2.8</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">,</span> <span class="n">applies</span> <span class="n">to</span> <span class="nb">all</span> <span class="n">sweeps</span><span class="p">)</span>
+<span class="p">[</span><span class="n">reverse_phi</span><span class="o">=</span><span class="k">True</span><span class="p">]</span>
+<span class="p">[</span><span class="n">beam_centre</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="p">(</span><span class="ow">in</span> <span class="n">mm</span><span class="p">,</span> <span class="n">following</span> <span class="n">the</span> <span class="n">MOSFLM</span> <span class="n">convention</span><span class="p">,</span> <span class="n">applies</span> <span class="n">to</span> <span class="nb">all</span> <span class="n">sweeps</span><span class="p">)</span>
+<span class="p">[</span><span class="o">-</span><span class="n">freer_file</span> <span class="n">free</span><span class="o">.</span><span class="n">mtz</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="n">quick</span><span class="p">]</span>
+<span class="p">[</span><span class="o">-</span><span class="n">atom</span> <span class="n">se</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">)</span>
+<span class="p">[</span><span class="o">-</span><span class="n">migrate_data</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Running ths way some assumptions are made:</p>
@@ -130,11 +117,11 @@ process a subset of the measurements, or want to process data for an RIP
 experiment. A simple example of xinfo file follows below, and more complex
 examples can be found here:</p>
 <ul class="simple">
-<li><a class="reference download internal" href="_downloads/NATIVE.xinfo"><code class="xref download docutils literal"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" href="_downloads/SAD.xinfo"><code class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" href="_downloads/MAD.xinfo"><code class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/NATIVE.xinfo" download=""><code class="xref download docutils literal"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/SAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/MAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre>! This is a demonstration .xinfo file which illustrates how to cope
+<div class="highlight-default"><div class="highlight"><pre>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
 ! set measured on 14.2 at the SRS
 
@@ -221,13 +208,15 @@ END PROJECT DEMONSTRATION
 
 
 
+
+
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_xia2.html">Using xia2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Insulin tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Insulin tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
