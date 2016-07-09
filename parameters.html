@@ -128,14 +128,17 @@ keep &#8220;recipes&#8221; for running xia2 in tidy files.</p>
 <p>Here is a comprehensive list of PHIL parameters used by xia2:</p>
 <pre class="literal-block">
 general {
+  backstop_mask = None
 }
 xds {
+  z_min = 0.0
   delphi = 5
   delphi_small = 30
   untrusted_ellipse = None
   untrusted_rectangle = None
   trusted_region = None
   profile_grid_size = None
+  keep_outliers = False
   correct {
     refine = *DISTANCE *BEAM *AXIS *ORIENTATION *CELL *POSITION
   }
@@ -149,7 +152,6 @@ xds {
     beam_divergence = 0
     beam_divergence_esd = 0
     reintegrate = true
-    profile_fitting = True
   }
   init {
     fix_scale = False
@@ -157,12 +159,15 @@ xds {
   index {
     refine = *ORIENTATION *CELL *BEAM *DISTANCE *AXIS *POSITION
     debug = *OFF ON
+    xparm = None
+    xparm_ub = None
   }
   colspot {
     minimum_pixels_per_spot = 1
   }
   xscale {
     min_isigma = 3.0
+    zero_dose = False
   }
   merge2cbf {
     merge_n_images = 2
@@ -198,7 +203,17 @@ strategy {
   min_exposure = None
 }
 xia2.settings {
+  pipeline = 2d 2di 3d 3dd 3di 3dii *dials
+  small_molecule = False
+  failover = False
+  interactive = False
+  project = 'AUTOMATIC'
+  crystal = 'DEFAULT'
   scale {
+    free_fraction = 0.05
+    free_total = None
+    freer_file = None
+    reference_reflection_file = None
   }
   space_group = None
   unit_cell = None
@@ -208,6 +223,11 @@ xia2.settings {
     d_min = None
   }
   beam_centre = None
+  xds_check_cell_deviation = False
+  integration {
+    profile_fitting = True
+    exclude_ice_regions = False
+  }
 }
 
 </pre>
