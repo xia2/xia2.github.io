@@ -142,6 +142,7 @@ xds {
   keep_outliers = False
   correct {
     refine = *DISTANCE *BEAM *AXIS *ORIENTATION *CELL *POSITION
+    air = None
   }
   integrate {
     refine = *ORIENTATION *CELL *BEAM *DISTANCE AXIS *POSITION
