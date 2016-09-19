@@ -193,6 +193,40 @@ xia2.settings {
   crystal = 'DEFAULT'
   input {
     atom = None
+    geometry {
+      beam {
+        wavelength = None
+        direction = None
+      }
+      detector {
+        panel {
+          id = 0
+          name = None
+          type = None
+          pixel_size = None
+          image_size = None
+          trusted_range = None
+          thickness = None
+          material = None
+          fast_axis = None
+          slow_axis = None
+          origin = None
+        }
+      }
+      goniometer {
+        axis = None
+        angle = None
+        fixed_rotation = None
+        setting_rotation = None
+      }
+      scan {
+        image_range = None
+        extrapolate_scan = False
+        oscillation = None
+        convert_stills_to_sweeps = False
+      }
+      mosflm_beam_centre = None
+    }
   }
   space_group = None
   unit_cell = None
