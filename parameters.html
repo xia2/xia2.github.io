@@ -133,52 +133,22 @@ general {
   backstop_mask = None
 }
 xds {
-  z_min = 0.0
-  delphi = 5
-  delphi_small = 30
-  untrusted_ellipse = None
-  untrusted_rectangle = None
-  trusted_region = None
-  profile_grid_size = None
   keep_outliers = False
   correct {
-    refine = *DISTANCE *BEAM *AXIS *ORIENTATION *CELL *POSITION
-    air = None
   }
   integrate {
-    refine = *ORIENTATION *CELL *BEAM *DISTANCE AXIS *POSITION
-    refine_final = *ORIENTATION *CELL BEAM DISTANCE AXIS POSITION
-    fix_scale = False
-    delphi = 0
-    reflecting_range = 0
-    reflecting_range_esd = 0
-    beam_divergence = 0
-    beam_divergence_esd = 0
-    reintegrate = true
   }
   init {
-    fix_scale = False
   }
   defpix {
-    value_range_for_trusted_detector_pixels = None
   }
   index {
-    refine = *ORIENTATION *CELL *BEAM *DISTANCE *AXIS *POSITION
-    debug = *OFF ON
-    xparm = None
-    xparm_ub = None
   }
   colspot {
-    minimum_pixels_per_spot = 1
   }
   xscale {
-    min_isigma = 3.0
-    zero_dose = False
   }
   merge2cbf {
-    merge_n_images = 2
-    data_range = None
-    moving_average = False
   }
 }
 dials {
