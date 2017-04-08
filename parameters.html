@@ -154,6 +154,23 @@ xds {
 dials {
   outlier {
   }
+  masking {
+    border = 0
+    use_trusted_range = True
+    d_min = None
+    d_max = None
+    resolution_range = None
+    untrusted {
+      panel = 0
+      circle = None
+      rectangle = None
+      polygon = None
+    }
+    ice_rings {
+      filter = False
+      d_min = None
+    }
+  }
   find_spots {
     filter_ice_rings = False
   }
