@@ -66,14 +66,14 @@ Examples include (but not limited to):</p>
 <p>Images or directories can be passed on the command line, as with a normal
 xia2 job processing a single sweep. Xia2 now allows passing multiple directories
 on the command line, or passing multiple images via the <code class="samp docutils literal"><span class="pre">image=</span></code> parameter:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_1</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_2</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_1</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">dataset_2</span>
 
 <span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="n">image</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">sweep_1_0001</span><span class="o">.</span><span class="n">cbf</span> <span class="n">image</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">sweep_2_0001</span><span class="o">.</span><span class="n">cbf</span>
 </pre></div>
 </div>
 <p>Alternatively, you can specify exactly which images you wish to process in an
 .xinfo file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">BEGIN</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BEGIN</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
 <span class="n">BEGIN</span> <span class="n">CRYSTAL</span> <span class="n">DEFAULT</span>
 
 <span class="n">BEGIN</span> <span class="n">WAVELENGTH</span> <span class="n">NATIVE</span>
@@ -167,7 +167,7 @@ process the sweeps in parallel, by specifying
 using <code class="samp docutils literal"><span class="pre">multiprocessing.njob</span></code> to indicate how many sweeps should be
 processed simultaneously, using <code class="samp docutils literal"><span class="pre">multiprocessing.nproc</span></code> processors
 per sweep:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
   <span class="n">multiprocessing</span><span class="o">.</span><span class="n">njob</span><span class="o">=</span><span class="mi">2</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">nproc</span><span class="o">=</span><span class="mi">4</span>
 </pre></div>
 </div>
@@ -182,8 +182,8 @@ available (currently we only support qsub) by specifying the parameter
 <code class="samp docutils literal"><span class="pre">multiprocessing.type=qsub</span></code>. The parameter
 <code class="samp docutils literal"><span class="pre">multiprocessing.qsub_command</span></code> may be used (if needed) to e.g. specify
 which queue jobs should be submitted to:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
-  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">qsub</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">qsub_command</span><span class="o">=</span><span class="s">&quot;qsub -q low.q&quot;</span> \
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
+  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">qsub</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">qsub_command</span><span class="o">=</span><span class="s2">&quot;qsub -q low.q&quot;</span> \
   <span class="n">multiprocessing</span><span class="o">.</span><span class="n">njob</span><span class="o">=</span><span class="mi">10</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">nproc</span><span class="o">=</span><span class="mi">16</span>
 </pre></div>
 </div>

@@ -56,13 +56,13 @@
 <p>This tutorial uses test images which are available from the links below.
 Thanks to John Cowan for providing this test data!</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.ccp4.ac.uk/xia/demo.zip">Windows (as .zip file)</a></li>
-<li><a class="reference external" href="http://www.ccp4.ac.uk/xia/demo.tar.bz2">Unix (as .tar.bz2 file)</a></li>
-<li><a class="reference external" href="http://www.ccp4.ac.uk/xia/demo.tar.gz">Unix (as .tar.gz file)</a></li>
+<li><a class="reference external" href="ftp://ftp.ccp4.ac.uk/xia/demo.zip">Windows (as .zip file)</a></li>
+<li><a class="reference external" href="ftp://ftp.ccp4.ac.uk/xia/demo.tar.bz2">Unix (as .tar.bz2 file)</a></li>
+<li><a class="reference external" href="ftp://ftp.ccp4.ac.uk/xia/demo.tar.gz">Unix (as .tar.gz file)</a></li>
 </ul>
 <p>There are two ways of running xia2 - with and without an input file, an
 example of which follows below. If you just run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>xia2 will do something sensible - in this case process all of the data, scale
@@ -70,11 +70,11 @@ all measurements as if they are from a single crystal and merge the data from
 each wavelength separately. If only one wavelength is present xia2 will assume
 that the data are a native data set - to separate anomalous pairs provide a
 heavy atom (at this time it doesn&#8217;t matter what it is...) i.e.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">xia2</span> <span class="n">atom</span><span class="o">=</span><span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">atom</span><span class="o">=</span><span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>Other options are (type just xia2 to get this list):</p>
-<div class="highlight-default"><div class="highlight"><pre><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
 <span class="p">[</span><span class="n">pipeline</span><span class="o">=</span><span class="n">XXX</span><span class="p">]</span> <span class="n">select</span> <span class="n">processing</span> <span class="n">pipeline</span><span class="p">,</span> <span class="k">with</span> <span class="n">XXX</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span>
   <span class="mi">2</span><span class="n">d</span>    <span class="n">MOSFLM</span><span class="p">,</span> <span class="n">LABELIT</span> <span class="p">(</span><span class="k">if</span> <span class="n">installed</span><span class="p">),</span> <span class="n">AIMLESS</span>
   <span class="mi">3</span><span class="n">d</span>    <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">LABELIT</span>
@@ -86,9 +86,9 @@ heavy atom (at this time it doesn&#8217;t matter what it is...) i.e.:</p>
 <span class="p">[</span><span class="n">nproc</span><span class="o">=</span><span class="mi">4</span><span class="p">]</span> <span class="n">run</span> <span class="n">on</span> <span class="mi">4</span> <span class="n">processors</span> <span class="p">(</span><span class="n">automatic</span><span class="p">)</span>
 <span class="p">[</span><span class="n">space_group</span><span class="o">=</span><span class="n">C2</span><span class="p">]</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">)</span>
 <span class="p">[</span><span class="n">unit_cell</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">]</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="p">)</span>
-<span class="p">[</span><span class="n">reverse_phi</span><span class="o">=</span><span class="k">True</span><span class="p">]</span>
+<span class="p">[</span><span class="n">reverse_phi</span><span class="o">=</span><span class="kc">True</span><span class="p">]</span>
 <span class="p">[</span><span class="n">mosflm_beam_centre</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]</span> <span class="p">(</span><span class="ow">in</span> <span class="n">mm</span><span class="p">,</span> <span class="n">following</span> <span class="n">the</span> <span class="n">MOSFLM</span> <span class="n">convention</span><span class="p">,</span> <span class="n">applies</span> <span class="n">to</span> <span class="nb">all</span> <span class="n">sweeps</span><span class="p">)</span>
-<span class="p">[</span><span class="n">dials</span><span class="o">.</span><span class="n">fast_mode</span><span class="o">=</span><span class="k">True</span><span class="p">]</span> <span class="k">for</span> <span class="n">very</span> <span class="n">fast</span> <span class="n">processing</span>
+<span class="p">[</span><span class="n">dials</span><span class="o">.</span><span class="n">fast_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">]</span> <span class="k">for</span> <span class="n">very</span> <span class="n">fast</span> <span class="n">processing</span>
 <span class="p">[</span><span class="n">atom</span><span class="o">=</span><span class="n">se</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">)</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">xia2setup</span>
 <span class="p">[</span><span class="n">project</span><span class="o">=</span><span class="n">foo</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">)</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">xia2setup</span>
 <span class="p">[</span><span class="n">crystal</span><span class="o">=</span><span class="n">bar</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">)</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">xia2setup</span>
@@ -134,7 +134,7 @@ examples can be found here:</p>
 <li><a class="reference download internal" href="_downloads/SAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
 <li><a class="reference download internal" href="_downloads/MAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre>! This is a demonstration .xinfo file which illustrates how to cope
+<div class="highlight-default"><div class="highlight"><pre><span></span>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
 ! set measured on 14.2 at the SRS
 
