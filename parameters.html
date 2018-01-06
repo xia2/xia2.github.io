@@ -131,64 +131,63 @@ should however be automated generation of command-line documentation and the abi
 keep &#8220;recipes&#8221; for running xia2 in tidy files.</p>
 </div>
 <p>Here is a comprehensive list of PHIL parameters used by xia2:</p>
-<pre class="literal-block">
-general {
-  backstop_mask = None
-}
-xds {
-  keep_outliers = False
-  correct {
-  }
-  integrate {
-  }
-  init {
-  }
-  defpix {
-  }
-  index {
-    max_wedge_size = 5
-    max_wedge_size_degrees = None
-  }
-  colspot {
-  }
-  xscale {
-  }
-  merge2cbf {
-  }
-}
-dials {
-  outlier {
-  }
-  find_spots {
-    filter_ice_rings = False
-  }
-  index {
-    method = fft1d *fft3d real_space_grid_search
-  }
-}
-xia2.settings {
-  pipeline = 2d 2di 3d 3dd 3di 3dii *dials
-  project = 'AUTOMATIC'
-  crystal = 'DEFAULT'
-  input {
-    atom = None
-    anomalous = Auto
-  }
-  space_group = None
-  unit_cell = None
-  resolution {
-    keep_all_reflections = Auto
-    d_max = None
-    d_min = None
-    cc_half_method = *half_dataset sigma_tau
-    labels = None
-  }
-  multiprocessing {
-    nproc = Auto
-  }
-}
-
-</pre>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">general</span> <span class="p">{</span>
+  <span class="n">backstop_mask</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">}</span>
+<span class="n">xds</span> <span class="p">{</span>
+  <span class="n">keep_outliers</span> <span class="o">=</span> <span class="kc">False</span>
+  <span class="n">correct</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">integrate</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">init</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">defpix</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">index</span> <span class="p">{</span>
+    <span class="n">max_wedge_size</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">max_wedge_size_degrees</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="p">}</span>
+  <span class="n">colspot</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">xscale</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">merge2cbf</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">dials</span> <span class="p">{</span>
+  <span class="n">outlier</span> <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="n">find_spots</span> <span class="p">{</span>
+    <span class="n">filter_ice_rings</span> <span class="o">=</span> <span class="kc">False</span>
+  <span class="p">}</span>
+  <span class="n">index</span> <span class="p">{</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">fft1d</span> <span class="o">*</span><span class="n">fft3d</span> <span class="n">real_space_grid_search</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">xia2</span><span class="o">.</span><span class="n">settings</span> <span class="p">{</span>
+  <span class="n">pipeline</span> <span class="o">=</span> <span class="mi">2</span><span class="n">d</span> <span class="mi">2</span><span class="n">di</span> <span class="mi">3</span><span class="n">d</span> <span class="mi">3</span><span class="n">dd</span> <span class="mi">3</span><span class="n">di</span> <span class="mi">3</span><span class="n">dii</span> <span class="o">*</span><span class="n">dials</span>
+  <span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;AUTOMATIC&#39;</span>
+  <span class="n">crystal</span> <span class="o">=</span> <span class="s1">&#39;DEFAULT&#39;</span>
+  <span class="nb">input</span> <span class="p">{</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">anomalous</span> <span class="o">=</span> <span class="n">Auto</span>
+  <span class="p">}</span>
+  <span class="n">space_group</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="n">unit_cell</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="n">resolution</span> <span class="p">{</span>
+    <span class="n">keep_all_reflections</span> <span class="o">=</span> <span class="n">Auto</span>
+    <span class="n">d_max</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">d_min</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">cc_half_method</span> <span class="o">=</span> <span class="o">*</span><span class="n">half_dataset</span> <span class="n">sigma_tau</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="p">}</span>
+  <span class="n">multiprocessing</span> <span class="p">{</span>
+    <span class="n">nproc</span> <span class="o">=</span> <span class="n">Auto</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
