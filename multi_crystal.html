@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -113,11 +114,8 @@ a couple of reasons:</p>
 <li>On start up, xia2 reads all the image headers to ensure that it understands
 them correctly. A speedup can be obtained with the parameter
 <code class="samp docutils literal"><span class="pre">read_all_image_headers=False</span></code>, which tells xia2 to only read the
-first image header for each set of files with a matching template, and</li>
-</ol>
-<blockquote>
-<div>infer the rest of the sweep from the first image header.</div></blockquote>
-<ol class="arabic simple">
+first image header for each set of files with a matching template, and
+infer the rest of the sweep from the first image header.</li>
 <li>If available, xia2 will run a beam centre search on each sweep using
 labelit.index. This step can be disabled using the parameter
 <code class="samp docutils literal"><span class="pre">trust_beam_centre=True</span></code></li>
@@ -175,8 +173,8 @@ per sweep:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This will use a total of <code class="samp docutils literal"><span class="pre">njob</span></code> <img class="math" src="_images/math/0b8f66a848c851c882bd816037c9c5859ca75570.png" alt="*"/> <code class="samp docutils literal"><span class="pre">nproc</span></code> processors,
-i.e. <img class="math" src="_images/math/ccf223ff9d3dcceff90ff69a1fe5ee9721e0c803.png" alt="2 * 4 = 8"/> processors, which should be less than or equal to the total
+<p class="last">This will use a total of <code class="samp docutils literal"><span class="pre">njob</span></code> <span class="math">\(*\)</span> <code class="samp docutils literal"><span class="pre">nproc</span></code> processors,
+i.e. <span class="math">\(2 * 4 = 8\)</span> processors, which should be less than or equal to the total
 number of processors available on your machine.</p>
 </div>
 <p>Additionally, xia2 can utilise the processing power of a cluster where
