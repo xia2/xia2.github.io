@@ -1,27 +1,17 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Release notes &#8212; xia2  documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -29,7 +19,6 @@
     <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="xia2  documentation" href="index.html" />
     <link rel="next" title="xia2 license" href="license.html" />
     <link rel="prev" title="Acknowledgements" href="acknowledgements.html" />
    
@@ -38,8 +27,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -65,7 +53,7 @@
 option scala secondary now aimless secondary.</li>
 <li>Fixed processing of MAD data with AIMLESS.</li>
 <li>Removed rather a lot of clutter, of things which were once a good
-idea but never followed through with...</li>
+idea but never followed through with…</li>
 </ul>
 </div></blockquote>
 </div>
@@ -79,7 +67,7 @@ most of the work.</li>
 through alternative interfaces.</li>
 <li>Squashed nasty bug where input spacegroup set to e.g. I222 but
 pointgroup derived to be P222 (think this one was reported a while
-back but I could not find the source at the time... sorry!)</li>
+back but I could not find the source at the time… sorry!)</li>
 <li>Squashed some other bugs which have appeared in recent history.</li>
 </ul>
 </div></blockquote>
@@ -162,14 +150,14 @@ header. Can also generate this file with xia2 with -hdr_out example.hdr</li>
 <li>-xparm_ub mode for XDS processing only, provide a UB matrix (XDS
 XPARM file) to match the orientation to: primarily useful if you record
 data from several regions on a sample, and the sample has close-to
-symmetry (i.e. you almost certainly don&#8217;t need this)</li>
+symmetry (i.e. you almost certainly don’t need this)</li>
 <li>Removed usage of BINSORT_SCR as this is being deprecated by CCP4.</li>
 <li>Allow Phil overrides on selection of autoindexing solutions, where
 indexing can give large variations in unit cell constants (e.g. low
 resolution virus data)</li>
 <li>Properly set the resolution in CAD copying free R flags.</li>
 <li>Allow access to profile grid size through the Phil interface:
-<code class="samp docutils literal"><span class="pre">xds.parameter.profile_grid_size=13,13</span></code></li>
+<code class="samp docutils literal notranslate"><span class="pre">xds.parameter.profile_grid_size=13,13</span></code></li>
 <li>Implement TRUSTED_REGION through Phil as suggested by Luca Jovine</li>
 <li>Updates to process simulated data from SIM_MX</li>
 <li>More measures of anomalous signal in output.</li>
@@ -195,10 +183,10 @@ contributed by Andrew Perry at Monash University.</li>
 <li>Include the resolution limits at the XSCALE stage rather
 than simply in the merging.</li>
 <li>Support for 2x2 binned ADSC Quantum 270 detector.</li>
-<li>Support for &#8216;.&#8217; in file names.</li>
+<li>Support for ‘.’ in file names.</li>
 <li>Support for NOIR1 detector on ALS 4.2.2</li>
 <li>Smarter 3dii mode - if 3di style indexing will give better answer,
-it will do that...</li>
+it will do that…</li>
 <li>Use ctruncate in place of truncate (finally!)</li>
 </ul>
 </div></blockquote>
@@ -238,7 +226,7 @@ duplicate code. Will make for more maintainable suite in the future.</li>
 <li>Improved handling of twinned data for multiple sweeps.</li>
 <li>Fixed occasional bugs with multiple sweeps, reindexing trigonal
 data sets with XDS.</li>
-<li>Removed &#8220;old&#8221; scaling modes, 2d and 3d, as these were unhelpful.</li>
+<li>Removed “old” scaling modes, 2d and 3d, as these were unhelpful.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -279,7 +267,7 @@ image sweeps.</li>
 XDS GXPARM.XDS - useful for polycrystal data reduction.</p>
 </li>
 <li><p class="first">Now check what you tell the program, viz:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>gw56@ws050 nonsense]$ xia2 -3d -nonsense /data/gw56/dl/Cowan/Insulin/insulin/
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gw56@ws050 nonsense]$ xia2 -3d -nonsense /data/gw56/dl/Cowan/Insulin/insulin/
 Traceback (most recent call last):
   File &quot;/home/gw56/svn/xia2/Applications/xia2.py&quot;, line 45, in
     from xia2setup import write_xinfo
@@ -357,7 +345,7 @@ with e.g. 4 images / sweep.</li>
 <div><ul class="simple">
 <li>Changes suitable for working on microcrystals - reachable through
 a -microcrystal command line flag, and -failover is probably helpful
-too. Later retired...</li>
+too. Later retired…</li>
 <li>If lattice or spacegroup specified, do not run tests.</li>
 <li>2dr and 3dr now the default pipelines - use 2dold or 3dold if you
 need to get to the old pipelines.</li>
@@ -393,7 +381,7 @@ control over the choices can be made using the -isigma, -misigma,
 </li>
 <li><p class="first">Added interactive indexing mechanism, where user can assign images
 to use for autoindexing, e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Existing</span> <span class="n">images</span> <span class="k">for</span> <span class="n">indexing</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Existing</span> <span class="n">images</span> <span class="k">for</span> <span class="n">indexing</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span>
 <span class="o">&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">180</span>
 <span class="n">New</span> <span class="n">images</span> <span class="k">for</span> <span class="n">indexing</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">180</span>
 </pre></div>
@@ -416,7 +404,7 @@ synchrotron sources, former handy if you want a report.</p>
 <li><p class="first">Smart scaling mode switched on by default.</p>
 </li>
 <li><p class="first">Chef now run by default, for radiation damage analysis, e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Group</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="o">-</span><span class="n">wedge</span> <span class="n">data</span> <span class="n">collection</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Group</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="o">-</span><span class="n">wedge</span> <span class="n">data</span> <span class="n">collection</span>
 <span class="n">Group</span> <span class="mi">2</span><span class="p">:</span> <span class="n">Single</span> <span class="n">wedge</span>
 <span class="n">Significant</span> <span class="n">radiation</span> <span class="n">damage</span> <span class="n">detected</span><span class="p">:</span>
 <span class="n">Rd</span> <span class="n">analysis</span> <span class="p">(</span><span class="mi">12287</span><span class="o">/</span><span class="n">LREM</span><span class="p">):</span> <span class="mf">15.17</span>
@@ -445,7 +433,7 @@ Mosflm. Also postrefinement results.</p>
 for tricky data sets where this perhaps falls over.</li>
 <li>Fixed side effect of changes which allowed setting of unit cell
 etc. - lattices were no longer eliminated, failed complaining
-can&#8217;t eliminate only solution.</li>
+can’t eliminate only solution.</li>
 <li>Tidied up the generation of output files and so on - now only have
 the main log file and the debug trace.</li>
 <li>Added copy of the command line to program output.</li>
@@ -476,7 +464,7 @@ be used to handle cases where the solution you want is monoclinic
 with a pseudo-orthorhombic lattice, where the default indexing would
 select a different setting. This will not currently work with a
 Mosflm indexer. Usage is:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">cell</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">gamma</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">cell</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">gamma</span>
 </pre></div>
 </div>
 <p>and the correct symmetry should also be assigned. Can also assign
@@ -494,17 +482,17 @@ cores.</li>
 <li>Implemented check for centring of crystallographic basis from
 autoindexing.</li>
 <li>Started to use CCTBX - this will be bundled with the release
-from now on...</li>
-<li>Now runs &#8220;smart scaling&#8221; i.e. will customise the scaling model
+from now on…</li>
+<li>Now runs “smart scaling” i.e. will customise the scaling model
 used to the data. This can seriously improve the xia2 run time in
 cases where some of the default scaling models do not converge.</li>
 <li>Now also includes running of CHEF for radiation damage, which will
 slice and dice your data into dose groups, then run a correctly
 time sequenced radiation damage analysis. N.B. for data measured in
-&#8220;dose mode&#8221; the doses will be scaled to &amp;lt; 1,000,000 to ensure that
+“dose mode” the doses will be scaled to &amp;lt; 1,000,000 to ensure that
 the output is tidy.</li>
 <li>Corner case of running XDS pipelines from data from a Rigaku setup.
-The low resolution was previously calculated to be 0.0! D&#8217;oh!</li>
+The low resolution was previously calculated to be 0.0! D’oh!</li>
 <li>Added access to reference reflection file functionality to the
 command line - -reference_reflection_file foo.mtz.</li>
 <li>Fixed the use of the -image command-line option. Now works.</li>
@@ -525,11 +513,11 @@ different.</li>
 file.</li>
 <li>Detector limits now correctly specified around the detector centre
 for Mosflm, rather than the beam centre. Only useful if your beam
-centre is a fair way from the image centre...</li>
+centre is a fair way from the image centre…</li>
 <li>Parallelised integration with Mosflm - divides the sweeps into an
 appropriate number of chunks and then sorts together the resulting
 reflection files. -parallel N, remember.</li>
-<li>Added a putative &#8216;small molecule&#8217; mode, which will autoindex with
+<li>Added a putative ‘small molecule’ mode, which will autoindex with
 Mosflm from a modest number of images, for smaller molecules where
 Labelit is unhappy with the number of good Bragg reflections.</li>
 </ul>
@@ -543,7 +531,7 @@ Labelit is unhappy with the number of good Bragg reflections.</li>
 detectors.</li>
 <li>Better determination of resolution limits.</li>
 <li>Correct merging of data from XSCALE (needs to invert the I=F*F
-scale factor...)</li>
+scale factor…)</li>
 <li>Fixed output of scalepack unmerged output using 3d pipeline.</li>
 <li>Use fewer frames for background calculation with 3dii pipeline -
 speeds things up a fair amount.</li>
@@ -574,7 +562,7 @@ plot rather than integration program log output.</p>
 </li>
 <li><p class="first">If no images are given, a more helpful error message is produced
 than before, viz:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">------------------------------------------</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------</span>
 <span class="o">|</span> <span class="n">No</span> <span class="n">images</span> <span class="n">assigned</span> <span class="k">for</span> <span class="n">crystal</span> <span class="n">DEFAULT</span> <span class="o">|</span>
 <span class="o">------------------------------------------</span>
 </pre></div>
@@ -589,7 +577,7 @@ xia2 will now complain in a more helpful way.</p>
 </li>
 <li><p class="first">Resolution limits will now be based on analysis of the reflection
 files rather than the program output, since this will generally give
-a more helpful answer...</p>
+a more helpful answer…</p>
 </li>
 <li><p class="first">Now correctly set the reindex matrix for running correct with
 multiple sweeps of data for non primitive matrix (subtle bug,
@@ -621,17 +609,17 @@ reversephi to the xinfo file or -reversephi to the command line.</li>
 <blockquote>
 <div><ul class="simple">
 <li>Now handles complex image names with e.g. + in them correctly.</li>
-<li>New option for processing <code class="samp docutils literal"><span class="pre">-3dii</span></code> added - this will run
+<li>New option for processing <code class="samp docutils literal notranslate"><span class="pre">-3dii</span></code> added - this will run
 the 3D pipeline (XDS, XSCALE) using all images for spot picking and
 autoindexing - useful for properly tricky cases.</li>
 <li>Now correctly propogate the profile information to Mosflm when not
-using Mosflm for autoindexing - this is done by running a &#8220;fake&#8221;
+using Mosflm for autoindexing - this is done by running a “fake”
 autoindexing task.</li>
 <li>Use the raster information for the cell refinement test, and changed
 the selection of images for this.</li>
 <li>Added support for the output of BioXHIT XML in the LogFiles
 directory - for project tracking.</li>
-<li>Now copy the XDS log files (&#8220;LP&#8221; files) into the LogFiles
+<li>Now copy the XDS log files (“LP” files) into the LogFiles
 directory - as always these are the most up-to-date versions from
 processing.</li>
 <li>Added support for latest release of XDS (June 2, 2008.)</li>
@@ -644,15 +632,15 @@ processing.</li>
 <div><ul>
 <li><p class="first">Added possibility to give a reflection file with an existing
 FreeR_flag column, which will be copied to the output MTZ:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">freer_file</span> <span class="n">free</span><span class="o">.</span><span class="n">mtz</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">freer_file</span> <span class="n">free</span><span class="o">.</span><span class="n">mtz</span>
 </pre></div>
 </div>
-<p>or...</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">FREER_FILE</span> <span class="n">free</span><span class="o">.</span><span class="n">mtz</span>
+<p>or…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FREER_FILE</span> <span class="n">free</span><span class="o">.</span><span class="n">mtz</span>
 </pre></div>
 </div>
 <p>in the xinfo file (in the same way as the reference reflection file -
-indeed, this may be the same file...)</p>
+indeed, this may be the same file…)</p>
 </li>
 <li><p class="first">Added command line control of the spacegroup - note well that this
 means that the data WILL NOT be reindexed to a standard setting.</p>
@@ -682,11 +670,11 @@ recorded on Rigaku X-Ray sets.</p>
 detectors.</p>
 </li>
 <li><p class="first">Now works with no input, e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">project</span> <span class="n">TG6623</span> <span class="o">-</span><span class="n">crystal</span> <span class="n">X77788</span> <span class="o">-</span><span class="n">atom</span> <span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">project</span> <span class="n">TG6623</span> <span class="o">-</span><span class="n">crystal</span> <span class="n">X77788</span> <span class="o">-</span><span class="n">atom</span> <span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>However this relies on your image headers being accurate and the
-images having some kind of recognisable format...</p>
+images having some kind of recognisable format…</p>
 </li>
 <li><p class="first">Repaired operation on ppc and intel macs - added required libraries
 to the installation and reset the library paths appropriately.</p>
@@ -714,7 +702,7 @@ which changed in the previous version.</li>
 <li>Fixed bug where if the distance was read incorrectly from the
 image header (or was wrong therein) XDS would get the wrong value
 even if you had put the correct value in the .xinfo file.</li>
-<li>Now &#8220;unroll&#8221; the unmerged reflections from XSCALE and then
+<li>Now “unroll” the unmerged reflections from XSCALE and then
 merge them in their original sweeps in Scala. This should give
 a useful Rmerge vs. time plot.</li>
 <li>Including updated versions of Pointless and Scala.</li>
@@ -747,22 +735,22 @@ in synchrotron / lab source data collection.</p>
 </li>
 <li><p class="first">Now include the latest Mosflm binaries in the extras package -
 these are often better than those in the CCP4 distribution,
-as they come directly from Harry Powell&#8217;s web page.</p>
+as they come directly from Harry Powell’s web page.</p>
 </li>
 <li><p class="first">Added -ehtpx_xml_out option which will write out marked
 up metadata about the data reduction, for inclusion in the
 e-HTPX data reduction portal and, perhaps, other automated
 systems. Usage:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">ehtpx_xml_out</span> <span class="n">project</span><span class="o">.</span><span class="n">xml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">-</span><span class="n">ehtpx_xml_out</span> <span class="n">project</span><span class="o">.</span><span class="n">xml</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">If data are very incomplete (e.g. less than 50% complete) then don&#8217;t
+<li><p class="first">If data are very incomplete (e.g. less than 50% complete) then don’t
 try to refine the error parameters. This is both incorrect and a
 waste of time.</p>
 </li>
 <li><p class="first">Renamed the output reflection files - these are now in DataFiles
-directory with names like &#8220;PROJECT_CRYSTAL_free.mtz.&#8221; This makes
+directory with names like “PROJECT_CRYSTAL_free.mtz.” This makes
 them a little easier to identify.</p>
 </li>
 <li><p class="first">Harvesting (deposition) files now in subdirectory of Harvest
@@ -779,7 +767,7 @@ names Harvest/DepositFiles/PROJECT/WAVELENGTH.scala etc.</p>
 <strong>the support for Mosflm/CCP4. It is also worth noting that this</strong>
 <strong>relies on many CCP4 tools.</strong></p>
 </li>
-<li><p class="first">Added selection of the &#8220;pipeline&#8221; to use through a command line
+<li><p class="first">Added selection of the “pipeline” to use through a command line
 option, either -2d for mosflm/ccp4 or -3d for xds/xscale though
 the latter still uses a number of CCP4 programs.</p>
 </li>
@@ -807,12 +795,12 @@ This is likely to have interesting side-effects.</li>
 <li>If time of data collection not recorded in header <em>but</em>
 the time stamp for the images are correct (e.g. you have not moved
 them since collection) then the command line flag
-<code class="samp docutils literal"><span class="pre">-trust_timestamps</span></code> can be used, which will use the
+<code class="samp docutils literal notranslate"><span class="pre">-trust_timestamps</span></code> can be used, which will use the
 time stamps on the image files to analyse things like radiation
 damage.</li>
 <li>If you are running this on a cluster, have added an option
 to migrate the diffraction data to a local disk (e.g. /tmp.)
-To do this add <code class="samp docutils literal"><span class="pre">-migrate_data</span></code> to the command line -
+To do this add <code class="samp docutils literal notranslate"><span class="pre">-migrate_data</span></code> to the command line -
 the data will be removed from the local disk once the processing
 is finished.</li>
 <li>Copy all final reflection files to a DataFiles directory.</li>
@@ -832,7 +820,7 @@ value for integration. E.g. GAIN 0.25.</li>
 <blockquote>
 <div><ul>
 <li><p class="first">Fixed problem with spacegroup R3:H (naming convention problem
-- there&#8217;s a surprise.)</p>
+- there’s a surprise.)</p>
 </li>
 <li><p class="first">GAIN estimation temporarily removed.</p>
 </li>
@@ -840,7 +828,7 @@ value for integration. E.g. GAIN 0.25.</li>
 there</p>
 </li>
 <li><p class="first">Allow environment variables and tilde in DIRECTORY token:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>DIRECTORY $DATA/example or ~/data or %DATA%/example (win32)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DIRECTORY $DATA/example or ~/data or %DATA%/example (win32)
 </pre></div>
 </div>
 </li>
@@ -858,22 +846,22 @@ having this there no longer applies.</p>
 <h2>Changes since 0.2.4<a class="headerlink" href="#changes-since-0-2-4" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>xia2setup will now add the f&#8217;, f&#8217;&#8217; values if a scan is available
+<li>xia2setup will now add the f’, f’’ values if a scan is available
 and has been processed by chooch</li>
 <li>GAIN now estimated by diffdump - enabling future parallelisation
 of the integration stage.</li>
-<li>For detectors formed as a mosaic of a number of tiles, with &#8220;gaps&#8221;
+<li>For detectors formed as a mosaic of a number of tiles, with “gaps”
 in between, now mask those gapped areas in Mosflm to reduce the
 number of bad reflections.</li>
 <li>Now has a fix for the ongoing indexing problem which gave rise
-to errors like &#8220;something horrible has happened in indexing&#8221;.</li>
-<li>The &#8220;best&#8221; log file for each process will now be recorded in a
+to errors like “something horrible has happened in indexing”.</li>
+<li>The “best” log file for each process will now be recorded in a
 LogFiles directory - which means no more hunting around for the
 final scala log file and what not.</li>
 <li>Chaling now produces unmerged reflection files in scalepack format
 as well as merged scalepack and merged MTZ format. This is done by
 scala (if used) by recycling the final SCALES and adding
-&#8220;output polish unmerged.&#8221;</li>
+“output polish unmerged.”</li>
 <li>Now runs a twinning test using the CCP4 program sfcheck, and
 will warn you if your data look twinned.</li>
 <li>Now allow up to 100 cycles of scale refinement to cope with
@@ -886,7 +874,7 @@ are scaled together.</li>
 <h2>Changes since 0.2.3<a class="headerlink" href="#changes-since-0-2-3" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>Added &lt;a href=&#8221;preferences.html&#8221;&gt;preferences file&lt;/a&gt;</li>
+<li>Added &lt;a href=”preferences.html”&gt;preferences file&lt;/a&gt;</li>
 <li>Added xia2setup program to create the .xinfo file - this will
 also run LABELIT to configure the beam centre if it is installed</li>
 <li>Added a strategy-of-data-reduction step to the pipeline</li>
@@ -899,7 +887,7 @@ also run LABELIT to configure the beam centre if it is installed</li>
 <blockquote>
 <div><ul class="simple">
 <li>Changed to a BSD license</li>
-<li>Added &#8220;python setup&#8221; check to xia2</li>
+<li>Added “python setup” check to xia2</li>
 <li>Relaxed criteria on isomorphism to 1% not 0.5A etc.</li>
 <li><strong>Now wavelengths in wavelength record will override header
 values if provided, but do not (indeed, should not) be included

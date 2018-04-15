@@ -1,27 +1,17 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Using xia2 &#8212; xia2  documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -29,7 +19,6 @@
     <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="xia2  documentation" href="index.html" />
     <link rel="next" title="Installation" href="installation.html" />
     <link rel="prev" title="Quick start guide" href="quick_start.html" />
    
@@ -38,8 +27,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -57,11 +45,11 @@
   <div class="section" id="using-xia2">
 <h1>Using xia2<a class="headerlink" href="#using-xia2" title="Permalink to this headline">¶</a></h1>
 <p>As mentioned in the <a class="reference internal" href="quick_start.html"><span class="doc">quick start guide</span></a>, to get started simply run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span>
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">images</span>
 </pre></div>
 </div>
 <p>The program is used from the command-line; there is no GUI. The
@@ -79,7 +67,7 @@ most important command-line options are as follows:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>atom= X</td>
-<td>tell xia2 to separate anomalous pairs i.e. I(+) <span class="math">\(\neq\)</span> I(−) in scaling</td>
+<td>tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate">\(\neq\)</span> I(−) in scaling</td>
 </tr>
 <tr class="row-odd"><td>pipeline=dials</td>
 <td>tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a></td>
@@ -98,18 +86,18 @@ most important command-line options are as follows:</p>
 </div></blockquote>
 <p>These specify in the broadest possible terms to the program the manner
 in which you would like the processing performed. The program will then
-read all of the image headers found in <code class="samp docutils literal"><span class="pre">/here/are/my/data</span></code> to organise the
+read all of the image headers found in <code class="samp docutils literal notranslate"><span class="pre">/here/are/my/data</span></code> to organise the
 data, first into sweeps, then into wavelengths, before assigning all of these
 wavelengths to a crystal.</p>
 <p>The data from the experiment is understood as follows. The SWEEP,
-which corresponds to one &#8220;scan&#8221;, is the basic unit of indexing and integration.
+which corresponds to one “scan”, is the basic unit of indexing and integration.
 These are contained by WAVELENGTH objects which correspond to
 CCP4 MTZ datasets, and will ultimately have unique Miller indices. For
 example, a low and high dose pass will be merged together. A CRYSTAL
 however contains all of the data from the experiment and is the basic unit of
 data for scaling. This description of the experiment is written automatically
 to an instruction file, an example of which is shown in below:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">BEGIN</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BEGIN</span> <span class="n">PROJECT</span> <span class="n">AUTOMATIC</span>
 <span class="n">BEGIN</span> <span class="n">CRYSTAL</span> <span class="n">DEFAULT</span>
 
 <span class="n">BEGIN</span> <span class="n">HA_INFO</span>

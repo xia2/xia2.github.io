@@ -1,27 +1,17 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Introductory example &#8212; xia2  documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -29,7 +19,6 @@
     <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="xia2  documentation" href="index.html" />
     <link rel="next" title="Insulin tutorial" href="insulin_tutorial.html" />
     <link rel="prev" title="Installation" href="installation.html" />
    
@@ -38,8 +27,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -63,7 +51,7 @@ ongoing research. The structure includes barium which may be used for
 phasing, and the data were recorded as a single sweep. As may be seen
 from Figure 2, the quality of diffraction was not ideal, and radiation damage
 was an issue. Initially the data were processed with:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="o">-</span><span class="n">atom</span> <span class="n">Ba</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="o">-</span><span class="n">atom</span> <span class="n">Ba</span> <span class="o">/</span><span class="n">here</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span>
 </pre></div>
 </div>
 <p>giving the merging statistics shown below:</p>
@@ -128,8 +116,8 @@ was an issue. Initially the data were processed with:</p>
 </tr>
 <tr class="row-odd"><td>Wilson B factor</td>
 <td>12.131</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>Anomalous completeness</td>
 <td>93.3</td>
@@ -184,8 +172,8 @@ scaling when processing the data manually, xia2 is not set up to work like
 this as decisions made for the full data set (e.g. scaling model to use) may
 differ from those for the subset - we therefore need to rerun the whole xia2
 job after modifying the input. It is easy to do this using the
-<code class="docutils literal"><span class="pre">image=/path/to/image_001.img:start:end</span> <span class="pre">syntax</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="n">image</span><span class="o">=/</span><span class="n">dls</span><span class="o">/</span><span class="n">i02</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">2011</span><span class="o">/</span><span class="n">mx1234</span><span class="o">-</span><span class="mi">5</span><span class="o">/</span><span class="n">K5_M1S3_3_001</span><span class="o">.</span><span class="n">img</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span>
+<code class="docutils literal notranslate"><span class="pre">image=/path/to/image_001.img:start:end</span> <span class="pre">syntax</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="mi">3</span><span class="n">d</span> <span class="n">image</span><span class="o">=/</span><span class="n">dls</span><span class="o">/</span><span class="n">i02</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="mi">2011</span><span class="o">/</span><span class="n">mx1234</span><span class="o">-</span><span class="mi">5</span><span class="o">/</span><span class="n">K5_M1S3_3_001</span><span class="o">.</span><span class="n">img</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">200</span>
 </pre></div>
 </div>
 <p>giving the following merging statistics:</p>
@@ -250,8 +238,8 @@ job after modifying the input. It is easy to do this using the
 </tr>
 <tr class="row-odd"><td>Wilson B factor</td>
 <td>10.70</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&#160;</td>
+<td>&#160;</td>
 </tr>
 <tr class="row-even"><td>Anomalous completeness</td>
 <td>77.7</td>
@@ -290,7 +278,7 @@ job after modifying the input. It is easy to do this using the
 consistent and give nice results from experimental phasing though
 with very poor low resolution completeness. At the same time we may wish
 to adjust the resolution limits to give more complete data in the outer shell,
-which may be achieved by setting the <code class="docutils literal"><span class="pre">d_min=</span></code> paramater on the command line.</p>
+which may be achieved by setting the <code class="docutils literal notranslate"><span class="pre">d_min=</span></code> paramater on the command line.</p>
 </div>
 </div>
 

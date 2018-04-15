@@ -1,27 +1,17 @@
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Insulin tutorial &#8212; xia2  documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -29,7 +19,6 @@
     <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="xia2  documentation" href="index.html" />
     <link rel="next" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
     <link rel="prev" title="Introductory example" href="introductory_example.html" />
    
@@ -38,8 +27,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
 <!--   <div class="logoheader container"> -->
 <!--   <a href="index.html"> -->
 <!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
@@ -65,19 +53,19 @@ Thanks to John Cowan for providing this test data!</p>
 </ul>
 <p>There are two ways of running xia2 - with and without an input file, an
 example of which follows below. If you just run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>xia2 will do something sensible - in this case process all of the data, scale
 all measurements as if they are from a single crystal and merge the data from
 each wavelength separately. If only one wavelength is present xia2 will assume
 that the data are a native data set - to separate anomalous pairs provide a
-heavy atom (at this time it doesn&#8217;t matter what it is...) i.e.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">atom</span><span class="o">=</span><span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
+heavy atom (at this time it doesn’t matter what it is…) i.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">atom</span><span class="o">=</span><span class="n">se</span> <span class="o">/</span><span class="n">my</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">are</span><span class="o">/</span><span class="n">here</span>
 </pre></div>
 </div>
 <p>Other options are (type just xia2 to get this list):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
 <span class="p">[</span><span class="n">pipeline</span><span class="o">=</span><span class="n">XXX</span><span class="p">]</span> <span class="n">select</span> <span class="n">processing</span> <span class="n">pipeline</span><span class="p">,</span> <span class="k">with</span> <span class="n">XXX</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span>
   <span class="mi">2</span><span class="n">d</span>    <span class="n">MOSFLM</span><span class="p">,</span> <span class="n">LABELIT</span> <span class="p">(</span><span class="k">if</span> <span class="n">installed</span><span class="p">),</span> <span class="n">AIMLESS</span>
   <span class="mi">3</span><span class="n">d</span>    <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">LABELIT</span>
@@ -110,13 +98,13 @@ be used.</li>
 <li>The sequence file, if present, should be in the one letter form and all
 comment lines should begin with a character not in A-Z. Again the
 alphabetically latest sequence file will be used.</li>
-<li>If the sequence file is provided, and the atom is &#8220;se&#8221;, then xia2setup will
+<li>If the sequence file is provided, and the atom is “se”, then xia2setup will
 assume that you are doing a SeMet experiment and will provide an appropriate
 number of atoms per monomer - though you will still have to uncomment this
 to include it, in case it has guessed wrong.</li>
 <li>If you want to combine data from a number of crystals in the same .xinfo
 file, then you will need to copy out all text from
-<code class="samp docutils literal"><span class="pre">BEGIN</span> <span class="pre">CRYSTAL</span></code> to <code class="samp docutils literal"><span class="pre">END</span> <span class="pre">CRYSTAL</span></code> from one .xinfo file to the
+<code class="samp docutils literal notranslate"><span class="pre">BEGIN</span> <span class="pre">CRYSTAL</span></code> to <code class="samp docutils literal notranslate"><span class="pre">END</span> <span class="pre">CRYSTAL</span></code> from one .xinfo file to the
 other.</li>
 </ul>
 <p>You should then load automatic.xinfo in your favourite editor, and check that
@@ -133,11 +121,11 @@ process a subset of the measurements, or want to process data for an RIP
 experiment. A simple example of xinfo file follows below, and more complex
 examples can be found here:</p>
 <ul class="simple">
-<li><a class="reference download internal" href="_downloads/NATIVE.xinfo" download=""><code class="xref download docutils literal"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" href="_downloads/SAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" href="_downloads/MAD.xinfo" download=""><code class="xref download docutils literal"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/NATIVE.xinfo" download=""><code class="xref download docutils literal notranslate"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/SAD.xinfo" download=""><code class="xref download docutils literal notranslate"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/MAD.xinfo" download=""><code class="xref download docutils literal notranslate"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>! This is a demonstration .xinfo file which illustrates how to cope
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
 ! set measured on 14.2 at the SRS
 
