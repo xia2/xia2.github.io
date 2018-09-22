@@ -53,39 +53,42 @@ are:</p>
 <blockquote>
 <div><table border="1" class="docutils">
 <colgroup>
-<col width="27%" />
-<col width="73%" />
+<col width="15%" />
+<col width="85%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td>atom=X</td>
-<td>tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate">\(\neq\)</span> I(−) in scaling</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">atom=X</span></code></td>
+<td>Tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate">\(\neq\)</span> I(−) in scaling.</td>
 </tr>
-<tr class="row-even"><td>pipeline=2d</td>
-<td>tell xia2 to use <a class="reference external" href="http://www.mrc-lmb.cam.ac.uk/harry/mosflm/">MOSFLM</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=2d</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://www.mrc-lmb.cam.ac.uk/harry/mosflm/">MOSFLM</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
 </tr>
-<tr class="row-odd"><td>pipeline=3d</td>
-<td>tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3d</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>.</td>
 </tr>
-<tr class="row-even"><td>pipeline=3dii</td>
-<td>tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>, indexing with peaks found from all images</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3dii</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>, indexing with peaks found from all images.</td>
 </tr>
-<tr class="row-odd"><td>pipeline=dials</td>
-<td>tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
 </tr>
-<tr class="row-even"><td>xinfo=some.xinfo</td>
-<td>modified.xinfo use specific input file</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xinfo=some.xinfo</span></code></td>
+<td>Use specific modified .xinfo input file.</td>
 </tr>
-<tr class="row-odd"><td>image=/path/to/an/image.img</td>
-<td>process specific scan</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img</span></code></td>
+<td>Process a specific scan.  Pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters to include multiple scans.</td>
 </tr>
-<tr class="row-even"><td>small_molecule=true</td>
-<td>process in manner more suited to small molecule data</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:start:end</span></code></td>
+<td>Process a specific image range within a scan.  <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> are numbers denoting the image range, e.g. <code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:1:100</span></code> processes images 1–100 inclusive.  As above, one can pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters.</td>
 </tr>
-<tr class="row-odd"><td>space_group=sg</td>
-<td>set the spacegroup, e.g. P21</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">small_molecule=true</span></code></td>
+<td>Process in manner more suited to small molecule data.</td>
 </tr>
-<tr class="row-even"><td>unit_cell=a,b,c,α,β,γ</td>
-<td>set the cell constants</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">space_group=sg</span></code></td>
+<td>Set the spacegroup, e.g. <code class="docutils literal notranslate"><span class="pre">P21</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">unit_cell=a,b,c,α,β,γ</span></code></td>
+<td>Set the cell constants.</td>
 </tr>
 </tbody>
 </table>
