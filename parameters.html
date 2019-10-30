@@ -61,17 +61,17 @@ are:</p>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">atom=X</span></code></td>
 <td>Tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate nohighlight">\(\neq\)</span> I(−) in scaling.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=2d</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://www.mrc-lmb.cam.ac.uk/harry/mosflm/">MOSFLM</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3d</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3d</span></code></td>
 <td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3dii</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3dii</span></code></td>
 <td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>, indexing with peaks found from all images.</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> and <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials-aimless</span></code></td>
+<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> but scale with <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xinfo=some.xinfo</span></code></td>
 <td>Use specific modified .xinfo input file.</td>
@@ -130,8 +130,6 @@ keep “recipes” for running xia2 in tidy files.</p>
 <p>Here is a comprehensive list of PHIL parameters used by xia2:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">general</span> <span class="p">{</span>
 <span class="p">}</span>
-<span class="n">mosflm</span> <span class="p">{</span>
-<span class="p">}</span>
 <span class="n">xds</span> <span class="p">{</span>
   <span class="n">keep_outliers</span> <span class="o">=</span> <span class="kc">False</span>
   <span class="n">correct</span> <span class="p">{</span>
@@ -171,7 +169,7 @@ keep “recipes” for running xia2 in tidy files.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">xia2</span><span class="o">.</span><span class="n">settings</span> <span class="p">{</span>
-  <span class="n">pipeline</span> <span class="o">=</span> <span class="mi">2</span><span class="n">d</span> <span class="mi">2</span><span class="n">di</span> <span class="mi">3</span><span class="n">d</span> <span class="mi">3</span><span class="n">dd</span> <span class="mi">3</span><span class="n">di</span> <span class="mi">3</span><span class="n">dii</span> <span class="o">*</span><span class="n">dials</span> <span class="n">dials</span><span class="o">-</span><span class="n">full</span> <span class="n">dials</span><span class="o">-</span><span class="n">aimless</span>
+  <span class="n">pipeline</span> <span class="o">=</span> <span class="mi">3</span><span class="n">d</span> <span class="mi">3</span><span class="n">dd</span> <span class="mi">3</span><span class="n">di</span> <span class="mi">3</span><span class="n">dii</span> <span class="o">*</span><span class="n">dials</span> <span class="n">dials</span><span class="o">-</span><span class="n">full</span> <span class="n">dials</span><span class="o">-</span><span class="n">aimless</span>
   <span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;AUTOMATIC&#39;</span>
   <span class="n">crystal</span> <span class="o">=</span> <span class="s1">&#39;DEFAULT&#39;</span>
   <span class="nb">input</span> <span class="p">{</span>

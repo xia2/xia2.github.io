@@ -70,10 +70,10 @@ heavy atom (at this time it doesn’t matter what it is…) i.e.:</p>
 <p>Other options are (type just xia2 to get this list):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
 <span class="p">[</span><span class="n">pipeline</span><span class="o">=</span><span class="n">XXX</span><span class="p">]</span> <span class="n">select</span> <span class="n">processing</span> <span class="n">pipeline</span><span class="p">,</span> <span class="k">with</span> <span class="n">XXX</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span>
-  <span class="mi">2</span><span class="n">d</span>    <span class="n">MOSFLM</span><span class="p">,</span> <span class="n">LABELIT</span> <span class="p">(</span><span class="k">if</span> <span class="n">installed</span><span class="p">),</span> <span class="n">AIMLESS</span>
   <span class="mi">3</span><span class="n">d</span>    <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">LABELIT</span>
   <span class="mi">3</span><span class="n">dii</span>  <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">using</span> <span class="nb">all</span> <span class="n">images</span> <span class="k">for</span> <span class="n">autoindexing</span>
-  <span class="n">dials</span> <span class="n">DIALS</span><span class="p">,</span> <span class="n">AIMLESS</span>
+  <span class="n">dials</span> <span class="n">DIALS</span>
+  <span class="n">dials</span><span class="o">-</span><span class="n">aimless</span> <span class="n">DIALS</span> <span class="n">but</span> <span class="n">scale</span> <span class="k">with</span> <span class="n">AIMLESS</span>
 <span class="p">[</span><span class="n">xinfo</span><span class="o">=</span><span class="n">foo</span><span class="o">.</span><span class="n">xinfo</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span><span class="p">]</span>
 
 <span class="p">[</span><span class="n">d_min</span><span class="o">=</span><span class="mf">2.8</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">,</span> <span class="n">applies</span> <span class="n">to</span> <span class="nb">all</span> <span class="n">sweeps</span><span class="p">)</span>
@@ -88,8 +88,8 @@ heavy atom (at this time it doesn’t matter what it is…) i.e.:</p>
 <span class="p">[</span><span class="n">crystal</span><span class="o">=</span><span class="n">bar</span><span class="p">]</span> <span class="p">(</span><span class="n">say</span><span class="p">)</span> <span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="k">for</span> <span class="n">xia2setup</span>
 
 <span class="n">Sensible</span> <span class="n">command</span> <span class="n">lines</span><span class="p">:</span>
-<span class="n">xia2</span> <span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="mi">2</span><span class="n">d</span><span class="o">|</span><span class="mi">3</span><span class="n">d</span><span class="o">|..</span><span class="p">)</span> <span class="o">-</span><span class="n">xinfo</span> <span class="n">foo</span><span class="o">.</span><span class="n">xinfo</span>
-<span class="n">xia2</span> <span class="n">project</span><span class="o">=</span><span class="n">foo</span> <span class="n">crystal</span><span class="o">=</span><span class="n">bar</span> <span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="mi">2</span><span class="n">d</span><span class="o">|</span><span class="mi">3</span><span class="n">d</span><span class="o">|..</span><span class="p">)</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">path</span>
+<span class="n">xia2</span> <span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span><span class="o">|</span><span class="mi">3</span><span class="n">d</span><span class="o">|..</span><span class="p">)</span> <span class="o">-</span><span class="n">xinfo</span> <span class="n">foo</span><span class="o">.</span><span class="n">xinfo</span>
+<span class="n">xia2</span> <span class="n">project</span><span class="o">=</span><span class="n">foo</span> <span class="n">crystal</span><span class="o">=</span><span class="n">bar</span> <span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span><span class="o">|</span><span class="mi">3</span><span class="n">d</span><span class="o">|..</span><span class="p">)</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">path</span>
 </pre></div>
 </div>
 <p>Running ths way some assumptions are made:</p>
@@ -124,9 +124,9 @@ process a subset of the measurements, or want to process data for an RIP
 experiment. A simple example of xinfo file follows below, and more complex
 examples can be found here:</p>
 <ul class="simple">
-<li><a class="reference download internal" download="" href="_downloads/60a39a825d05847eb48854e17ed5a158/NATIVE.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" download="" href="_downloads/458c94eacac2452f398413b843d390ba/SAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" download="" href="_downloads/0334ce460dcc95c161cc74dda03b1acc/MAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/db7c53a0d5940afd7d07fed983db6ebd/NATIVE.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/15957aa9d7b9cee69b106f247a6beffc/SAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/b28463d57293fcdea58e6cbcbc8361d1/MAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
