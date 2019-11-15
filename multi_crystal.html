@@ -107,8 +107,8 @@ them correctly. A speedup can be obtained with the parameter
 <code class="samp docutils literal notranslate"><span class="pre">read_all_image_headers=False</span></code>, which tells xia2 to only read the
 first image header for each set of files with a matching template, and
 infer the rest of the sweep from the first image header.</li>
-<li>If available, xia2 will run a beam centre search on each sweep using
-labelit.index. This step can be disabled using the parameter
+<li>When using DIALS for indexing xia2 will run a beam centre search on each
+sweep. This step can be disabled using the parameter
 <code class="samp docutils literal notranslate"><span class="pre">trust_beam_centre=True</span></code></li>
 </ol>
 <p>Furthermore, xia2 may not make the same conclusion as to the symmetry for each
@@ -133,7 +133,7 @@ ignore and just use those sweeps that
 processed successfully</td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">trust_beam_centre=True</span></code></td>
-<td>Don’t run labelit beam centre search</td>
+<td>Don’t run DIALS beam centre search</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">read_all_image_headers=False</span></code></td>
 <td>Skip reading all image headers - just

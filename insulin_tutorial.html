@@ -70,7 +70,7 @@ heavy atom (at this time it doesn’t matter what it is…) i.e.:</p>
 <p>Other options are (type just xia2 to get this list):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="o">-</span><span class="n">line</span> <span class="n">options</span> <span class="n">to</span> <span class="n">xia2</span><span class="p">:</span>
 <span class="p">[</span><span class="n">pipeline</span><span class="o">=</span><span class="n">XXX</span><span class="p">]</span> <span class="n">select</span> <span class="n">processing</span> <span class="n">pipeline</span><span class="p">,</span> <span class="k">with</span> <span class="n">XXX</span> <span class="n">one</span> <span class="n">of</span><span class="p">:</span>
-  <span class="mi">3</span><span class="n">d</span>    <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">LABELIT</span>
+  <span class="mi">3</span><span class="n">d</span>    <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span>
   <span class="mi">3</span><span class="n">dii</span>  <span class="n">XDS</span><span class="p">,</span> <span class="n">XSCALE</span><span class="p">,</span> <span class="n">using</span> <span class="nb">all</span> <span class="n">images</span> <span class="k">for</span> <span class="n">autoindexing</span>
   <span class="n">dials</span> <span class="n">DIALS</span>
   <span class="n">dials</span><span class="o">-</span><span class="n">aimless</span> <span class="n">DIALS</span> <span class="n">but</span> <span class="n">scale</span> <span class="k">with</span> <span class="n">AIMLESS</span>
@@ -115,18 +115,15 @@ the sequence looks correct and that the names are sensible as well as checking
 that the epoch numbers are set correctly and also that the wavelengths and
 beam centres are correct. If you provided a heavy atom there is a place to
 say how many to look for.</p>
-<p>Finally, if you have labelit installed xia2 will run this to update the beam
-positions. If this happens, you will see a comment to this effect above the
-BEAM records in the sweeps.</p>
 <p>The other mechanism for running xia2 is via a xinfo file, which explains the
 layout of the data set to xia2 explicitly. This is helpful if you wish to only
 process a subset of the measurements, or want to process data for an RIP
 experiment. A simple example of xinfo file follows below, and more complex
 examples can be found here:</p>
 <ul class="simple">
-<li><a class="reference download internal" download="" href="_downloads/ba8bb4999a586057be01d01aa4259556/NATIVE.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" download="" href="_downloads/e4707d05b52e14418c7385f7744046bc/SAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
-<li><a class="reference download internal" download="" href="_downloads/7f5f02a58e3bad16f8360b7049745cce/MAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/73ee3bf4e49090bb40431f51b2df99e2/NATIVE.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">Native</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/eeee7d5e81db994f4a1c7658250bb226/SAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">SAD</span> <span class="pre">data</span></code></a></li>
+<li><a class="reference download internal" download="" href="_downloads/7e0ed2ef5366fbac268ad67975cb6a26/MAD.xinfo"><code class="xref download docutils literal notranslate"><span class="pre">MAD</span> <span class="pre">data</span></code></a></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! This is a demonstration .xinfo file which illustrates how to cope
 ! with a simple case - this example is a native cubic insulin data
