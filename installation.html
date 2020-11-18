@@ -1,21 +1,23 @@
 
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Installation &#8212; xia2  documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" type="text/css" href="_static/xia2.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/dials_icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introductory example" href="introductory_example.html" />
@@ -53,23 +55,24 @@ pipelines will work with only xia2 and CCP4 installed. In order to use the
 <code class="docutils literal notranslate"><span class="pre">3d</span></code>, <code class="docutils literal notranslate"><span class="pre">3di</span></code> and <code class="docutils literal notranslate"><span class="pre">3dii</span></code> pipelines you will also need XDS.</p>
 <p>The standard recommended procedure for installing xia2 is therefore:</p>
 <ul class="simple">
-<li><p>Install CCP4 from <a class="reference external" href="http://www.ccp4.ac.uk/download/">http://www.ccp4.ac.uk/download/</a>. This now includes xia2/DIALS
-as part of the installation.</p></li>
-<li><p>Optionally download the latest xia2/DIALS bundle from <a class="reference external" href="https://dials.github.io/installation.html">https://dials.github.io/installation.html</a>.
+<li>Install CCP4 from <a class="reference external" href="http://www.ccp4.ac.uk/download/">http://www.ccp4.ac.uk/download/</a>. This now includes xia2/DIALS
+as part of the installation.</li>
+<li>Optionally download the latest xia2/DIALS bundle from <a class="reference external" href="https://dials.github.io/installation.html">https://dials.github.io/installation.html</a>.
 Once installed, simply sourcing the dials_env.sh script in the installation
 directory will make available all xia2 and DIALS commands in the current
 terminal. Make sure to source the dials_env.sh script after the CCP4 setup
-script</p></li>
-<li><p>Optionally download XDS from <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">http://xds.mpimf-heidelberg.mpg.de/</a> and add this to your path <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p></li>
+script</li>
+<li>Optionally download XDS from <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">http://xds.mpimf-heidelberg.mpg.de/</a> and add this to your path <a class="footnote-reference" href="#id2" id="id1">[1]</a></li>
 </ul>
 <p>By and large, if these instruction are followed you should end up with a
 happy xia2 installation. If you find any problems it’s always worth checking
 the <a class="reference external" href="http://xia2.blogspot.com/">blog</a> or sending an email to <a class="reference external" href="mailto:xia2&#46;support&#37;&#52;&#48;gmail&#46;com">xia2<span>&#46;</span>support<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>To use <code class="samp docutils literal notranslate"><span class="pre">xparallel=True</span></code> you will need to fiddle with forkintegrate in the XDS distribution</p>
-</dd>
-</dl>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>To use <code class="samp docutils literal notranslate"><span class="pre">xparallel=True</span></code> you will need to fiddle with forkintegrate in the XDS distribution</td></tr>
+</tbody>
+</table>
 </div>
 
 
