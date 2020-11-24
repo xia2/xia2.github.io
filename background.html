@@ -1,23 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Background &#8212; xia2  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/xia2.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/dials_icon.png"/>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Acknowledgements" href="acknowledgements.html" />
@@ -48,8 +46,8 @@
   <div class="section" id="background">
 <h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
 <p>Users of macromolecular crystallography (MX) are well served in terms of
-data reduction software, with packages such as HKL2000, Mosflm <a class="footnote-reference" href="#id5" id="id1">[1]</a>,
-XDS <a class="footnote-reference" href="#id6" id="id2">[2]</a> and d*TREK often available and commonly used. In the main, however,
+data reduction software, with packages such as HKL2000, Mosflm <a class="footnote-reference brackets" href="#id5" id="id1">1</a>,
+XDS <a class="footnote-reference brackets" href="#id6" id="id2">2</a> and d*TREK often available and commonly used. In the main, however,
 these programs require that the user makes sensible decisions about the
 data analysis to ensure that a useful result is reached. This manual describes
 a package, xia2, which makes use of some of the aforementioned
@@ -61,41 +59,29 @@ detectors were getting faster and synchrotron beamlines were becoming
 brighter. Against this background the downstream analysis (e.g. structure
 solution and refinement) was streamlined and the level of expertise
 needed to use MX as a technique was reducing. At the same time mature
-software packages such as Mosflm, Scala <a class="footnote-reference" href="#id7" id="id3">[3]</a>, CCP4 <a class="footnote-reference" href="#id8" id="id4">[4]</a> and XDS were available
+software packages such as Mosflm, Scala <a class="footnote-reference brackets" href="#id7" id="id3">3</a>, CCP4 <a class="footnote-reference brackets" href="#id8" id="id4">4</a> and XDS were available
 and a new synchrotron facility was being built in the UK. The ground
 was therefore fertile for for the development of automated data reduction
 tools. Most crucially, however, the author was told that this was impossible
 and a waste of time - sufficient motivation for anyone.</p>
-<table class="docutils footnote" frame="void" id="id5" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>A.G.W. Leslie, Acta Cryst. (2006) D62, 48-57</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><ol class="first last upperalpha simple" start="23">
-<li>Kabsch, Acta Cryst. (2010) D66, 125-132</li>
+<dl class="footnote brackets">
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>A.G.W. Leslie, Acta Cryst. (2006) D62, 48-57</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><ol class="upperalpha simple" start="23">
+<li><p>Kabsch, Acta Cryst. (2010) D66, 125-132</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><ol class="first last upperalpha simple" start="16">
-<li>Evans, Acta Cryst. (2006) D62, 72-82</li>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><ol class="upperalpha simple" start="16">
+<li><p>Evans, Acta Cryst. (2006) D62, 72-82</p></li>
 </ol>
-</td></tr>
-</tbody>
-</table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>CCP4, Acta Cryst. (1994) D50, 760-763</td></tr>
-</tbody>
-</table>
+</dd>
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>CCP4, Acta Cryst. (1994) D50, 760-763</p>
+</dd>
+</dl>
 </div>
 
 

@@ -1,23 +1,21 @@
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parameters &#8212; xia2  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/xia2.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="shortcut icon" href="_static/dials_icon.png"/>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Comments" href="comments.html" />
@@ -52,44 +50,44 @@
 <p>There are a number of program options used on a daily basis in xia2, which
 are:</p>
 <blockquote>
-<div><table border="1" class="docutils">
+<div><table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="85%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">atom=X</span></code></td>
-<td>Tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate nohighlight">\(\neq\)</span> I(−) in scaling.</td>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">atom=X</span></code></p></td>
+<td><p>Tell xia2 to separate anomalous pairs i.e. I(+) <span class="math notranslate nohighlight">\(\neq\)</span> I(−) in scaling.</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3d</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>.</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline=3d</span></code></p></td>
+<td><p>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=3dii</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>, indexing with peaks found from all images.</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline=3dii</span></code></p></td>
+<td><p>Tell xia2 to use <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/">XDS</a> and <a class="reference external" href="http://xds.mpimf-heidelberg.mpg.de/html_doc/xscale_program.html">XSCALE</a>, indexing with peaks found from all images.</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a>.</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline=dials</span></code></p></td>
+<td><p>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">pipeline=dials-aimless</span></code></td>
-<td>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> but scale with <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline=dials-aimless</span></code></p></td>
+<td><p>Tell xia2 to use <a class="reference external" href="http://dials.github.io/">DIALS</a> but scale with <a class="reference external" href="http://www.ccp4.ac.uk/html/aimless.html">Aimless</a>.</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xinfo=some.xinfo</span></code></td>
-<td>Use specific modified .xinfo input file.</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xinfo=some.xinfo</span></code></p></td>
+<td><p>Use specific modified .xinfo input file.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img</span></code></td>
-<td>Process a specific scan.  Pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters to include multiple scans.</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img</span></code></p></td>
+<td><p>Process a specific scan.  Pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters to include multiple scans.</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:start:end</span></code></td>
-<td>Process a specific image range within a scan.  <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> are numbers denoting the image range, e.g. <code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:1:100</span></code> processes images 1–100 inclusive.  As above, one can pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters.</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:start:end</span></code></p></td>
+<td><p>Process a specific image range within a scan.  <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> are numbers denoting the image range, e.g. <code class="docutils literal notranslate"><span class="pre">image=/path/to/an/image.img:1:100</span></code> processes images 1–100 inclusive.  As above, one can pass multiple <code class="docutils literal notranslate"><span class="pre">image=</span></code> parameters.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">small_molecule=true</span></code></td>
-<td>Process in manner more suited to small molecule data.</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">small_molecule=true</span></code></p></td>
+<td><p>Process in manner more suited to small molecule data.</p></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">space_group=sg</span></code></td>
-<td>Set the spacegroup, e.g. <code class="docutils literal notranslate"><span class="pre">P21</span></code>.</td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">space_group=sg</span></code></p></td>
+<td><p>Set the spacegroup, e.g. <code class="docutils literal notranslate"><span class="pre">P21</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">unit_cell=a,b,c,α,β,γ</span></code></td>
-<td>Set the cell constants.</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">unit_cell=a,b,c,α,β,γ</span></code></p></td>
+<td><p>Set the cell constants.</p></td>
 </tr>
 </tbody>
 </table>
@@ -101,9 +99,9 @@ are:</p>
 are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><span class="math notranslate nohighlight">\(CC_{\frac{1}{2}} &gt; 0.5\)</span></li>
-<li>Merged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 1\)</span></li>
-<li>Unmerged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 0.25\)</span></li>
+<li><p><span class="math notranslate nohighlight">\(CC_{\frac{1}{2}} &gt; 0.5\)</span></p></li>
+<li><p>Merged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 1\)</span></p></li>
+<li><p>Unmerged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 0.25\)</span></p></li>
 </ul>
 </div></blockquote>
 <p>However you can override these with <code class="samp docutils literal notranslate"><span class="pre">cc_half=...</span></code>, <code class="samp docutils literal notranslate"><span class="pre">misigma=...</span></code>, <code class="samp docutils literal notranslate"><span class="pre">isigma=...</span></code></p>
@@ -111,7 +109,7 @@ are:</p>
 <div class="section" id="phil-parameters">
 <h2>Phil parameters<a class="headerlink" href="#phil-parameters" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>We have now moved towards moving <a class="reference external" href="http://cctbx.sourceforge.net/libtbx_phil.html">PHIL (Python-based Hierarchial Interchange Language)</a>
 for specifying xia2 program parameters,
 which will in the long run help the documentation, but in the mean time you may see some
@@ -122,7 +120,7 @@ warnings as certain parameters were changed from <code class="samp docutils lite
 <p><code class="samp docutils literal notranslate"><span class="pre">Warning:</span> <span class="pre">-resolution</span> <span class="pre">option</span> <span class="pre">deprecated:</span> <span class="pre">please</span> <span class="pre">use</span> <span class="pre">d_min=1.5</span> <span class="pre">instead</span></code></p>
 <p><code class="samp docutils literal notranslate"><span class="pre">Command</span> <span class="pre">line</span> <span class="pre">option</span> <span class="pre">-3d</span> <span class="pre">is</span> <span class="pre">deprecated.</span> <span class="pre">Please</span> <span class="pre">use</span> <span class="pre">pipeline=3d</span> <span class="pre">instead</span></code></p>
 </div></blockquote>
-<p class="last">don’t panic - this is to be expected - but you may want to change the way you run xia2
+<p>don’t panic - this is to be expected - but you may want to change the way you run xia2
 or your scripts. More of a warning for beamline / automation people! The outcome of this
 should however be automated generation of command-line documentation and the ability to
 keep “recipes” for running xia2 in tidy files.</p>
