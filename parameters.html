@@ -94,16 +94,13 @@ are:</p>
 </div>
 <div class="section" id="resolution-limits">
 <h2>Resolution limits<a class="headerlink" href="#resolution-limits" title="Permalink to this headline">¶</a></h2>
-<p>The subject of resolution limits is one often raised - by default in xia2 they
-are:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(CC_{\frac{1}{2}} &gt; 0.5\)</span></p></li>
-<li><p>Merged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 1\)</span></p></li>
-<li><p>Unmerged <span class="math notranslate nohighlight">\(\frac{I}{\sigma_I} &gt; 0.25\)</span></p></li>
-</ul>
-</div></blockquote>
-<p>However you can override these with <code class="samp docutils literal notranslate"><span class="pre">cc_half=...</span></code>, <code class="samp docutils literal notranslate"><span class="pre">misigma=...</span></code>, <code class="samp docutils literal notranslate"><span class="pre">isigma=...</span></code></p>
+<p>xia2 uses <code class="docutils literal notranslate"><span class="pre">dials.estimate_resolution</span></code> to estimate the resolution limit, sharing the
+same parameters and defaults.
+The default behaviour (<code class="docutils literal notranslate"><span class="pre">cc_half=0.3</span></code>) can be overridden with e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xia2 <span class="o">[</span>options<span class="o">]</span> <span class="nv">cc_half</span><span class="o">=</span>None <span class="nv">misigma</span><span class="o">=</span><span class="m">1</span> <span class="nv">isigma</span><span class="o">=</span><span class="m">0</span>.25
+</pre></div>
+</div>
+<p>See the <a class="reference external" href="https://dials.github.io/documentation/programs/dials_estimate_resolution.html">dials.estimate_resolution</a> documentation for further details.</p>
 </div>
 <div class="section" id="phil-parameters">
 <h2>Phil parameters<a class="headerlink" href="#phil-parameters" title="Permalink to this headline">¶</a></h2>
