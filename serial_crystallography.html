@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Processing serial synchrotron crystallography (SSX) datasets with xia2 &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Program output" href="program_output.html" />
+    <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2">
+<h1>Processing serial synchrotron crystallography (SSX) datasets with xia2<a class="headerlink" href="#processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2" title="Permalink to this headline">¶</a></h1>
+<p>xia2 is able to processes serial synchrotron data through a developmental SSX
+pipeline built upon data analysis programs/APIs from DIALS.</p>
+<section id="data-integration">
+<h2>Data Integration<a class="headerlink" href="#data-integration" title="Permalink to this headline">¶</a></h2>
+<p>To integrate data, the images must be provided, plus the space group to use for
+processing and an estimate of the unit cell.
+If the space group or unit cell are not known, the pipeline can be initially
+run without these; spotfinding and indexing will be performed, and the most
+populous unit cell clusters will be presented to the user.</p>
+<p>The location of the image data must be specified by using one of the options
+<code class="samp docutils literal notranslate"><span class="pre">image=</span></code>, <code class="samp docutils literal notranslate"><span class="pre">template=</span></code> or <code class="samp docutils literal notranslate"><span class="pre">directory=</span></code> (multiple instances of
+one option is allowed). Here <code class="samp docutils literal notranslate"><span class="pre">image</span></code> corresponds to an image file
+(e.g. <code class="samp docutils literal notranslate"><span class="pre">.cbf</span></code> or <code class="samp docutils literal notranslate"><span class="pre">.h5</span></code>), <code class="samp docutils literal notranslate"><span class="pre">template</span></code> is a file template for a
+sequence of images (e.g. for files <code class="samp docutils literal notranslate"><span class="pre">lyso_1_001.cbf</span></code> to <code class="samp docutils literal notranslate"><span class="pre">lyso_1_900.cbf</span></code>, the matching
+template is <code class="samp docutils literal notranslate"><span class="pre">lyso_1_###.cbf</span></code>), and <code class="samp docutils literal notranslate"><span class="pre">directory</span></code> is a path to a
+directory containing image files.
+For data in h5 format, the option <code class="samp docutils literal notranslate"><span class="pre">image=/path/to/image_master.h5</span></code> is recommended.
+For cbf data, the file template option is recommended, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dev</span><span class="o">.</span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">space_group</span><span class="o">=</span><span class="n">P43212</span> <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1.79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf</span>
+</pre></div>
+</div>
+<p>The overall sequence of the data integration part of the pipeline is as follows.
+First spotfinding, indexing and joint refinement are run on the first 1000 images,
+in order to determine an improved geometry model for the detector. Following this,
+the refined geometry is used to perform spotfinding, indexing and integration of
+all images, with feedback provided on batches of 1000 images at a time. This batch
+size can be adjusted with the <code class="samp docutils literal notranslate"><span class="pre">batch_size</span></code> parameter. The number of available
+processes will be determined automatically (optionally a value for <code class="samp docutils literal notranslate"><span class="pre">nproc</span></code> can be given),
+and parallel processing will be performed within the batch.</p>
+<p>A DIALS reference geometry file (<code class="samp docutils literal notranslate"><span class="pre">refined.expt</span></code>) can be provided as input
+with the option <code class="samp docutils literal notranslate"><span class="pre">reference_geometry=</span></code>, which will be used instead of
+performing a joint refinement on the data. A mask file created from the DIALS
+image viewer can also be provided with the option <code class="samp docutils literal notranslate"><span class="pre">mask=</span></code>, which will be
+used in spotfinding and integration. A few other common options to set are the
+<code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code> parameter, which determines the number of lattice to search
+for on each image in indexing, and <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> which controls the resolution
+limit for spotfinding and integration.</p>
+<p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx</span> <span class="pre">-ce2</span> <span class="pre">-a1</span></code>.
+Change the number after <code class="samp docutils literal notranslate"><span class="pre">-ce</span></code> to a value from 0 to 3 to see different
+“expert levels” of program parameters. Note that a phil options file can be
+provided for each of the DIALS programs, to allow further customisation of the
+options for the individual programs. Additionally, stepwise processing can be
+performed by running the program multiple times with the option steps=find_spots,
+then steps=index and finally steps=integrate.</p>
+</section>
+<section id="data-reduction">
+<h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this headline">¶</a></h2>
+<p>Coming soon…</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/xia2-new-logo.gif" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &copy;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
