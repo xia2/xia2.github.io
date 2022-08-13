@@ -77,8 +77,11 @@ For cbf data, the file template option is recommended, e.g.:</p>
 </pre></div>
 </div>
 <p>The overall sequence of the data integration part of the pipeline is as follows.
-First spotfinding, indexing and joint refinement are run on the first 1000 images,
-in order to determine an improved geometry model for the detector. Following this,
+In the absence of an explicitly provided reference geometry, spotfinding and
+indexing will be run on batches of 1000 images at a time, until a threshold number
+of crystals have been indexed (250 by default, as specified by the
+<code class="samp docutils literal notranslate"><span class="pre">geometry_refinement.n_crystals</span></code> parameter). Then joint refinement of the
+detector geometry is run to determine an improved geometry model. Following this,
 the refined geometry is used to perform spotfinding, indexing and integration of
 all images, with feedback provided on batches of 1000 images at a time. This batch
 size can be adjusted with the <code class="samp docutils literal notranslate"><span class="pre">batch_size</span></code> parameter. The number of available
@@ -89,7 +92,7 @@ with the option <code class="samp docutils literal notranslate"><span class="pre
 performing a joint refinement on the data. A mask file created from the DIALS
 image viewer can also be provided with the option <code class="samp docutils literal notranslate"><span class="pre">mask=</span></code>, which will be
 used in spotfinding and integration. A few other common options to set are the
-<code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code> parameter, which determines the number of lattice to search
+<code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code> parameter, which determines the number of lattices to search
 for on each image in indexing, and <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> which controls the resolution
 limit for spotfinding and integration.</p>
 <p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx</span> <span class="pre">-ce2</span> <span class="pre">-a1</span></code>.
