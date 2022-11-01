@@ -49,7 +49,7 @@
 <p>xia2 is able to processes serial synchrotron data through a developmental SSX
 pipeline built upon data analysis programs/APIs from DIALS.</p>
 <p>To integrate and reduce data, the minimal recommended example command is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dev</span><span class="o">.</span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
   <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>  <span class="n">model</span><span class="o">=../</span><span class="n">lyso</span><span class="o">.</span><span class="n">pdb</span>
 </pre></div>
 </div>
@@ -73,7 +73,7 @@ template is <code class="samp docutils literal notranslate"><span class="pre">ly
 directory containing image files.
 For data in h5 format, the option <code class="samp docutils literal notranslate"><span class="pre">image=/path/to/image_master.h5</span></code> is recommended.
 For cbf data, the file template option is recommended, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dev</span><span class="o">.</span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
   <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>
 </pre></div>
 </div>
@@ -96,7 +96,7 @@ used in spotfinding and integration. A few other common options to set are the
 <code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code> parameter, which determines the number of lattices to search
 for on each image in indexing, and <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> which controls the resolution
 limit for spotfinding and integration.</p>
-<p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx</span> <span class="pre">-ce2</span> <span class="pre">-a1</span></code>.
+<p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span> <span class="pre">-ce2</span> <span class="pre">-a1</span></code>.
 Change the number after <code class="samp docutils literal notranslate"><span class="pre">-ce</span></code> to a value from 0 to 3 to see different
 “expert levels” of program parameters. Note that a phil options file can be
 provided for each of the DIALS programs, to allow further customisation of the
@@ -108,12 +108,12 @@ then <code class="samp docutils literal notranslate"><span class="pre">steps=ind
 <h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this heading">¶</a></h2>
 <p>Following data integration, data reduction (reindexing, scaling and merging) will
 be performed. The data reduction can be run separately to the full pipeline through
-the command <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx_reduce</span></code>, taking integrated data as input, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dev</span><span class="o">.</span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2_ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
+the command <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code>, taking integrated data as input, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2_ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>To run only the data integration without reduction, use the option
-<code class="samp docutils literal notranslate"><span class="pre">steps=find_spots+index+integrate</span></code> (i.e. omit <code class="samp docutils literal notranslate"><span class="pre">+reduce</span></code>) when running <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx</span></code>.</p>
+<code class="samp docutils literal notranslate"><span class="pre">steps=find_spots+index+integrate</span></code> (i.e. omit <code class="samp docutils literal notranslate"><span class="pre">+reduce</span></code>) when running <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code>.</p>
 <p>The data reduction process consists of unit cell filtering, followed by indexing
 ambiguity resolution in batches (if ambiguities are possible due to lattice
 and space group symmetries), followed by scaling and merging. If a reference dataset/PDB model is
@@ -125,7 +125,7 @@ options are setting <code class="samp docutils literal notranslate"><span class=
 To evaluate the success of indexing ambiguity resolution, it is important to inspect
 the html output from dials.cosym jobs in the <code class="samp docutils literal notranslate"><span class="pre">data_reduction\reindex</span></code> folder.
 To see the full list of data reduction parameters and their descriptions,
-run <code class="samp docutils literal notranslate"><span class="pre">dev.xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>. The output of the data reduction pipeline
+run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>. The output of the data reduction pipeline
 is a merged MTZ file which can be taken onwards for structure determination.</p>
 </section>
 </section>
