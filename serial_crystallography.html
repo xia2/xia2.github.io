@@ -16,7 +16,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Program output" href="program_output.html" />
+    <link rel="next" title="Merging SSX data in groups with xia2" href="xia2-ssx-dose-series.html" />
     <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -43,17 +43,18 @@
             
   <section id="processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2">
 <h1>Processing serial synchrotron crystallography (SSX) datasets with xia2<a class="headerlink" href="#processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2" title="Permalink to this heading">¶</a></h1>
-<p>xia2 is able to processes serial synchrotron data through a developmental SSX
-pipeline built upon data analysis programs/APIs from DIALS.</p>
-<p>To integrate and reduce data, the minimal recommended example command is:</p>
+<p>xia2 is able to processes serial synchrotron data through a SSX
+pipeline built upon data analysis programs from DIALS.</p>
+<p>To process serial data from images to a merged MTZ file, the
+minimal recommended example command is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
   <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>  <span class="n">model</span><span class="o">=../</span><span class="n">lyso</span><span class="o">.</span><span class="n">pdb</span>
 </pre></div>
 </div>
 <p>i.e. the minimal required information is the location of the images, the expected
-space group and unit cell, and a suitable pdb model file to enable data reduction
-using a reference. Typically, a reference geometry and mask should also be provided,
-as described below.</p>
+space group and unit cell. A suitable pdb model file is also recommended to enable
+data reduction using a reference. Typically, a reference geometry and mask should
+also be provided, as described below.</p>
 <section id="data-integration">
 <h2>Data Integration<a class="headerlink" href="#data-integration" title="Permalink to this heading">¶</a></h2>
 <p>To integrate data, the images must be provided, plus the space group to use for
@@ -116,7 +117,7 @@ ambiguity resolution in batches (if ambiguities are possible due to lattice
 and space group symmetries), followed by scaling and merging. If a reference dataset/PDB model is
 provided with the option <code class="samp docutils literal notranslate"><span class="pre">reference=</span></code>, then reindexing and scaling is performed
 in parallel in batches of at least <code class="samp docutils literal notranslate"><span class="pre">reduction_batch_size</span></code> crystals, using intensities
-generated/extracted from the reference as a reference when reindexing and scaling.
+generated from the reference as a reference when reindexing and scaling.
 If there is no reference given, the scaling is not performed in parallel. Other important
 options are setting <code class="samp docutils literal notranslate"><span class="pre">anomalous=True/False</span></code> and specifying a <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> value.
 To evaluate the success of indexing ambiguity resolution, it is important to inspect
@@ -124,6 +125,30 @@ the html output from dials.cosym jobs in the <code class="samp docutils literal 
 To see the full list of data reduction parameters and their descriptions,
 run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>. The output of the data reduction pipeline
 is a merged MTZ file which can be taken onwards for structure determination.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> also supports quick remerging of already processed data by using the option
+<code class="docutils literal notranslate"><span class="pre">steps=merge</span></code>. This can be useful for aggregating multiple processing jobs processed
+using the same reference model, or generating MTZ files with specified resolution
+cutoffs e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2_ssx_reduce</span><span class="o">/</span><span class="n">DataFiles</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="n">d_min</span><span class="o">=</span><span class="mf">1.8</span>
+
+<span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="o">../</span><span class="p">{</span><span class="n">chip1</span><span class="p">,</span><span class="n">chip2</span><span class="p">}</span><span class="o">/</span><span class="n">DataFiles</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="merging-in-groups">
+<h2>Merging in groups<a class="headerlink" href="#merging-in-groups" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> also supports merging in groups to handle more complex experiments such
+as dose series experiments. This is described in more detail in the links below.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xia2-ssx-dose-series.html">Dose-series experiments and merging in groups</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#dose-series-the-dose-series-repeat-option">Dose series - the <em>dose_series_repeat</em> option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#dose-series-using-a-grouping-yml-file">Dose series - using a <em>grouping.yml</em> file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#generalised-merge-grouping-on-metadata">Generalised merge grouping on metadata</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 </section>
 

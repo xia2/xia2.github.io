@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Merging SSX data in groups with xia2 &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Program output" href="program_output.html" />
+    <link rel="prev" title="Processing serial synchrotron crystallography (SSX) datasets with xia2" href="serial_crystallography.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="merging-ssx-data-in-groups-with-xia2">
+<h1>Merging SSX data in groups with xia2<a class="headerlink" href="#merging-ssx-data-in-groups-with-xia2" title="Permalink to this heading">¶</a></h1>
+<p>The default behaviour of <code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> / <code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> is to merge all data into one
+merged MTZ file. However there are options to produce separate merged datasets based on
+metadata, which can be used for experiments such as dose series experiments.
+The most efficient way to process such data in xia2/DIALS is to integrate the data as
+standard and then use the features available in <code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> to split the images
+at the point of merging.</p>
+<section id="dose-series-the-dose-series-repeat-option">
+<h2>Dose series - the <em>dose_series_repeat</em> option<a class="headerlink" href="#dose-series-the-dose-series-repeat-option" title="Permalink to this heading">¶</a></h2>
+<p>For dose series data, the option <code class="docutils literal notranslate"><span class="pre">dose_series_repeat=</span></code> can be used to trigger merging into
+<em>n</em> groups based on the image number, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2</span><span class="o">-</span><span class="n">ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">dose_series_repeat</span><span class="o">=</span><span class="mi">5</span>
+</pre></div>
+</div>
+<p>This covers the use case of an experiment where a repeat of <em>n</em> measurements are
+made at each location, before moving to the next location and repeating, thus creating a
+dataset where each block of <em>n</em> images form a dose series for a particular location/crystal
+(and the images are stored sequentially in this manner).
+Before merging, the image filepaths from the experiment files are inspected, and the experiments
+split accordingly based on their image index from the filepath (the
+formula for splitting is <code class="docutils literal notranslate"><span class="pre">image-index</span> <span class="pre">modulo</span> <span class="pre">repeat</span> <span class="pre">=</span> <span class="pre">dose</span></code>).
+For <code class="docutils literal notranslate"><span class="pre">dose_series_repeat=5</span></code>, the following directory structure would be created for the merging:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">data_reduction</span>
+    <span class="o">-</span> <span class="n">merge</span>
+        <span class="o">-</span> <span class="n">dose_1</span>
+        <span class="o">-</span> <span class="n">dose_2</span>
+        <span class="o">-</span> <span class="n">dose_3</span>
+        <span class="o">-</span> <span class="n">dose_4</span>
+        <span class="o">-</span> <span class="n">dose_5</span>
+</pre></div>
+</div>
+<p>with each <code class="docutils literal notranslate"><span class="pre">dose</span></code> folder containing a merged MTZ, the dials.merge output, as well as experiment
+and reflection files for the images for that particular dose. The experiment and reflection files
+can be used as input for subsequent merging jobs, for example with a specified resolution cutoff:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="o">../</span><span class="n">reduce</span><span class="o">/</span><span class="n">data_reduction</span><span class="o">/</span><span class="n">merge</span><span class="o">/</span><span class="n">dose_1</span><span class="o">/</span><span class="n">group</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">d_min</span><span class="o">=</span><span class="mf">2.5</span>
+</pre></div>
+</div>
+<p>The experiment files can also be used to verify which images were split into which dose group.</p>
+</section>
+<section id="dose-series-using-a-grouping-yml-file">
+<h2>Dose series - using a <em>grouping.yml</em> file<a class="headerlink" href="#dose-series-using-a-grouping-yml-file" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> also supports more generalised merging, to support the wide variety of experiments possible
+in serial crystallography, which can be specified using a YAML file with formalised definitions. An
+equivalent example to the above case is the example yaml file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">:</span>
+  <span class="n">dose_point</span><span class="p">:</span>                                      <span class="c1">## &lt;- user-defined metadata name</span>
+    <span class="s2">&quot;path/to/example/image.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;repeat=5&quot;</span>        <span class="c1">## &lt;- the format here is image-file : value</span>
+<span class="n">grouping</span><span class="p">:</span>
+  <span class="n">merge_by</span><span class="p">:</span>                                        <span class="c1">## &lt;- indicator to xia2 that the following definitions are for merging</span>
+    <span class="n">values</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">dose_point</span>                                 <span class="c1">## &lt;- reference to the user-defined metadata name above</span>
+</pre></div>
+</div>
+<p>In the grouping section, the specification is that the <code class="docutils literal notranslate"><span class="pre">dose_point</span></code> metadata item should be used for grouping.
+The metadata section specifies how the metadata is related to the image file, in this case a sequence
+that repeats every 5 images.
+To use this form of specifying the groupings, if the above were contained in the file <code class="docutils literal notranslate"><span class="pre">grouping.yml</span></code>,
+the command would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2</span><span class="o">-</span><span class="n">ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">grouping</span><span class="o">=</span><span class="n">grouping</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+<p>Note that for grouping images with a file template, the general image template should be provided, with hashes
+replacing the image numbers, e.g. the ‘image-file’ specified in the YAML file would be “path/to/example/image_#####.cbf”.</p>
+<p>The resulting directory structure is similar to above, with each grouping merged in a separate subfolder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">data_reduction</span>
+    <span class="o">-</span> <span class="n">merge</span>
+        <span class="o">-</span> <span class="n">group_1</span>
+        <span class="o">-</span> <span class="n">group_2</span>
+        <span class="o">-</span> <span class="n">group_3</span>
+        <span class="o">-</span> <span class="n">group_4</span>
+        <span class="o">-</span> <span class="n">group_5</span>
+</pre></div>
+</div>
+</section>
+<section id="generalised-merge-grouping-on-metadata">
+<h2>Generalised merge grouping on metadata<a class="headerlink" href="#generalised-merge-grouping-on-metadata" title="Permalink to this heading">¶</a></h2>
+<p>By formally defining the merge groupings with YAML file, one can generalise to more complicated
+groupings and options. An example use case is data in HDF5 format with a metadata array which can
+be used for grouping. The example below demonstates a few valid ways of specifying metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">:</span>
+  <span class="n">dose</span><span class="p">:</span>
+    <span class="s2">&quot;path/to/example/image1.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;path/to/example/image1.h5:/entry/dose&quot;</span> <span class="c1">## &lt;- format is image-file: file:/path/to/metadata/array</span>
+    <span class="s2">&quot;path/to/example/image2.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;meta2.h5:/entry/dose&quot;</span>                  <span class="c1">## &lt;- metadata array does not need to be in the image file</span>
+    <span class="s2">&quot;path/to/example/image3.h5&quot;</span> <span class="p">:</span> <span class="mf">0.0</span>                                     <span class="c1">## &lt;- all images at a dose value of 0.</span>
+<span class="n">grouping</span><span class="p">:</span>
+  <span class="n">merge_by</span><span class="p">:</span>
+    <span class="n">values</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">dose</span>
+    <span class="n">tolerances</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>Note that for prcoessing a dataset containing images from multiple files, each file must have valid definition
+in the metadata section. The metadata for image1 is an array from the image file, however there
+is not a strict requirement for the metadata to be contained in the image file. As shown in the
+definition for image2, the metadata can be contained in a separate H5 file, the only requirement is
+that the length of the metadata array matches the number of images. The definition for image3 shows a
+case where the metadata is a constant value for that image file. Although not shown in this example,
+it is also possible to group by more than one metadata value, if they are specified in the values and
+metadata sections.</p>
+<p>The more formalised definition of merge groupings is intended to support integration into automated
+processing infrastructure: experiment control software can write metadata into the image files and generate
+the <code class="docutils literal notranslate"><span class="pre">grouping.yml</span></code> to be input to <code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> to correctly group the data in merging. It also facilities
+the integration of custom classification of images for merging into processing scripts.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/xia2-new-logo.gif" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &copy;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
