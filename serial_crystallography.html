@@ -15,7 +15,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Merging SSX data in groups with xia2" href="xia2-ssx-dose-series.html" />
+    <link rel="next" title="Overcoming problems with the detector geometry for SSX data" href="xia2-ssx-geometry-refinement.html" />
     <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -54,8 +54,15 @@ minimal recommended example command is:</p>
 space group and unit cell. A suitable pdb model file is also recommended to enable
 data reduction using a reference. Typically, a reference geometry and mask should
 also be provided, as described below.</p>
+<p><strong>Table of contents of xia2 SSX processing documentation</strong></p>
+<div class="line-block">
+<div class="line"><a class="reference internal" href="#dataintegration"><span class="std std-ref">Data Integration</span></a></div>
+<div class="line"><a class="reference internal" href="#datareduction"><span class="std std-ref">Data Reduction</span></a></div>
+<div class="line"><a class="reference internal" href="#geometryrefinement"><span class="std std-ref">Overcoming difficulties in geometry refinement</span></a></div>
+<div class="line"><a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a></div>
+</div>
 <section id="data-integration">
-<h2>Data Integration<a class="headerlink" href="#data-integration" title="Permalink to this heading">¶</a></h2>
+<span id="dataintegration"></span><h2>Data Integration<a class="headerlink" href="#data-integration" title="Permalink to this heading">¶</a></h2>
 <p>To integrate data, the images must be provided, plus the space group to use for
 processing and an estimate of the unit cell.
 If the space group or unit cell are not known, the pipeline can be initially
@@ -102,7 +109,7 @@ performed by running the program multiple times with the option <code class="sam
 then <code class="samp docutils literal notranslate"><span class="pre">steps=index</span></code> and finally <code class="samp docutils literal notranslate"><span class="pre">steps=integrate</span></code>.</p>
 </section>
 <section id="data-reduction">
-<h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this heading">¶</a></h2>
+<span id="datareduction"></span><h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this heading">¶</a></h2>
 <p>Following data integration, data reduction (reindexing, scaling and merging) will
 be performed. The data reduction can be run separately to the full pipeline through
 the command <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code>, taking integrated data as input, e.g.:</p>
@@ -134,8 +141,26 @@ cutoffs e.g.:</p>
 </pre></div>
 </div>
 </section>
+<section id="overcoming-difficulties-in-geometry-refinement">
+<span id="geometryrefinement"></span><h2>Overcoming difficulties in geometry refinement<a class="headerlink" href="#overcoming-difficulties-in-geometry-refinement" title="Permalink to this heading">¶</a></h2>
+<p>The first step of processing with <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> is to improve the detector geometry in order to
+improve the indexing rate. The starting assumption is that the initial geometry is good enough to
+successfully index a fraction of the images. When this is not the case, it will be necessary to
+change some of the program parameters. Examples and suggestions of how to tackle trickier
+processing cases are described in the link below.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xia2-ssx-geometry-refinement.html">Overcoming problems with the detector geometry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-geometry-refinement.html#setting-the-detector-distance-beam-centre">Setting the detector distance/beam centre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-geometry-refinement.html#relaxing-restraints-in-refinement">Relaxing restraints in refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-geometry-refinement.html#refining-multi-panel-detectors">Refining multi-panel detectors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 <section id="merging-in-groups">
-<h2>Merging in groups<a class="headerlink" href="#merging-in-groups" title="Permalink to this heading">¶</a></h2>
+<span id="mergingingroups"></span><h2>Merging in groups<a class="headerlink" href="#merging-in-groups" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> also supports merging in groups to handle more complex experiments such
 as dose series experiments. This is described in more detail in the links below.</p>
 <div class="toctree-wrapper compound">
