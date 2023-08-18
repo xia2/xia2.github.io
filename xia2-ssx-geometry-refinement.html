@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Merging SSX data in groups with xia2" href="xia2-ssx-dose-series.html" />
@@ -41,7 +41,7 @@
           <div class="body" role="main">
             
   <section id="overcoming-problems-with-the-detector-geometry-for-ssx-data">
-<h1>Overcoming problems with the detector geometry for SSX data<a class="headerlink" href="#overcoming-problems-with-the-detector-geometry-for-ssx-data" title="Permalink to this heading">¶</a></h1>
+<h1>Overcoming problems with the detector geometry for SSX data<a class="headerlink" href="#overcoming-problems-with-the-detector-geometry-for-ssx-data" title="Link to this heading">¶</a></h1>
 <p>The automated geometry refinement in <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> is designed to improve an existing
 detector geometry that is reasonably accurate. Spotfinding and indexing are performed in
 batches until at least 250 crystals are successfully indexed (this can be changed with the option
@@ -66,7 +66,7 @@ Publications describing diffraction geometry refinement in DIALS are linked belo
 <li><p><a class="reference external" href="https://scripts.iucr.org/cgi-bin/paper?lp5037">Improving signal strength in serial crystallography with DIALS geometry refinement</a></p></li>
 </ul>
 <section id="setting-the-detector-distance-beam-centre">
-<h2>Setting the detector distance/beam centre<a class="headerlink" href="#setting-the-detector-distance-beam-centre" title="Permalink to this heading">¶</a></h2>
+<h2>Setting the detector distance/beam centre<a class="headerlink" href="#setting-the-detector-distance-beam-centre" title="Link to this heading">¶</a></h2>
 <p>A common issue is that the detector distance or beam centre is incorrectly set or incorrectly interpreted from the
 header of data files, or not known with sufficient accuracy.
 To set the detector distance, a custom phil file can be specified for the import step in <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code>:</p>
@@ -107,7 +107,7 @@ all assigned to the same panel:</p>
 </div>
 </section>
 <section id="relaxing-restraints-in-refinement">
-<h2>Relaxing restraints in refinement<a class="headerlink" href="#relaxing-restraints-in-refinement" title="Permalink to this heading">¶</a></h2>
+<h2>Relaxing restraints in refinement<a class="headerlink" href="#relaxing-restraints-in-refinement" title="Link to this heading">¶</a></h2>
 <p>Sometimes the geometry can be close enough to allow some indexing success, however the spot predictions are too far from
 the observed spots such that the default filtering in <code class="samp docutils literal notranslate"><span class="pre">dials.refine</span></code> does not leave sufficient reflections for
 geometry refinement, resulting in the <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> error message <code class="samp docutils literal notranslate"><span class="pre">Error:</span> <span class="pre">No</span> <span class="pre">reflections</span> <span class="pre">available</span> <span class="pre">for</span> <span class="pre">refinement</span></code>.
@@ -186,7 +186,7 @@ the preceeding section. In this run, the RMSDs in indexing we significantly lowe
 successfully indexed, allowing further refinement and improvement of the detector geometry.</p>
 </section>
 <section id="refining-multi-panel-detectors">
-<h2>Refining multi-panel detectors<a class="headerlink" href="#refining-multi-panel-detectors" title="Permalink to this heading">¶</a></h2>
+<h2>Refining multi-panel detectors<a class="headerlink" href="#refining-multi-panel-detectors" title="Link to this heading">¶</a></h2>
 <p>When refining the detector position in DIALS, the orientation and position of all physical panels that
 constitute the detector are refined as a single entity, by default. This approach is suitable for well
 calibrated modern detectors (e.g. Dectris photon-counting detectors), and within DIALS the detector

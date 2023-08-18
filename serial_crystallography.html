@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Overcoming problems with the detector geometry for SSX data" href="xia2-ssx-geometry-refinement.html" />
@@ -41,7 +41,7 @@
           <div class="body" role="main">
             
   <section id="processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2">
-<h1>Processing serial synchrotron crystallography (SSX) datasets with xia2<a class="headerlink" href="#processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2" title="Permalink to this heading">¶</a></h1>
+<h1>Processing serial synchrotron crystallography (SSX) datasets with xia2<a class="headerlink" href="#processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2" title="Link to this heading">¶</a></h1>
 <p>xia2 is able to processes serial synchrotron data through a SSX
 pipeline built upon data analysis programs from DIALS.</p>
 <p>To process serial data from images to a merged MTZ file, the
@@ -63,7 +63,7 @@ Typically, a reference geometry and mask should also be provided, as described b
 <div class="line"><a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a></div>
 </div>
 <section id="data-integration">
-<span id="dataintegration"></span><h2>Data Integration<a class="headerlink" href="#data-integration" title="Permalink to this heading">¶</a></h2>
+<span id="dataintegration"></span><h2>Data Integration<a class="headerlink" href="#data-integration" title="Link to this heading">¶</a></h2>
 <p>To integrate data, the images must be provided, plus the space group to use for
 processing and an estimate of the unit cell.
 If the space group or unit cell are not known, the pipeline can be initially
@@ -110,7 +110,7 @@ performed by running the program multiple times with the option <code class="sam
 then <code class="samp docutils literal notranslate"><span class="pre">steps=index</span></code> and finally <code class="samp docutils literal notranslate"><span class="pre">steps=integrate</span></code>.</p>
 </section>
 <section id="data-reduction">
-<span id="datareduction"></span><h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Permalink to this heading">¶</a></h2>
+<span id="datareduction"></span><h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Link to this heading">¶</a></h2>
 <p>Following data integration, data reduction (reindexing, scaling and merging) will
 be performed. The data reduction can be run separately to the full pipeline through
 the command <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code>, taking integrated data as input, e.g.:</p>
@@ -148,7 +148,7 @@ cutoffs e.g.:</p>
 </div>
 </section>
 <section id="overcoming-difficulties-in-geometry-refinement">
-<span id="geometryrefinement"></span><h2>Overcoming difficulties in geometry refinement<a class="headerlink" href="#overcoming-difficulties-in-geometry-refinement" title="Permalink to this heading">¶</a></h2>
+<span id="geometryrefinement"></span><h2>Overcoming difficulties in geometry refinement<a class="headerlink" href="#overcoming-difficulties-in-geometry-refinement" title="Link to this heading">¶</a></h2>
 <p>The first step of processing with <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> is to improve the detector geometry in order to
 improve the indexing rate. The starting assumption is that the initial geometry is good enough to
 successfully index a fraction of the images. When this is not the case, it will be necessary to
@@ -166,7 +166,7 @@ processing cases are described in the link below.</p>
 </div>
 </section>
 <section id="merging-in-groups">
-<span id="mergingingroups"></span><h2>Merging in groups<a class="headerlink" href="#merging-in-groups" title="Permalink to this heading">¶</a></h2>
+<span id="mergingingroups"></span><h2>Merging in groups<a class="headerlink" href="#merging-in-groups" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> also supports merging in groups to handle more complex experiments such
 as dose series experiments. This is described in more detail in the links below.</p>
 <div class="toctree-wrapper compound">

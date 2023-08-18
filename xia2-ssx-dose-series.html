@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Program output" href="program_output.html" />
@@ -41,7 +41,7 @@
           <div class="body" role="main">
             
   <section id="merging-ssx-data-in-groups-with-xia2">
-<h1>Merging SSX data in groups with xia2<a class="headerlink" href="#merging-ssx-data-in-groups-with-xia2" title="Permalink to this heading">¶</a></h1>
+<h1>Merging SSX data in groups with xia2<a class="headerlink" href="#merging-ssx-data-in-groups-with-xia2" title="Link to this heading">¶</a></h1>
 <p>The default behaviour of <code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> / <code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> is to merge all data into one
 merged MTZ file. However there are options to produce separate merged datasets based on
 metadata, which can be used for experiments such as dose series experiments.
@@ -49,7 +49,7 @@ The most efficient way to process such data in xia2/DIALS is to integrate the da
 standard and then use the features available in <code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> to split the images
 at the point of merging.</p>
 <section id="dose-series-the-dose-series-repeat-option">
-<h2>Dose series - the <em>dose_series_repeat</em> option<a class="headerlink" href="#dose-series-the-dose-series-repeat-option" title="Permalink to this heading">¶</a></h2>
+<h2>Dose series - the <em>dose_series_repeat</em> option<a class="headerlink" href="#dose-series-the-dose-series-repeat-option" title="Link to this heading">¶</a></h2>
 <p>For dose series data, the option <code class="docutils literal notranslate"><span class="pre">dose_series_repeat=</span></code> can be used to trigger merging into
 <em>n</em> groups based on the image number, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2</span><span class="o">-</span><span class="n">ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">dose_series_repeat</span><span class="o">=</span><span class="mi">5</span>
@@ -81,7 +81,7 @@ can be used as input for subsequent merging jobs, for example with a specified r
 <p>The experiment files can also be used to verify which images were split into which dose group.</p>
 </section>
 <section id="dose-series-using-a-grouping-yml-file">
-<h2>Dose series - using a <em>grouping.yml</em> file<a class="headerlink" href="#dose-series-using-a-grouping-yml-file" title="Permalink to this heading">¶</a></h2>
+<h2>Dose series - using a <em>grouping.yml</em> file<a class="headerlink" href="#dose-series-using-a-grouping-yml-file" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> also supports more generalised merging, to support the wide variety of experiments possible
 in serial crystallography, which can be specified using a YAML file with formalised definitions. An
 equivalent example to the above case is the example yaml file:</p>
@@ -116,7 +116,7 @@ replacing the image numbers, e.g. the ‘image-file’ specified in the YAML fil
 </div>
 </section>
 <section id="generalised-merge-grouping-on-metadata">
-<h2>Generalised merge grouping on metadata<a class="headerlink" href="#generalised-merge-grouping-on-metadata" title="Permalink to this heading">¶</a></h2>
+<h2>Generalised merge grouping on metadata<a class="headerlink" href="#generalised-merge-grouping-on-metadata" title="Link to this heading">¶</a></h2>
 <p>By formally defining the merge groupings with YAML file, one can generalise to more complicated
 groupings and options. An example use case is data in HDF5 format with a metadata array which can
 be used for grouping. The example below demonstates a few valid ways of specifying metadata:</p>
