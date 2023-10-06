@@ -42,18 +42,24 @@
             
   <section id="overcoming-problems-with-the-detector-geometry-for-ssx-data">
 <h1>Overcoming problems with the detector geometry for SSX data<a class="headerlink" href="#overcoming-problems-with-the-detector-geometry-for-ssx-data" title="Link to this heading">¶</a></h1>
+<p>There are three different ways to run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> with regards to detector geometry refinement.</p>
+<ul class="simple">
+<li><p>If a reference geometry (a DIALS <code class="samp docutils literal notranslate"><span class="pre">.expt</span></code> file) is provided as input to <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> with the option <code class="samp docutils literal notranslate"><span class="pre">reference_geometry=</span></code>, then no geometry refinement is performed and this reference geometry is used instead of the geometry from the image files.</p></li>
+<li><p>If a starting geometry (a DIALS <code class="samp docutils literal notranslate"><span class="pre">.expt</span></code> file) is provided as input to <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> with the option <code class="samp docutils literal notranslate"><span class="pre">starting_geometry=</span></code>, then this geometry is used instead of the geometry from the image files and a round of geometry refinement is run.</p></li>
+<li><p>If neither a reference geometry or starting geometry are given, the geometry is read from the image files and a round of geometry refinement is run.</p></li>
+</ul>
 <p>The automated geometry refinement in <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> is designed to improve an existing
 detector geometry that is reasonably accurate. Spotfinding and indexing are performed in
 batches until at least 250 crystals are successfully indexed (this can be changed with the option
 <code class="samp docutils literal notranslate"><span class="pre">geometry_refinement.n_crystals=</span></code>). Alternatively, an image range can be specified using e.g.
 <code class="samp docutils literal notranslate"><span class="pre">geometry_refinement.images_to_use=1001:2000</span></code>. As a reminder, to just run the geometry refinement part
-of the <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> pipeline, use the option <code class="samp docutils literal notranslate"><span class="pre">steps=None</span></code>, i.e. no processing steps. If a reference
-geometry (a DIALS <code class="samp docutils literal notranslate"><span class="pre">.expt</span></code> file) is provided as input to <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> with the option <code class="samp docutils literal notranslate"><span class="pre">reference_geometry=</span></code>,
-then no geometry refinement is performed.</p>
+of the <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code> pipeline, use the option <code class="samp docutils literal notranslate"><span class="pre">steps=None</span></code>, i.e. no processing steps.</p>
 <p>In cases where the initial geometry is not reasonably well known, or the hit/indexing rate is low,
 refining an accurate initial geometry is not straightforward, and can require experimenting
-with program input and performing several cycles of geometry refinement. Symptoms of a bad initial
-geometry include</p>
+with program input and performing several cycles of geometry refinement i.e. using the <code class="samp docutils literal notranslate"><span class="pre">starting_geometry</span></code> option with
+<code class="samp docutils literal notranslate"><span class="pre">steps=None</span></code>, and using the resultant refined geometry as the <code class="samp docutils literal notranslate"><span class="pre">starting_geometry</span></code> for another run of <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code>
+and repeating until convergence.</p>
+<p>Symptoms of a bad initial geometry include</p>
 <ul class="simple">
 <li><p>very low indexing success (i.e. low % of hits indexed)</p></li>
 <li><p>indexing success followed by low integration success rate</p></li>
@@ -93,11 +99,8 @@ It is important to note that the z-coorindate of the origin is only the same as 
 fully perpendicular to the z-axis, which will typically not be the case after geometry refinement, which refines the direction of the
 <code class="samp docutils literal notranslate"><span class="pre">fast_axis</span></code> and <code class="samp docutils literal notranslate"><span class="pre">slow_axis</span></code> of the detector.</p>
 <p>The detector origin, distance, fast and slow axis can be displayed by running <code class="samp docutils literal notranslate"><span class="pre">dials.show</span> <span class="pre">import/imported.expt</span></code>.
-Importantly, using the option <code class="samp docutils literal notranslate"><span class="pre">dials_import.phil=</span></code> is the way to improve an already refined geometry. Simply set the
-origin and fast and slow axes based on the values displayed in <code class="samp docutils literal notranslate"><span class="pre">dials.show</span> <span class="pre">geometry_refinement/refined.expt</span></code>. This
-can help to increase the indexing rate further and hence get a more accurate detector geometry. Note that to specify multiple
-panel options such as origin and fast and slow axes, one must use the following form of phil specification to enable them to be
-all assigned to the same panel:</p>
+Note that to specify multiple panel options such as origin and fast and slow axes, one must use the following form of phil
+specification to enable them to be all assigned to the same panel:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">panel</span><span class="p">{</span>
   <span class="n">origin</span><span class="o">=-</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="o">-</span><span class="mi">115</span>
   <span class="n">fast_axis</span><span class="o">=</span><span class="mf">0.9999</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">,</span><span class="mi">0</span>
@@ -105,6 +108,10 @@ all assigned to the same panel:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>This can become cumbersome and error-prone for many-panel detectors. In these cases, it may be preferable to set only
+the distance and beam centre, and do multiple cycles of geometry refinement using the <code class="samp docutils literal notranslate"><span class="pre">starting_geometry</span></code> option
+as described above. Remember, it is also possible to manually edit <code class="samp docutils literal notranslate"><span class="pre">.expt</span></code> files in a text editor, as they are simply
+json format files.</p>
 </section>
 <section id="relaxing-restraints-in-refinement">
 <h2>Relaxing restraints in refinement<a class="headerlink" href="#relaxing-restraints-in-refinement" title="Link to this heading">¶</a></h2>
