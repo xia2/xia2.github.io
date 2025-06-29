@@ -7,16 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Processing serial synchrotron crystallography (SSX) datasets with xia2 &#8212; xia2  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
     <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Overcoming problems with the detector geometry for SSX data" href="xia2-ssx-geometry-refinement.html" />
-    <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
+    <link rel="prev" title="Multi-crystal data reduction with xia2.multiplex" href="multiplex-multi-crystal.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -62,6 +63,7 @@ Typically, a reference geometry and mask should also be provided, as described b
 <div class="line"><a class="reference internal" href="#datareduction"><span class="std std-ref">Data Reduction</span></a></div>
 <div class="line"><a class="reference internal" href="#geometryrefinement"><span class="std std-ref">Overcoming difficulties in geometry refinement</span></a></div>
 <div class="line"><a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a></div>
+<div class="line"><a class="reference internal" href="#exportingunmerged"><span class="std std-ref">Exporting unmerged data</span></a></div>
 </div>
 <section id="data-integration">
 <span id="dataintegration"></span><h2>Data Integration<a class="headerlink" href="#data-integration" title="Link to this heading">¶</a></h2>
@@ -181,6 +183,32 @@ as dose series experiments. This is described in more detail in the links below.
 </ul>
 </div>
 </section>
+<section id="exporting-unmerged-data">
+<span id="exportingunmerged"></span><h2>Exporting unmerged data<a class="headerlink" href="#exporting-unmerged-data" title="Link to this heading">¶</a></h2>
+<p>Merged data (in MTZ format) is the standard output of <code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code>, however unmerged scaled data files
+(in mmCIF format) can be generated using the tools from DIALS (note that this requires a
+DIALS version later than v3.20).</p>
+<p>If data were reduced with a reference, there may be more than one set of scaled reflection and experiment files.
+In this case, these must first be combined with <code class="docutils literal notranslate"><span class="pre">dials.combine_experiments</span></code>, before using <code class="docutils literal notranslate"><span class="pre">dials.export</span></code> to
+export to mmcif format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">combine_experiments</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">combined</span><span class="o">.*</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span>
+</pre></div>
+</div>
+<p>If data were not reduced with a reference, then one can just use <code class="docutils literal notranslate"><span class="pre">dials.export</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span>
+</pre></div>
+</div>
+<p>mmCIF is a standardised format that is able to describe unmerged diffraction data, and the output scaled.cif file conforms to the v5
+standard <a class="reference external" href="https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Index/">https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Index/</a>. Note that during export to mmcif, the overall scale of the data
+can change to avoid large negative intensity values, which may be present (with comparably large sigmas) for data scaled against a reference.
+The unmerged mmcif data file can be understood with the gemmi program. For example, it can be converted to unmerged MTZ with gemmi and sorted with CCP4’s sortmtz for
+further analysis:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gemmi</span> <span class="n">cif2mtz</span> <span class="n">scaled</span><span class="o">.</span><span class="n">cif</span> <span class="n">scaled</span><span class="o">.</span><span class="n">mtz</span>
+<span class="n">echo</span> <span class="n">H</span> <span class="n">K</span> <span class="n">L</span> <span class="n">M</span><span class="o">/</span><span class="n">ISYM</span> <span class="o">|</span><span class="n">sortmtz</span> <span class="n">HKLIN</span> <span class="n">scaled</span> <span class="n">HKLOUT</span> <span class="nb">sorted</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -212,6 +240,7 @@ as dose series experiments. This is described in more detail in the links below.
 <li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiplex-multi-crystal.html">Multi-crystal data reduction (xia2.multiplex)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Serial-crystallography</a></li>
 <li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>

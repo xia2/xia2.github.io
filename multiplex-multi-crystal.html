@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multi-crystal data reduction with xia2.multiplex &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="_static/xia2.css" type="text/css" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Processing serial synchrotron crystallography (SSX) datasets with xia2" href="serial_crystallography.html" />
+    <link rel="prev" title="Processing multi-crystal datasets with xia2" href="multi_crystal.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="multi-crystal-data-reduction-with-xia2-multiplex">
+<h1>Multi-crystal data reduction with xia2.multiplex<a class="headerlink" href="#multi-crystal-data-reduction-with-xia2-multiplex" title="Link to this heading">¶</a></h1>
+<p>xia2.multiplex is a DIALS-based data reduction pipeline for combining integrated data from hundreds of
+small-wedge rotation datasets. The input to the pipeline is DIALS integrated datafiles
+(i.e. <code class="docutils literal notranslate"><span class="pre">integrated.expt</span></code> and <code class="docutils literal notranslate"><span class="pre">integrated.refl</span></code> files). As of DIALS version 3.25, XDS integrated data can also
+be processed if each <code class="docutils literal notranslate"><span class="pre">INTEGRATE.HKL</span></code> file is converted using <code class="docutils literal notranslate"><span class="pre">dials.import_xds</span></code>.</p>
+<p>xia2.multiplex performs the following routine: unit cell filtering, laue group analysis, unit cell
+refinement, scaling, resolution analysis, space group analysis and merging. Additional non-isomorphism analysis is peformed and
+dataset statistics and clustering are presented in the <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code> report.
+For full details, see the publication at <a class="reference external" href="https://doi.org/10.1107/S2059798322004399">https://doi.org/10.1107/S2059798322004399</a> .</p>
+<p>Although xia2.multiplex will automatically determine the resolution and space group, these can be manually overridden by setting the options
+<code class="docutils literal notranslate"><span class="pre">resolution.d_min</span></code> and <code class="docutils literal notranslate"><span class="pre">symmetry.space_group</span></code>.</p>
+<p>One feature of xia2.multiplex is the ability to optionally trigger further processing of subsets of the data.
+This guide provides an updated description of the different clustering options, which have been updated to use more intuitively named
+options in xia2/DIALS versions greater than 3.22, as well as incorporating some additional features developed since this initial publication.</p>
+<section id="scaling-and-merging-of-dataset-clusters">
+<h2>Scaling and merging of dataset clusters<a class="headerlink" href="#scaling-and-merging-of-dataset-clusters" title="Link to this heading">¶</a></h2>
+<p><em>To trigger further scaling and merging of clusters, set the xia2.multiplex option</em>
+<code class="docutils literal notranslate"><span class="pre">output_clusters=True</span></code>.
+Note that the clustering options described here can also be run standalone with the <code class="docutils literal notranslate"><span class="pre">xia2.cluster_analysis</span></code> program, using the xia2.multiplex scaled
+data files (<code class="docutils literal notranslate"><span class="pre">scaled.expt</span></code>, <code class="docutils literal notranslate"><span class="pre">scaled.refl</span></code>) as input, but each cluster will not be further scaled and merged.</p>
+<p>Dataset clustering can be performed based on a hierarchical dendrogram analysis (<code class="docutils literal notranslate"><span class="pre">clustering.method=hierarchical</span></code>)
+or on density-based analysis of the cosym coordinates (<code class="docutils literal notranslate"><span class="pre">clustering.method=coordinate</span></code>). See the publication at <a class="reference external" href="https://doi.org/10.1107/S2059798325004589">https://doi.org/10.1107/S2059798325004589</a> for
+more details of the density-based analysis.</p>
+<p>Hierarchical clustering can be performed on one of two metrics; correlation coefficient clustering, based on pairwise
+correlations between datasets, and ‘cos-angle’ clustering, based on angular separation of datasets
+in the cosym coordinate space.
+The hierarchical clustering method is controlled by the parameter <code class="docutils literal notranslate"><span class="pre">hierarchical.method</span></code>, which can be set to <code class="docutils literal notranslate"><span class="pre">cos_angle</span></code>, <code class="docutils literal notranslate"><span class="pre">correlation</span></code> or <code class="docutils literal notranslate"><span class="pre">cos_angle+correlation</span></code>.
+For the method(s) chosen, a number of clusters up to <code class="docutils literal notranslate"><span class="pre">max_output_clusters</span></code> (default value 10) will be scaled and merged, if they meet the following criteria which are controlled via the program parameters:</p>
+<ol class="arabic simple">
+<li><p>They have at least a completeness of <code class="docutils literal notranslate"><span class="pre">min_completeness</span></code> (default value 0).</p></li>
+<li><p>They have at least a multiplicity of <code class="docutils literal notranslate"><span class="pre">min_multiplicity</span></code> (default value 0).</p></li>
+<li><p>The number of datasets in the cluster is at least <code class="docutils literal notranslate"><span class="pre">min_cluster_size</span></code> (default value 5)</p></li>
+<li><p>The maximum height of the cluster (height being the value of the dendrogram height as shown in the xia2.multiplex clustering output) is below <code class="docutils literal notranslate"><span class="pre">max_cluster_height</span></code> (default value 100).</p></li>
+</ol>
+<p>If the clustering method is set to <code class="docutils literal notranslate"><span class="pre">cos_angle+correlation</span></code>, then the max height for the two clustering methods are controlled individually with the parameters <code class="docutils literal notranslate"><span class="pre">max_cluster_height_cc</span></code> and <code class="docutils literal notranslate"><span class="pre">max_cluster_height_cos</span></code>.</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">max_cluster_height</span></code> values are large, such that the output clusters will typically be the <cite>n=</cite> <code class="docutils literal notranslate"><span class="pre">max_output_clusters</span></code> largest clusters. The dendrogram height values will be dataset specific, to choose
+a particular value one can look at the <strong>Intensity Clustering</strong> section of a <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code> report:</p>
+<img alt="_images/multiplex-dendrogram.png" src="_images/multiplex-dendrogram.png" />
+<p>As shown in this image, the height of a cluster is the point at which it separates into two smaller clusters in the dendrogram. So in this
+example, the largest cluster splits at a height of 0.072, and these two clusters each split again around a height of 0.018.
+So if clustering was run with <code class="docutils literal notranslate"><span class="pre">max_output_clusters=2</span></code>, one would get the two largest clusters (clusters 13 and 14 here). But if the <code class="docutils literal notranslate"><span class="pre">max_cluster_height</span></code> were set to a value just below 0.018, one would obtain
+the two smaller clusters with heights 0.0075 and 0.0032 (clusters 12 and 11).</p>
+<p>After the clusters have been selected, each cluster is then individually scaled and merged.</p>
+</section>
+<section id="distinct-cluster-analysis">
+<h2>Distinct cluster analysis<a class="headerlink" href="#distinct-cluster-analysis" title="Link to this heading">¶</a></h2>
+<p>The analysis described above does not guarantee that clusters will not share some individual datasets; this is not necessarily a problem, a typical use case for xia2.multiplex is generating a number
+of similar clusters containing similar datasets, to compare the effects of removing a number of outlier datasets on the overall statistics.
+An alternative use case is where one is interested in distinct clusters of datasets, i.e. clusters that do not share any individual datasets, which may correspond to distinct crystal strutures
+(this is the kind of clustering structure demonstrated in the image above). While this can be handled using the options above for small or simple cases, for large datasets the dendrogram structure
+becomes very complex, with many dendrogram subtructures and branches. As such, the options above do not guarantee selection and evaluation of distinct clusters in a timely manner.</p>
+<p>To generate output containing distinct clusters <cite>instead</cite> of the output above, one can use the option <code class="docutils literal notranslate"><span class="pre">hierarchical.distinct_clusters=True</span></code>.
+In this case, individual clusters must still meet the four criteria above, then an analysis is performed to determine distinct clusters that do not share any individual datasets.
+These clusters are then individually scaled and merged.</p>
+</section>
+<section id="coordinate-clustering">
+<h2>Coordinate clustering<a class="headerlink" href="#coordinate-clustering" title="Link to this heading">¶</a></h2>
+<p>Density based clustering algorithms are a separate class of clustering algorithms compared to hierarchical clustering algorithms.
+In xia2.multiplex, density-based clustering can be performed on the cosym coordinates, which reflect the systematic and random
+non-isomorphism within the data.
+If <code class="docutils literal notranslate"><span class="pre">clustering.method=coordinate</span></code>, the OPTICS clustering algorithm from scikit-learn is used to determine density-based clusters
+(these clusters will always be distinct and not share any individual datasets).
+Clusters that meet the <code class="docutils literal notranslate"><span class="pre">min_multiplicity</span></code>, <code class="docutils literal notranslate"><span class="pre">min_completeness</span></code> and <code class="docutils literal notranslate"><span class="pre">min_cluster_size</span></code> thresholds will be individually scaled and merged.</p>
+</section>
+<section id="allowed-tolerance-for-unit-cell-parameters">
+<h2>Allowed tolerance for unit cell parameters<a class="headerlink" href="#allowed-tolerance-for-unit-cell-parameters" title="Link to this heading">¶</a></h2>
+<p>The tolerance for accepted unit cell parameters in xia2.multiplex is set to be reasonably strict. The default value for <code class="docutils literal notranslate"><span class="pre">symmetry.cosym.relative_length_tolerance</span></code> is 0.05, which means that any datasets with unit
+cell lengths outside of this relative tolerance range will be rejected. For unit cell angles, the default value for <code class="docutils literal notranslate"><span class="pre">symmetry.cosym.absolute_angle_tolerance</span></code> is 2, meaning all unit cell angles that fall outside
+of this absolute tolerance range will also be rejected. These ranges are evaluated based on the best median unit cell established through dials.cosym (run within xia2.multiplex).</p>
+<p>These tolerance values have been found effective where the goal of the multi-crystal data collection is a single, high quality dataset. In the case where multiple distinct crystal structures may be present, these
+tolerance values can be increased to permit more data through into the clustering analysis. For instance, one recommended option to look for other distinct states without permitting data through that are too different
+is to set <code class="docutils literal notranslate"><span class="pre">symmetry.cosym.relative_length_tolerance=0.1</span></code>.</p>
+</section>
+<section id="scaling-and-filtering">
+<h2>Scaling and filtering<a class="headerlink" href="#scaling-and-filtering" title="Link to this heading">¶</a></h2>
+<p>An alternative means of filtering data within xia2.multiplex is to use <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> filtering, as described in the publication.
+This is separate to any cos-angle or correlation clustering analysis and is also optional, not being run by default.
+To trigger this, use the option <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>. In this method, the <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> is calculated for a group of images: groups with a <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span>
+below <code class="docutils literal notranslate"><span class="pre">deltacchalf.stdcutoff</span></code> are removed (standard deviations below the mean, default value 4.0). A group is either a group of images or an individual dataset, the choice is made
+with the parameter <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=dataset</span></code> or <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=image_group</span></code> (dataset is the default). If using the <code class="docutils literal notranslate"><span class="pre">image_group</span></code> mode, one must choose the number of images in each group with
+the <code class="docutils literal notranslate"><span class="pre">deltacchalf.group_size</span></code> parameter (default value 10).
+The filtering starts on the combined scaled dataset, and several cycles of repeated scaling and filtering are performed. This stops when one of the following criteria are met:</p>
+<ol class="arabic simple">
+<li><p>The number of cycles reaches <code class="docutils literal notranslate"><span class="pre">deltacchalf.max_cycles</span></code> (default 6).</p></li>
+<li><p>The percentage of reflections removed exceeds <code class="docutils literal notranslate"><span class="pre">deltacchalf.max_percent_removed</span></code> (default 10).</p></li>
+<li><p>The completess drops below <code class="docutils literal notranslate"><span class="pre">deltacchalf.min_completeness</span></code> (default 0).</p></li>
+<li><p>No groups are removed in the latest cycle of filtering.</p></li>
+</ol>
+<p>A merging statistics report for filtered dataset will be generated and displayed in the <strong>Filtered</strong> tab in the <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code> report.
+Plots of changes in statistics during the scaling and filtering cycles can be found in the <strong>Scaling and filtering plots</strong> section in the <strong>Summary</strong> tab.</p>
+<p><strong>Key points:</strong></p>
+<ul class="simple">
+<li><p>Turn on cycles of <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> filtering + scaling with the option <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">deltacchalf.stdcutoff</span></code> parameter is the main way to control the amount of data that is filtered out. Setting this to a lower number means that more data is filtered at each step.</p></li>
+<li><p>In the case of radiation damage towards the end of sweeps, it may be better to just exclude the end of sweeps rather than full sweeps; this is an ideal use case for the <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=image_group</span></code> option.</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
