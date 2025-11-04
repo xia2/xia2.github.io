@@ -141,6 +141,13 @@ Plots of changes in statistics during the scaling and filtering cycles can be fo
 <li><p>In the case of radiation damage towards the end of sweeps, it may be better to just exclude the end of sweeps rather than full sweeps; this is an ideal use case for the <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=image_group</span></code> option.</p></li>
 </ul>
 </section>
+<section id="chemical-crystallography">
+<h2>Chemical Crystallography<a class="headerlink" href="#chemical-crystallography" title="Link to this heading">¶</a></h2>
+<p>Data from small molecule (or chemical crystallography) experiments can also be processed using xia2.multiplex. Full-featured compatibility is still a work in progress, with future plans to integrate full
+space group determination. In the interim, however, this can be done manually on the output .ins / .hkl files. To output SHELX-compatible files, set the option <code class="docutils literal notranslate"><span class="pre">small_molecule.composition</span></code>
+using your known chemical formula (i.e. <code class="docutils literal notranslate"><span class="pre">small_molecule.composition=C10H14O4Cu</span></code>). If your chemical formula is unknown, enter a dummy formula (i.e. <code class="docutils literal notranslate"><span class="pre">small_molecule.composition=CH</span></code>).
+Running SHELXT on your output files will provide an estimation of the number of atoms, from which you can assign chemical identity later using your preferred refinement program.</p>
+</section>
 </section>
 
 
