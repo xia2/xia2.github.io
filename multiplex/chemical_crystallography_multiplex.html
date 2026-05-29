@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chemical Crystallography &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="../_static/xia2.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Processing serial synchrotron crystallography (SSX) datasets with xia2" href="../serial_crystallography.html" />
+    <link rel="prev" title="Multiplex Filtering" href="multiplex_filtering.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="../index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="chemical-crystallography">
+<h1>Chemical Crystallography<a class="headerlink" href="#chemical-crystallography" title="Link to this heading">¶</a></h1>
+<p>Data from small molecule (or chemical crystallography) experiments can also be processed using xia2.multiplex. Full-featured compatibility is still a work in progress, with future plans to integrate full
+space group determination. In the interim, however, this can be done manually on the output .ins / .hkl files. To output SHELX-compatible files, set the option <code class="docutils literal notranslate"><span class="pre">small_molecule.composition</span></code>
+using your known chemical formula (i.e. <code class="docutils literal notranslate"><span class="pre">small_molecule.composition=C10H14O4Cu</span></code>). If your chemical formula is unknown, enter a dummy formula (i.e. <code class="docutils literal notranslate"><span class="pre">small_molecule.composition=CH</span></code>).
+Running SHELXT on your output files will provide an estimation of the number of atoms, from which you can assign chemical identity later using your preferred refinement program.</p>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="../_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="../_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="../_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

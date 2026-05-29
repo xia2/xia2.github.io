@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multiplex Filtering &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="../_static/xia2.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chemical Crystallography" href="chemical_crystallography_multiplex.html" />
+    <link rel="prev" title="Custom Clustering via HTML" href="custom_clustering_via_html.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="../index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="multiplex-filtering">
+<h1>Multiplex Filtering<a class="headerlink" href="#multiplex-filtering" title="Link to this heading">¶</a></h1>
+<section id="scaling-and-filtering">
+<h2>Scaling and filtering<a class="headerlink" href="#scaling-and-filtering" title="Link to this heading">¶</a></h2>
+<p>An alternative means of filtering data within xia2.multiplex is to use <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> filtering, as described in the publication.
+This is separate to any cos-angle or correlation clustering analysis and is also optional, not being run by default.
+To trigger this, use the option <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>. In this method, the <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> is calculated for a group of images: groups with a <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span>
+below <code class="docutils literal notranslate"><span class="pre">deltacchalf.stdcutoff</span></code> are removed (standard deviations below the mean, default value 4.0). A group is either a group of images or an individual dataset, the choice is made
+with the parameter <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=dataset</span></code> or <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=image_group</span></code> (dataset is the default). If using the <code class="docutils literal notranslate"><span class="pre">image_group</span></code> mode, one must choose the number of images in each group with
+the <code class="docutils literal notranslate"><span class="pre">deltacchalf.group_size</span></code> parameter (default value 10).
+The filtering starts on the combined scaled dataset, and several cycles of repeated scaling and filtering are performed. This stops when one of the following criteria are met:</p>
+<ol class="arabic simple">
+<li><p>The number of cycles reaches <code class="docutils literal notranslate"><span class="pre">deltacchalf.max_cycles</span></code> (default 6).</p></li>
+<li><p>The percentage of reflections removed exceeds <code class="docutils literal notranslate"><span class="pre">deltacchalf.max_percent_removed</span></code> (default 10).</p></li>
+<li><p>The completeness drops below <code class="docutils literal notranslate"><span class="pre">deltacchalf.min_completeness</span></code> (default 0).</p></li>
+<li><p>No groups are removed in the latest cycle of filtering.</p></li>
+</ol>
+<p>A merging statistics report for the filtered dataset will be generated and displayed in the <strong>Filtered</strong> tab in the <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code> report.
+Plots of changes in statistics during the scaling and filtering cycles can be found in the <strong>Scaling and filtering plots</strong> section in the <strong>Summary</strong> tab.</p>
+<p><strong>Key points:</strong></p>
+<ul class="simple">
+<li><p>Turn on cycles of <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> filtering + scaling with the option <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">deltacchalf.stdcutoff</span></code> parameter is the main way to control the amount of data that is filtered out. Setting this to a lower number means that more data is filtered at each step.</p></li>
+<li><p>In the case of radiation damage towards the end of sweeps, it may be better to just exclude the end of sweeps rather than full sweeps; this is an ideal use case for the <code class="docutils literal notranslate"><span class="pre">deltacchalf.mode=image_group</span></code> option.</p></li>
+</ul>
+</section>
+<section id="xia2-multiplex-filtering">
+<h2>xia2.multiplex_filtering<a class="headerlink" href="#xia2-multiplex-filtering" title="Link to this heading">¶</a></h2>
+<p>A command-line program now exists to run the filtering algorithms in <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> on an existing processing directory. The filtering available in <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> can be
+slow to run, so it is not always recommended for large datasets where an initial result is needed for fast feedback. In such a case, <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> would be run on the data first
+without filtering, then, if the statistics show room for improvement, <code class="docutils literal notranslate"><span class="pre">xia2.multiplex_filtering</span></code> would be run on the same directory.</p>
+<p>To run <code class="docutils literal notranslate"><span class="pre">xia2.multiplex_filtering</span></code>, simply run the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">multiplex_filtering</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">multiplex</span><span class="o">/</span><span class="nb">dir</span>
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code> in <code class="docutils literal notranslate"><span class="pre">dataset</span></code> mode will be used if not specified; however, all filtering options discussed above are available to tailor in this command.</p>
+<p><strong>It is important that xia2.multiplex has finished running before you use xia2.multiplex_filtering!</strong></p>
+<p>Specifically, <code class="docutils literal notranslate"><span class="pre">xia2.multiplex_filtering</span></code> requires the following files from <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code>:</p>
+<ul class="simple">
+<li><p>models.expt</p></li>
+<li><p>observations.refl</p></li>
+<li><p>scaled.mtz</p></li>
+<li><p>xia2-multiplex-working.phil</p></li>
+<li><p>xia2.multiplex.json</p></li>
+</ul>
+<p>The HTML output will contain the filtering plots mentioned above, and also copies the data processing statistics for the unfiltered
+data reduction as well as any clusters that are output for easy comparison in the same file.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="../_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="../_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="../_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

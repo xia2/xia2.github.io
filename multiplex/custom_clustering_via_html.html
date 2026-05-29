@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Custom Clustering via HTML &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="../_static/xia2.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multiplex Filtering" href="multiplex_filtering.html" />
+    <link rel="prev" title="Intensity-based Clustering" href="intensity_based_clustering.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="../index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="custom-clustering-via-html">
+<h1>Custom Clustering via HTML<a class="headerlink" href="#custom-clustering-via-html" title="Link to this heading">¶</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The features described on this page require DIALS &gt;= 3.28.0. They are not available in earlier versions of DIALS.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> outputs an HTML file summarising the outcome of the multi-crystal analysis (<code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code>).
+In <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code>, a range of intensity-based clustering graphs are produced. For help interpreting these plots,
+see this <a class="reference external" href="https://dials.github.io/documentation/tutorials/intensity_based_clustering.html">clustering tutorial</a>. For coordinate clustering, it is possible that you may want a cluster scaled and merged that
+is not automatically identified. For hierarchical clustering, it is <a class="reference internal" href="intensity_based_clustering.html"><span class="doc">possible</span></a>, but fiddly
+to set the command-line parameters to output the cluster you want. It is now possible to select clusters from <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code>
+to simplify this process.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>By interacting with the intensity-based clustering graphs as described below, a pop-up box will appear in your web browser.
+This will provide a multiplex input command. To scale and merge the cluster you selected, all you need to do is paste this
+command into your terminal and run it. This will run a multiplex job to scale and merge this subset of data only.
+This command specifies the sub-set of datasets from your selection, and uses the
+<code class="docutils literal notranslate"><span class="pre">xia2-multiplex-working.phil</span></code> file to configure multiplex in the same way as the original job. This means you do not need
+to specify the input files again, as they are imported from <code class="docutils literal notranslate"><span class="pre">xia2-multiplex-working.phil</span></code>. Note that this will not provide
+side-by-side comparison of data quality statistics as you would get if you <a class="reference internal" href="intensity_based_clustering.html"><span class="doc">selected clusters via the command-line</span></a>.</p>
+<img alt="../_images/multiplex_html_popup.png" src="../_images/multiplex_html_popup.png" />
+</section>
+<section id="coordinate-clustering">
+<h2>Coordinate Clustering<a class="headerlink" href="#coordinate-clustering" title="Link to this heading">¶</a></h2>
+<p>For the coordinate-based clustering method, you have two ways of selecting a custom cluster of data.</p>
+<ol class="arabic simple">
+<li><p>The <strong>Cosym Coordinates Rotated by Principal Components</strong> plot</p></li>
+<li><p>The <strong>OPTICS Reachability</strong> plot</p></li>
+</ol>
+<p>For the coordinate plot, first zoom in the graph as needed, then click the lasso selection tool.
+Next, draw around the data you would like scaled and merged together. This will trigger the multiplex command pop up.</p>
+<img alt="../_images/multiplex_html_coordinate_lasso.png" src="../_images/multiplex_html_coordinate_lasso.png" />
+<img alt="../_images/multiplex_html_coordinate_selected.png" src="../_images/multiplex_html_coordinate_selected.png" />
+<p>For the reachability plot, you can also use the lasso tool, but may find the box selection tool easier.
+Once again, draw around the datasets you would like scaled and merged.</p>
+<img alt="../_images/multiplex_html_reachability_box.png" src="../_images/multiplex_html_reachability_box.png" />
+<img alt="../_images/multiplex_html_reachability_selected.png" src="../_images/multiplex_html_reachability_selected.png" />
+</section>
+<section id="hierarchical-clustering">
+<h2>Hierarchical Clustering<a class="headerlink" href="#hierarchical-clustering" title="Link to this heading">¶</a></h2>
+<p>For both the correlation and cosine angle clustering, simply click on the branch of the dendrogram
+you would like to output. Make sure the trace label that pops up is the same colour as the branch you
+have the cursor hovered over. Note that <em>all datasets</em> under the selected branch will be selected.
+In this example, all datasets except 4, 2, and 5 have been selected.</p>
+<img alt="../_images/multiplex_html_dendrogram.png" src="../_images/multiplex_html_dendrogram.png" />
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="../_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="../_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="../_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

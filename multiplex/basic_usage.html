@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic Usage of xia2.multiplex &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="../_static/xia2.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intensity-based Clustering" href="intensity_based_clustering.html" />
+    <link rel="prev" title="Multi-crystal data reduction with xia2.multiplex" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="../index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="basic-usage-of-xia2-multiplex">
+<h1>Basic Usage of xia2.multiplex<a class="headerlink" href="#basic-usage-of-xia2-multiplex" title="Link to this heading">¶</a></h1>
+<section id="tutorial-data">
+<h2>Tutorial Data<a class="headerlink" href="#tutorial-data" title="Link to this heading">¶</a></h2>
+<p>The data (~6GB total) were collected on I24 at Diamond Light Source and is available to download from <a class="reference external" href="https://doi.org/10.5281/zenodo.13890874"><img alt="cows_pigs_people_data" src="https://zenodo.org/badge/DOI/10.5281/zenodo.13890874.svg" /></a>.
+36 insulin crystals were collected from a range of 🐮, 🐷, and 💁‍♀️, with small rotation wedges recorded on each.
+All data have symmetry I 2<sub>1</sub> 3. For this introduction to multiplex, we will only be using the data from the
+🐮 insulin (~2GB). For a more advanced tutorial in automatically handling multi-crystal data with multiple “things” present,
+see <a class="reference external" href="https://dials.github.io/documentation/tutorials/intensity_based_clustering.html">this tutorial</a>.</p>
+<p>Once you have the data downloaded, this script (linux / UNIX) can help extract the data faster.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir data
+cd data
+for set in CIX1_1 CIX2_1 CIX3_1 CIX5_1 CIX6_1 CIX8_1 CIX9_1 CIX10_1 CIX11_1 CIX12_1 CIX14_1 CIX15_1 ; do
+wget https://zenodo.org/records/13890874/files/${set}.tar
+tar xvf ${set}.tar
+rm -v ${set}.tar
+done
+</pre></div>
+</div>
+</section>
+<section id="dials-workflow">
+<h2>DIALS Workflow<a class="headerlink" href="#dials-workflow" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> is a tool to scale and merge multi-crystal data: therefore, it requires integrated files to start with.
+To get our integrated files from our raw images, we can use a standard DIALS workflow. Note that data from multiple crystals
+will not in general share an orientation matrix, so the indexing should not join all the lattices.</p>
+<p>This tutorial assumes knowledge of processing with DIALS. For more information, see this <a class="reference external" href="https://dials.github.io/documentation/tutorials/processing_in_detail_betalactamase.html">DIALS tutorial</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="kn">import</span><span class="w"> </span><span class="nn">data</span><span class="o">/*</span><span class="n">gz</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">find_spots</span> <span class="n">imported</span><span class="o">.</span><span class="n">expt</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">index</span> <span class="n">imported</span><span class="o">.</span><span class="n">expt</span> <span class="n">strong</span><span class="o">.</span><span class="n">refl</span> <span class="n">joint</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">refine</span> <span class="n">indexed</span><span class="o">.</span><span class="n">expt</span> <span class="n">indexed</span><span class="o">.</span><span class="n">refl</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">integrate</span> <span class="n">refined</span><span class="o">.</span><span class="n">expt</span> <span class="n">refined</span><span class="o">.</span><span class="n">refl</span>
+</pre></div>
+</div>
+</section>
+<section id="xia2-multiplex">
+<h2>xia2.multiplex<a class="headerlink" href="#xia2-multiplex" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> can now be run on this data. First, the software will do some preliminary unit cell clustering to
+remove any datasets with a very different unit cell. Next, consistent symmetry will be applied and any indexing ambiguities are
+resolved. Note that this uses <code class="docutils literal notranslate"><span class="pre">dials.cosym</span></code> under the hood. Next, the data is scaled, and the space group is determined.
+Once the data is merged, a range of analyses are performed which are useful for diagnostics. Let’s explore this on the example data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">multiplex</span> <span class="n">integrated</span><span class="o">.</span><span class="n">expt</span> <span class="n">integrated</span><span class="o">.</span><span class="n">refl</span>
+</pre></div>
+</div>
+<p>Note that if you have separate integrated files you can list them in the input command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">multiplex</span> <span class="n">integrated_1</span><span class="o">.</span><span class="n">expt</span> <span class="n">integrated_1</span><span class="o">.</span><span class="n">refl</span> <span class="n">integrated_2</span><span class="o">.</span><span class="n">expt</span> <span class="n">integrated_2</span><span class="o">.</span><span class="n">refl</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>There are also some additional command-line options you may find useful:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">symmetry.space_group</span></code> - set the space group if known, which can speed up symmetry analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution.d_min</span></code> - set the resolution cut-off, otherwise it will be automatically determined.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filtering.method</span></code> - applies additional filtering, see <a class="reference internal" href="multiplex_filtering.html"><span class="doc">here</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clustering.output_clusters</span></code> - output identified sub-clusters, see <a class="reference internal" href="intensity_based_clustering.html"><span class="doc">here</span></a> for more choices and details.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="diagnostic-tools-in-xia2-multiplex">
+<h2>Diagnostic Tools in xia2.multiplex<a class="headerlink" href="#diagnostic-tools-in-xia2-multiplex" title="Link to this heading">¶</a></h2>
+<p>Most diagnostic graphs are available in <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code>. Some extra plots are output as <code class="docutils literal notranslate"><span class="pre">.png</span></code> files to the working folder.</p>
+<p><strong>Unit cell analysis:</strong>
+The unit cell of each crystal input to <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> is plotted to give an initial analysis of isomorphism. To see the
+unit cell distributions of all input data, open <cite>cluster_unit_cell_p1</cite>. If you see subgroups in the dendrogram denoted by
+different colours, this means there are some major differences in unit cell and only the largest will be considered for analysis
+with xia2.multiplex. If the entire dendrogram is the same colour, then all datasets will be fed into the pipeline. The <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code>
+log file also contains graphs related to unit cell clustering. It is important to note that these graphs only pertain to any subset
+chosen by the initial unit cell filtering. Subtle differences in unit cell can still occur, and the initial unit cell filtering
+is fairly conservative, so these graphs are worth examining. In this case, all the data were accepted during the initial filtering,
+and are shown to have very similar unit cells.</p>
+<img alt="../_images/multiplex_uc.png" src="../_images/multiplex_uc.png" />
+<p><strong>Orientation analysis:</strong>
+Multi-crystal data collections often have small wedges either due to radiation damage constraints, or sample environment
+constraints (i.e. <em>in situ</em> data collections). A risk with such experiments are that all the crystals are measured in the same
+orientation, and the same small volumes of reciprocal space are measured repeatedly. Coverage of reciprocal space can be
+assessed by considering the distributions of the unit cell axes in reciprocal space. A stereographic projection plot is used
+for this. If the dots are widely distributed around the circles, then there is wide coverage of reciprocal space and
+preferential orientation is not an issue.</p>
+<img alt="../_images/multiplex_sp.png" src="../_images/multiplex_sp.png" />
+<p><span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span>:
+Another useful tool is the <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> analysis. This shows whether individual datasets contribute positively,
+or negatively to the overall quality of the merged dataset. Note that any outliers are not removed unless <code class="docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>
+is used. In this case, the <span class="math notranslate nohighlight">\({\Delta}CC1/2\)</span> for each dataset is quite minimal, although one dataset has a stronger effect
+than the others and could be removed if desired. The <em>intensity clustering</em> can also be compared to help determine if outliers here are significant.</p>
+<img alt="../_images/multiplex_dcc.png" src="../_images/multiplex_dcc.png" />
+<p><strong>Intensity clustering:</strong>
+An analysis that compares the intensities of each dataset to see if there are any differences. This is useful to identify if there are
+subsets within the data that should be grouped together and merged separately. See <a class="reference external" href="https://dials.github.io/documentation/tutorials/intensity_based_clustering.html">this tutorial</a> for more information on interpreting
+the graphs within this section.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="../_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="../_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="../_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>

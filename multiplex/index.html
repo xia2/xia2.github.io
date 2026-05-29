@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multi-crystal data reduction with xia2.multiplex &#8212; xia2  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <link rel="stylesheet" href="../_static/xia2.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic Usage of xia2.multiplex" href="basic_usage.html" />
+    <link rel="prev" title="Processing multi-crystal datasets with xia2" href="../multi_crystal.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+<!--   <div class="logoheader container"> -->
+<!--   <a href="../index.html"> -->
+<!--   <img class="logoheader" alt="DIALS" src="../_static/dials_header.png" /> -->
+<!--   </a> -->
+<!--   </div> -->
+  
+
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="multi-crystal-data-reduction-with-xia2-multiplex">
+<h1>Multi-crystal data reduction with xia2.multiplex<a class="headerlink" href="#multi-crystal-data-reduction-with-xia2-multiplex" title="Link to this heading">¶</a></h1>
+<p>xia2.multiplex is a DIALS-based data reduction pipeline for combining integrated data from hundreds of
+small-wedge rotation datasets. The input to the pipeline is DIALS integrated datafiles
+(i.e. <code class="docutils literal notranslate"><span class="pre">integrated.expt</span></code> and <code class="docutils literal notranslate"><span class="pre">integrated.refl</span></code> files). As of DIALS version 3.25, XDS integrated data can also
+be processed if each <code class="docutils literal notranslate"><span class="pre">INTEGRATE.HKL</span></code> file is converted using <code class="docutils literal notranslate"><span class="pre">dials.import_xds</span></code>.</p>
+<p>xia2.multiplex performs the following routine: unit cell filtering, Laue group analysis, unit cell
+refinement, scaling, resolution analysis, space group analysis and merging. Additional non-isomorphism analysis is performed and
+dataset statistics and clustering are presented in the <code class="docutils literal notranslate"><span class="pre">xia2.multiplex.html</span></code> report.
+For full details, see the publication at <a class="reference external" href="https://doi.org/10.1107/S2059798322004399">https://doi.org/10.1107/S2059798322004399</a> .</p>
+<p>Although xia2.multiplex will automatically determine the resolution and space group, these can be manually overridden by setting the options
+<code class="docutils literal notranslate"><span class="pre">resolution.d_min</span></code> and <code class="docutils literal notranslate"><span class="pre">symmetry.space_group</span></code>.</p>
+<p>One feature of xia2.multiplex is the ability to optionally trigger further processing of subsets of the data.
+This guide provides an updated description of the different clustering options, which have been updated to use more intuitively named
+options in xia2/DIALS versions greater than 3.22, as well as incorporating some additional features developed since this initial publication.</p>
+<p>Tutorials for <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code>:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic Usage of xia2.multiplex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intensity_based_clustering.html">Intensity-based Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_clustering_via_html.html">Custom Clustering via HTML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiplex_filtering.html">Multiplex Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chemical_crystallography_multiplex.html">Chemical Crystallography</a></li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/xia2-new-logo.gif" alt="Logo" />
+    
+  </a>
+</p>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_xia2.html">Using xia2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introductory_example.html">Introductory example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../insulin_tutorial.html">Insulin tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_crystal.html">Multi-crystal data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Multi-crystal data reduction (xia2.multiplex)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../serial_crystallography.html">Serial-crystallography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../program_output.html">Program output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acknowledgements.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="footer container">
+  <a href="http://www.diamond.ac.uk/"><img class="logofooter" alt="Diamond" src="../_static/diamond_logo.png" /></a>
+  <a href="http://dials.diamond.ac.uk/"><img class="logofooter" alt="DIALS" src="../_static/dials_logo_fx_transparent_bg.png" /></a>
+  <a href="http://www.ccp4.ac.uk/"><img class="logofooter" alt="CCP4" src="../_static/CCP4-logo-plain.png" /></a>
+  </div>
+  
+    <div class="footer">
+      &#169;2020, Diamond Light Source.
+      
+    </div>
+
+    
+
+    
+
+  </body>
+</html>
