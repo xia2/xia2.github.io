@@ -45,19 +45,23 @@
   <section id="processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2">
 <h1>Processing serial synchrotron crystallography (SSX) datasets with xia2<a class="headerlink" href="#processing-serial-synchrotron-crystallography-ssx-datasets-with-xia2" title="Link to this heading">¶</a></h1>
 <p>xia2 is able to processes serial synchrotron data through a SSX
-pipeline built upon data analysis programs from DIALS.</p>
+pipeline built upon data analysis programs from DIALS, using the xia2.ssx
+command.</p>
 <p>To process serial data from images to a merged MTZ file, the
 minimal recommended example command is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
-  <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>  <span class="n">reference</span><span class="o">../</span><span class="n">lyso</span><span class="o">.</span><span class="n">mtz</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">image</span><span class="o">=../</span><span class="n">lyso_1</span><span class="o">.</span><span class="n">nxs</span> <span class="n">space_group</span><span class="o">=</span><span class="n">P43212</span> \
+  <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>
 </pre></div>
 </div>
 <p>i.e. the minimal required information is the location of the images, the expected
-space group and unit cell. A suitable reference file, containing a reference set of
-intensities or pdb model (<code class="samp docutils literal notranslate"><span class="pre">.mtz,</span> <span class="pre">.cif,</span> <span class="pre">.pdb</span></code>) is also recommended to enable data
-reduction using a reference.
+space group and unit cell.
+For large datasets, quick scaling can be achieved by providing a reference file
+containing a reference set of intensities or pdb model (<code class="samp docutils literal notranslate"><span class="pre">.mtz,</span> <span class="pre">.cif,</span> <span class="pre">.pdb</span></code>).
+For full processing, it is recommended that data is scaled without reference intensities
+or pdb model.
 Typically, a reference geometry and mask should also be provided, as described below.</p>
-<p><strong>Table of contents of xia2 SSX processing documentation</strong></p>
+<section id="table-of-contents-of-xia2-ssx-processing-documentation">
+<h2>Table of contents of xia2.ssx processing documentation<a class="headerlink" href="#table-of-contents-of-xia2-ssx-processing-documentation" title="Link to this heading">¶</a></h2>
 <div class="line-block">
 <div class="line"><a class="reference internal" href="#dataintegration"><span class="std std-ref">Data Integration</span></a></div>
 <div class="line"><a class="reference internal" href="#datareduction"><span class="std std-ref">Data Reduction</span></a></div>
@@ -65,6 +69,7 @@ Typically, a reference geometry and mask should also be provided, as described b
 <div class="line"><a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a></div>
 <div class="line"><a class="reference internal" href="#exportingunmerged"><span class="std std-ref">Exporting unmerged data</span></a></div>
 </div>
+</section>
 <section id="data-integration">
 <span id="dataintegration"></span><h2>Data Integration<a class="headerlink" href="#data-integration" title="Link to this heading">¶</a></h2>
 <p>To integrate data, the images must be provided, plus the space group to use for
@@ -75,12 +80,12 @@ populous unit cell clusters will be presented to the user.</p>
 <p>The location of the image data must be specified by using one of the options
 <code class="samp docutils literal notranslate"><span class="pre">image=</span></code>, <code class="samp docutils literal notranslate"><span class="pre">template=</span></code> or <code class="samp docutils literal notranslate"><span class="pre">directory=</span></code> (multiple instances of
 one option is allowed). Here <code class="samp docutils literal notranslate"><span class="pre">image</span></code> corresponds to an image file
-(e.g. <code class="samp docutils literal notranslate"><span class="pre">.cbf</span></code> or <code class="samp docutils literal notranslate"><span class="pre">.h5</span></code>), <code class="samp docutils literal notranslate"><span class="pre">template</span></code> is a file template for a
+(e.g. <code class="samp docutils literal notranslate"><span class="pre">.cbf</span></code> or <code class="samp docutils literal notranslate"><span class="pre">.h5/.nxs</span></code>), <code class="samp docutils literal notranslate"><span class="pre">template</span></code> is a file template for a
 sequence of images (e.g. for files <code class="samp docutils literal notranslate"><span class="pre">lyso_1_001.cbf</span></code> to <code class="samp docutils literal notranslate"><span class="pre">lyso_1_900.cbf</span></code>, the matching
 template is <code class="samp docutils literal notranslate"><span class="pre">lyso_1_###.cbf</span></code>), and <code class="samp docutils literal notranslate"><span class="pre">directory</span></code> is a path to a
 directory containing image files.
 For data in h5 format, the option <code class="samp docutils literal notranslate"><span class="pre">image=/path/to/image_master.h5</span></code> is recommended.
-For cbf data, the file template option is recommended, e.g.:</p>
+For single-file-per-image formats (e.g. cbf), the file template option is recommended, e.g.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx</span> <span class="n">template</span><span class="o">=../</span><span class="n">lyso_1_</span><span class="c1">###.cbf space_group=P43212 \</span>
   <span class="n">unit_cell</span><span class="o">=</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">79.1</span><span class="p">,</span><span class="mf">38.2</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span>
 </pre></div>
@@ -96,21 +101,38 @@ all images, with feedback provided on batches of 1000 images at a time. This bat
 size can be adjusted with the <code class="samp docutils literal notranslate"><span class="pre">batch_size</span></code> parameter. The number of available
 processes will be determined automatically (optionally a value for <code class="samp docutils literal notranslate"><span class="pre">nproc</span></code> can be given),
 and parallel processing will be performed within the batch.</p>
-<p>A DIALS reference geometry file (<code class="samp docutils literal notranslate"><span class="pre">refined.expt</span></code>) can be provided as input
+<section id="supplying-a-reference-geometry-and-mask">
+<h3>Supplying a reference geometry and mask<a class="headerlink" href="#supplying-a-reference-geometry-and-mask" title="Link to this heading">¶</a></h3>
+<p>A DIALS reference geometry file (e.g. <code class="samp docutils literal notranslate"><span class="pre">refined.expt</span></code>) can be provided as input
 with the option <code class="samp docutils literal notranslate"><span class="pre">reference_geometry=</span></code>, which will be used instead of
 performing a joint refinement on the data. A mask file created from the DIALS
 image viewer can also be provided with the option <code class="samp docutils literal notranslate"><span class="pre">mask=</span></code>, which will be
-used in spotfinding and integration. A few other common options to set are the
-<code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code> parameter, which determines the number of lattices to search
-for on each image in indexing, and <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> which controls the resolution
-limit for spotfinding and integration.</p>
-<p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span> <span class="pre">-ce2</span> <span class="pre">-a1</span></code>.
+used in spotfinding and integration.</p>
+</section>
+<section id="important-options">
+<h3>Important options<a class="headerlink" href="#important-options" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="samp docutils literal notranslate"><span class="pre">max_lattices</span></code>: Determines the number of lattices to search for on each image (default 3).</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">d_min</span></code>: Controls the resolution limit for spotfinding and integration.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">steps=find_spots+index+integrate+reduce</span></code>: This can be changed to a single value to run part of the xia2.ssx workflow, which can be useful for stepwise processing and result inspection, or rerunning a subset of the workflow. To run only the data integration without reduction, use the option <code class="samp docutils literal notranslate"><span class="pre">steps=find_spots+index+integrate</span></code> (i.e. omit <code class="samp docutils literal notranslate"><span class="pre">+reduce</span></code>).</p></li>
+</ul>
+<p>To see the full list of options and their descriptions, run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>.
 Change the number after <code class="samp docutils literal notranslate"><span class="pre">-ce</span></code> to a value from 0 to 3 to see different
-“expert levels” of program parameters. Note that a phil options file can be
-provided for each of the DIALS programs, to allow further customisation of the
-options for the individual programs. Additionally, stepwise processing can be
-performed by running the program multiple times with the option <code class="samp docutils literal notranslate"><span class="pre">steps=find_spots</span></code>,
-then <code class="samp docutils literal notranslate"><span class="pre">steps=index</span></code> and finally <code class="samp docutils literal notranslate"><span class="pre">steps=integrate</span></code>.</p>
+“expert levels” of program parameters.</p>
+</section>
+<section id="providing-tailored-parameters-for-individual-steps">
+<h3>Providing tailored parameters for individual steps<a class="headerlink" href="#providing-tailored-parameters-for-individual-steps" title="Link to this heading">¶</a></h3>
+<p>xia2.ssx exposes a limited set of key parameters for processing. However, the underlying programs
+(spotfinding, indexing, integration), have numerous options for different parts of their algorithms.
+These can be changed by using phil option files, which are a mechanism to specify parameters in a hierachical manner.</p>
+<p>For example, to set the spotfinding gain parameter, one would make a plain-text file called <code class="samp docutils literal notranslate"><span class="pre">spots.phil</span></code> containing the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spotfinder</span><span class="o">.</span><span class="n">threshold</span><span class="o">.</span><span class="n">dispersion</span><span class="o">.</span><span class="n">gain</span><span class="o">=</span><span class="mf">0.8</span>
+</pre></div>
+</div>
+<p>and then pass this to xia2.ssx with the option <code class="samp docutils literal notranslate"><span class="pre">spotfinding.phil=spots.phil</span></code>. Similarity, options can be provided in
+a similar way for dials.import (<code class="samp docutils literal notranslate"><span class="pre">dials_import.phil=</span></code>), dials.ssx_index (<code class="samp docutils literal notranslate"><span class="pre">indexing.phil=</span></code>),
+dials.ssx_integrate (<code class="samp docutils literal notranslate"><span class="pre">integration.phil=</span></code>), dials.cosym (<code class="samp docutils literal notranslate"><span class="pre">symmetry.phil=</span></code>) and dials.scale (<code class="samp docutils literal notranslate"><span class="pre">scaling.phil=</span></code>).</p>
+</section>
 </section>
 <section id="data-reduction">
 <span id="datareduction"></span><h2>Data Reduction<a class="headerlink" href="#data-reduction" title="Link to this heading">¶</a></h2>
@@ -120,35 +142,67 @@ the command <code class="samp docutils literal notranslate"><span class="pre">xi
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2_ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>To run only the data integration without reduction, use the option
-<code class="samp docutils literal notranslate"><span class="pre">steps=find_spots+index+integrate</span></code> (i.e. omit <code class="samp docutils literal notranslate"><span class="pre">+reduce</span></code>) when running <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx</span></code>.</p>
 <p>The data reduction process consists of unit cell filtering, followed by indexing
 ambiguity resolution in batches (if ambiguities are possible due to lattice
-and space group symmetries), followed by scaling and merging.</p>
-<p>If a reference dataset/PDB model is
-provided with the option <code class="samp docutils literal notranslate"><span class="pre">reference=</span></code>, then reindexing and scaling is performed
-in parallel in batches of at least <code class="samp docutils literal notranslate"><span class="pre">reduction_batch_size</span></code> crystals, using intensities
-extracted/generated from the reference as a reference when reindexing and scaling.
-It is recommended to use a high-quality reference set of intensities in preference to genering
+and space group symmetries), followed by scaling and merging. The output are typically two
+merged MTZ files - one cut at the estimated resolution limit of the data and one containing
+all data to the full resolution limit of the detector.</p>
+<section id="indexing-ambiguity-resolution">
+<h3>Indexing ambiguity resolution<a class="headerlink" href="#indexing-ambiguity-resolution" title="Link to this heading">¶</a></h3>
+<p>The xia2.ssx.log file will indicate whether indexing ambiguity resolution was triggered.
+Two assessments are made based on the space group symmetry and unit cell parameters.
+If the space group is one where indexing ambiguities are possible, the dials.cosym
+program is used to resolve the indexing ambiguity. dials.cosym is memory intensive
+for large datasets, so data are split into batches of 1000 crystals by default, controllable
+with the <code class="samp docutils literal notranslate"><span class="pre">reduction_batch_size</span></code> parameter. Therefore the routine used is to resolve in
+batches of 1000, internally scale each batch and then reindex all batches against eachother.
+If the space group symmetry does not allow indexing ambiguities, the assessment will still
+be made if the cell parameters mean the cell could be misindexed (e.g. close cell parameters
+in a P222 cell). The level of similarity needed to trigger this is controlled by the
+<code class="samp docutils literal notranslate"><span class="pre">lattice_symmetry_max_delta</span></code> parameter. Lowering this parameter to zero will avoid
+the analysis for accidental indexing ambiguity being triggered.</p>
+<p>To evaluate the success of indexing ambiguity resolution, it is important to inspect
+the html outputs from dials.cosym jobs in the <code class="samp docutils literal notranslate"><span class="pre">data_reduction\reindex</span></code> folder.</p>
+</section>
+<section id="scaling-with-or-without-a-reference">
+<h3>Scaling with or without a reference<a class="headerlink" href="#scaling-with-or-without-a-reference" title="Link to this heading">¶</a></h3>
+<p>For scaling, there is a distinction in the workflow depending on if a reference is used.
+Using a reference enables quicker parallel scaling, which is beneficial for quick feedback when
+datasets are large, however this could introduce bias. Scaling without a reference is
+recommended for the final processing.</p>
+<p>If a reference dataset/PDB model is provided with the option <code class="samp docutils literal notranslate"><span class="pre">reference=</span></code>, then reindexing
+and scaling is performed in parallel in batches of at least <code class="samp docutils literal notranslate"><span class="pre">reduction_batch_size</span></code> crystals,
+using intensities extracted/generated from the reference as a reference when reindexing and scaling.
+If using a reference for quick scaling of large datasets, it is recommended to use a
+high-quality reference set of intensities in preference to generating
 a set of intensities from a PDB model, to give a higher accuracy. If generating intensities
 from a PDB model, the default bulk solvent parameters (<code class="samp docutils literal notranslate"><span class="pre">k_sol</span></code> and <code class="samp docutils literal notranslate"><span class="pre">b_sol</span></code>) should
-be adjusted to suitable values.
-If there is no reference given, the scaling is not performed in parallel. Other important
-options are setting <code class="samp docutils literal notranslate"><span class="pre">anomalous=True/False</span></code> and specifying a <code class="samp docutils literal notranslate"><span class="pre">d_min</span></code> value.
-To evaluate the success of indexing ambiguity resolution, it is important to inspect
-the html output from dials.cosym jobs in the <code class="samp docutils literal notranslate"><span class="pre">data_reduction\reindex</span></code> folder.
-To see the full list of data reduction parameters and their descriptions,
-run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>. The output of the data reduction pipeline
-is a merged MTZ file which can be taken onwards for structure determination.</p>
+be adjusted to suitable values.</p>
+</section>
+<section id="id1">
+<h3>Important options<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="samp docutils literal notranslate"><span class="pre">anomalous=True/False</span></code>: if True, anomalous pairs are separated in scaling.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">d_min</span></code>: The resolution limit to apply to the data in scaling. A single MTZ file will be produced to this resolution. If omitted, a resolution limit will be estimated at the point of merging.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>: Perform ΔCC1/2 filtering as part of scaling, to remove the crystals with worst agreement with the rest of the dataset.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">steps=scale+merge</span></code>: This can be changed to a single value to run part of the xia2.ssx_reduce workflow.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">dose_series_repeat</span></code>: Set this to an integer to merge the data into separate groups based on image number. See <a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a> for more details and more generalised merging options.</p></li>
+</ul>
+<p>To see the full list of data reduction parameters and their descriptions,
+run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>.</p>
+</section>
+<section id="quick-remerging-of-processed-data">
+<h3>Quick remerging of processed data<a class="headerlink" href="#quick-remerging-of-processed-data" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span></code> also supports quick remerging of already processed data by using the option
 <code class="docutils literal notranslate"><span class="pre">steps=merge</span></code>. This can be useful for aggregating multiple processing jobs processed
 using the same reference model, or generating MTZ files with specified resolution
 cutoffs e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2_ssx_reduce</span><span class="o">/</span><span class="n">DataFiles</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="n">d_min</span><span class="o">=</span><span class="mf">1.8</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="o">../</span><span class="n">xia2_ssx_reduce</span><span class="o">/</span><span class="n">DataFiles</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>  <span class="n">d_min</span><span class="o">=</span><span class="mf">1.8</span>
 
 <span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="n">steps</span><span class="o">=</span><span class="n">merge</span> <span class="o">../</span><span class="p">{</span><span class="n">chip1</span><span class="p">,</span><span class="n">chip2</span><span class="p">}</span><span class="o">/</span><span class="n">DataFiles</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
 </pre></div>
 </div>
+</section>
 </section>
 <section id="overcoming-difficulties-in-geometry-refinement">
 <span id="geometryrefinement"></span><h2>Overcoming difficulties in geometry refinement<a class="headerlink" href="#overcoming-difficulties-in-geometry-refinement" title="Link to this heading">¶</a></h2>
@@ -186,17 +240,20 @@ as dose series experiments. This is described in more detail in the links below.
 <section id="exporting-unmerged-data">
 <span id="exportingunmerged"></span><h2>Exporting unmerged data<a class="headerlink" href="#exporting-unmerged-data" title="Link to this heading">¶</a></h2>
 <p>Merged data (in MTZ format) is the standard output of <code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code>, however unmerged scaled data files
-(in mmCIF format) can be generated using the tools from DIALS (note that this requires a
-DIALS version later than v3.20).</p>
-<p>If data were reduced with a reference, there may be more than one set of scaled reflection and experiment files.
-In this case, these must first be combined with <code class="docutils literal notranslate"><span class="pre">dials.combine_experiments</span></code>, before using <code class="docutils literal notranslate"><span class="pre">dials.export</span></code> to
-export to mmcif format:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">combine_experiments</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
-<span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">combined</span><span class="o">.*</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span>
+(in mmCIF format or mtz format) can be generated using the tools from DIALS.</p>
+<p>If data were not reduced with a reference, then one can just use <code class="docutils literal notranslate"><span class="pre">dials.export</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span> <span class="n">partiality_threshold</span><span class="o">=</span><span class="mf">0.25</span>
 </pre></div>
 </div>
-<p>If data were not reduced with a reference, then one can just use <code class="docutils literal notranslate"><span class="pre">dials.export</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="nb">format</span><span class="o">=</span><span class="n">mtz</span> <span class="n">partiality_threshold</span><span class="o">=</span><span class="mf">0.25</span>
+</pre></div>
+</div>
+<p>The <code class="samp docutils literal notranslate"><span class="pre">partiality_threshold</span></code> parameter should be set to match that used in xia2.ssx (default 0.25).</p>
+<p>If data were reduced with a reference, there may be more than one set of scaled reflection and experiment files.
+In this case, these must first be combined with <code class="docutils literal notranslate"><span class="pre">dials.combine_experiments</span></code>, before using <code class="docutils literal notranslate"><span class="pre">dials.export</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dials</span><span class="o">.</span><span class="n">combine_experiments</span> <span class="n">data_reduction</span><span class="o">/</span><span class="n">scale</span><span class="o">/</span><span class="n">scaled</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span>
+<span class="n">dials</span><span class="o">.</span><span class="n">export</span> <span class="n">combined</span><span class="o">.*</span> <span class="nb">format</span><span class="o">=</span><span class="n">mmcif</span> <span class="n">partiality_threshold</span><span class="o">=</span><span class="mf">0.25</span>
 </pre></div>
 </div>
 <p>mmCIF is a standardised format that is able to describe unmerged diffraction data, and the output scaled.cif file conforms to the v5

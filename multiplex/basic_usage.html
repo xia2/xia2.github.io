@@ -99,6 +99,22 @@ Once the data is merged, a range of analyses are performed which are useful for 
 </ul>
 </dd>
 </dl>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>For newer versions of DIALS (main branch and &gt; 3.29) you will find the output organised into various folders.</p>
+<p>In the parent folder where <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code> was run, you can find the primary logs and reports from the multi-crystal analysis.
+You can also find citation information and <code class="docutils literal notranslate"><span class="pre">xia2-multiplex-working.phil</span></code>. This
+contains the configuration of all commandline parameters used by <code class="docutils literal notranslate"><span class="pre">xia2.multiplex</span></code>.</p>
+<p><strong>DataFiles</strong>:
+This folder contains the final files you will find useful for feeding into structure solution/refinement pipelines. This includes any
+clusters that have been output as well as filtered data if this option is selected.</p>
+<p><strong>LogFiles</strong>:
+This folder contains the log files and graphical reports from intermediate processing steps.</p>
+<p><strong>Processing</strong>:
+This folder contains the key <code class="docutils literal notranslate"><span class="pre">.expt</span> <span class="pre">/</span> <span class="pre">.refl</span></code> files and <code class="docutils literal notranslate"><span class="pre">.json</span></code> logs. For files of these types output
+by intermediate steps of the multiplex pipeline, you can set the commandline option
+<code class="docutils literal notranslate"><span class="pre">cleanup=False</span></code> and additional files will be output to this folder.</p>
+</div>
 </section>
 <section id="diagnostic-tools-in-xia2-multiplex">
 <h2>Diagnostic Tools in xia2.multiplex<a class="headerlink" href="#diagnostic-tools-in-xia2-multiplex" title="Link to this heading">¶</a></h2>
