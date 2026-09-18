@@ -168,7 +168,7 @@ available (currently we only support qsub) by specifying the parameter
 <code class="samp docutils literal notranslate"><span class="pre">multiprocessing.qsub_command</span></code> may be used (if needed) to e.g. specify
 which queue jobs should be submitted to:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span> <span class="n">pipeline</span><span class="o">=</span><span class="n">dials</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">images</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">mode</span><span class="o">=</span><span class="n">parallel</span> \
-  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">qsub</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">qsub_command</span><span class="o">=</span><span class="s2">&quot;qsub -q low.q&quot;</span> \
+  <span class="n">multiprocessing</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">qsub</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">qsub_command</span><span class="o">=</span><span class="s2">"qsub -q low.q"</span> \
   <span class="n">multiprocessing</span><span class="o">.</span><span class="n">njob</span><span class="o">=</span><span class="mi">10</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">nproc</span><span class="o">=</span><span class="mi">16</span>
 </pre></div>
 </div>

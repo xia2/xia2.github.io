@@ -89,7 +89,7 @@ in serial crystallography, which can be specified using a YAML file with formali
 equivalent example to the above case is the example yaml file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">:</span>
   <span class="n">dose_point</span><span class="p">:</span>                                      <span class="c1">## &lt;- user-defined metadata name</span>
-    <span class="s2">&quot;path/to/example/image.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;repeat=5&quot;</span>        <span class="c1">## &lt;- the format here is image-file : value</span>
+    <span class="s2">"path/to/example/image.h5"</span> <span class="p">:</span> <span class="s2">"repeat=5"</span>        <span class="c1">## &lt;- the format here is image-file : value</span>
 <span class="n">grouping</span><span class="p">:</span>
   <span class="n">merge_by</span><span class="p">:</span>                                        <span class="c1">## &lt;- indicator to xia2 that the following definitions are for merging</span>
     <span class="n">values</span><span class="p">:</span>
@@ -124,9 +124,9 @@ groupings and options. An example use case is data in HDF5 format with a metadat
 be used for grouping. The example below demonstates a few valid ways of specifying metadata:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="p">:</span>
   <span class="n">dose</span><span class="p">:</span>
-    <span class="s2">&quot;path/to/example/image1.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;path/to/example/image1.h5:/entry/dose&quot;</span> <span class="c1">## &lt;- format is image-file: file:/path/to/metadata/array</span>
-    <span class="s2">&quot;path/to/example/image2.h5&quot;</span> <span class="p">:</span> <span class="s2">&quot;meta2.h5:/entry/dose&quot;</span>                  <span class="c1">## &lt;- metadata array does not need to be in the image file</span>
-    <span class="s2">&quot;path/to/example/image3.h5&quot;</span> <span class="p">:</span> <span class="mf">0.0</span>                                     <span class="c1">## &lt;- all images at a dose value of 0.</span>
+    <span class="s2">"path/to/example/image1.h5"</span> <span class="p">:</span> <span class="s2">"path/to/example/image1.h5:/entry/dose"</span> <span class="c1">## &lt;- format is image-file: file:/path/to/metadata/array</span>
+    <span class="s2">"path/to/example/image2.h5"</span> <span class="p">:</span> <span class="s2">"meta2.h5:/entry/dose"</span>                  <span class="c1">## &lt;- metadata array does not need to be in the image file</span>
+    <span class="s2">"path/to/example/image3.h5"</span> <span class="p">:</span> <span class="mf">0.0</span>                                     <span class="c1">## &lt;- all images at a dose value of 0.</span>
 <span class="n">grouping</span><span class="p">:</span>
   <span class="n">merge_by</span><span class="p">:</span>
     <span class="n">values</span><span class="p">:</span>

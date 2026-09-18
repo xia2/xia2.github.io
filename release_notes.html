@@ -266,13 +266,13 @@ XDS GXPARM.XDS - useful for polycrystal data reduction.</p></li>
 <li><p>Now check what you tell the program, viz:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gw56@ws050 nonsense]$ xia2 -3d -nonsense /data/gw56/dl/Cowan/Insulin/insulin/
 Traceback (most recent call last):
-  File &quot;/home/gw56/svn/xia2/Applications/xia2.py&quot;, line 45, in
+  File "/home/gw56/svn/xia2/Applications/xia2.py", line 45, in
     from xia2setup import write_xinfo
-  File &quot;/home/gw56/svn/xia2/Applications/xia2setup.py&quot;, line 35, in
+  File "/home/gw56/svn/xia2/Applications/xia2setup.py", line 35, in
     from Handlers.CommandLine import CommandLine
-  File &quot;/home/gw56/svn/xia2/Handlers/CommandLine.py&quot;, line 1513, in
+  File "/home/gw56/svn/xia2/Handlers/CommandLine.py", line 1513, in
     CommandLine.setup()
-  File &quot;/home/gw56/svn/xia2/Handlers/CommandLine.py&quot;, line 349, in setup
+  File "/home/gw56/svn/xia2/Handlers/CommandLine.py", line 349, in setup
     raise RuntimeError, nonsense
 RuntimeError: Unknown command-line options: -nonsense
 </pre></div>
