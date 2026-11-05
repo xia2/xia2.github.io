@@ -187,6 +187,7 @@ be adjusted to suitable values.</p>
 <li><p><code class="samp docutils literal notranslate"><span class="pre">filtering.method=deltacchalf</span></code>: Perform ΔCC1/2 filtering as part of scaling, to remove the crystals with worst agreement with the rest of the dataset.</p></li>
 <li><p><code class="samp docutils literal notranslate"><span class="pre">steps=scale+merge</span></code>: This can be changed to a single value to run part of the xia2.ssx_reduce workflow.</p></li>
 <li><p><code class="samp docutils literal notranslate"><span class="pre">dose_series_repeat</span></code>: Set this to an integer to merge the data into separate groups based on image number. See <a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a> for more details and more generalised merging options.</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">series_repeat</span></code>: Set this to an integer, or a list of names, to merge the data into separate groups based on image number, e.g. <code class="samp docutils literal notranslate"><span class="pre">series_repeat=3</span></code> (giving groups named <code class="docutils literal notranslate"><span class="pre">group_0</span></code>, <code class="docutils literal notranslate"><span class="pre">group_1</span></code>, <code class="docutils literal notranslate"><span class="pre">group_2</span></code>) or <code class="samp docutils literal notranslate"><span class="pre">series_repeat=first,second,last</span></code>. See <a class="reference internal" href="#mergingingroups"><span class="std std-ref">Merging in groups</span></a> for more details and more generalised merging options.</p></li>
 </ul>
 <p>To see the full list of data reduction parameters and their descriptions,
 run <code class="samp docutils literal notranslate"><span class="pre">xia2.ssx_reduce</span> <span class="pre">-ce3</span> <span class="pre">-a2</span></code>.</p>
@@ -230,6 +231,7 @@ as dose series experiments. This is described in more detail in the links below.
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="xia2-ssx-dose-series.html">Dose-series experiments and merging in groups</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#dose-series-the-dose-series-repeat-option">Dose series - the <em>dose_series_repeat</em> option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#named-series-groups-the-series-repeat-option">Named series groups - the <em>series_repeat</em> option</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#dose-series-using-a-grouping-yml-file">Dose series - using a <em>grouping.yml</em> file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="xia2-ssx-dose-series.html#generalised-merge-grouping-on-metadata">Generalised merge grouping on metadata</a></li>
 </ul>

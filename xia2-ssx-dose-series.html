@@ -82,6 +82,36 @@ can be used as input for subsequent merging jobs, for example with a specified r
 </div>
 <p>The experiment files can also be used to verify which images were split into which dose group.</p>
 </section>
+<section id="named-series-groups-the-series-repeat-option">
+<h2>Named series groups - the <em>series_repeat</em> option<a class="headerlink" href="#named-series-groups-the-series-repeat-option" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">series_repeat=</span></code> option is a generalisation of <code class="docutils literal notranslate"><span class="pre">dose_series_repeat=</span></code>. It can be
+given either as an integer, the size of the repeat, or as a list of names for the groups.</p>
+<p>If an integer is given, e.g. <code class="docutils literal notranslate"><span class="pre">series_repeat=3</span></code>, the data are split as for
+<code class="docutils literal notranslate"><span class="pre">dose_series_repeat=3</span></code>, but the groups are given the generic names <code class="docutils literal notranslate"><span class="pre">group_0</span></code>, <code class="docutils literal notranslate"><span class="pre">group_1</span></code>,
+<code class="docutils literal notranslate"><span class="pre">group_2</span></code> (matching the naming used by <code class="docutils literal notranslate"><span class="pre">dials.split_still_data</span></code>).</p>
+<p>Alternatively, the groups can be given meaningful names. The number of names given defines
+the size of the repeat, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xia2</span><span class="o">.</span><span class="n">ssx_reduce</span> <span class="o">../</span><span class="n">xia2</span><span class="o">-</span><span class="n">ssx</span><span class="o">/</span><span class="n">batch_</span><span class="o">*/</span><span class="n">integrated</span><span class="o">*.</span><span class="p">{</span><span class="n">expt</span><span class="p">,</span><span class="n">refl</span><span class="p">}</span> <span class="n">series_repeat</span><span class="o">=</span><span class="n">first</span><span class="p">,</span><span class="n">second</span><span class="p">,</span><span class="n">last</span>
+</pre></div>
+</div>
+<p>is equivalent to <code class="docutils literal notranslate"><span class="pre">dose_series_repeat=3</span></code>, except that the merged data are written to
+<code class="docutils literal notranslate"><span class="pre">first.mtz</span></code>, <code class="docutils literal notranslate"><span class="pre">second.mtz</span></code> and <code class="docutils literal notranslate"><span class="pre">last.mtz</span></code>, with the corresponding directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">data_reduction</span>
+    <span class="o">-</span> <span class="n">merge</span>
+        <span class="o">-</span> <span class="n">first</span>
+        <span class="o">-</span> <span class="n">second</span>
+        <span class="o">-</span> <span class="n">last</span>
+</pre></div>
+</div>
+<p>The names are assigned in image order within each repeat, i.e. the first name is given to the
+group of images for which <code class="docutils literal notranslate"><span class="pre">image-index</span> <span class="pre">modulo</span> <span class="pre">repeat</span> <span class="pre">=</span> <span class="pre">0</span></code>. The names can alternatively be
+given as a quoted, space-separated list, i.e. <code class="docutils literal notranslate"><span class="pre">series_repeat='first</span> <span class="pre">second</span> <span class="pre">last'</span></code>.</p>
+<p>A name can be given more than once, in which case each occurrence is numbered in order, so
+that the output names are still unique. For example, <code class="docutils literal notranslate"><span class="pre">series_repeat=dose,dose,apo</span></code> gives
+the names <code class="docutils literal notranslate"><span class="pre">dose_1</span></code>, <code class="docutils literal notranslate"><span class="pre">dose_2</span></code> and <code class="docutils literal notranslate"><span class="pre">apo</span></code>, while a name given twelve times would be
+numbered <code class="docutils literal notranslate"><span class="pre">_01</span></code> to <code class="docutils literal notranslate"><span class="pre">_12</span></code>. As the names are used as file and directory names, they must not
+contain path separators.</p>
+</section>
 <section id="dose-series-using-a-grouping-yml-file">
 <h2>Dose series - using a <em>grouping.yml</em> file<a class="headerlink" href="#dose-series-using-a-grouping-yml-file" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">xia2.ssx</span></code> also supports more generalised merging, to support the wide variety of experiments possible
